@@ -1,0 +1,444 @@
+---
+title: "Métodos de Bootstrapping: Fundamentos y Aplicaciones"
+author: "David Valcárcel"
+date: today
+format:
+  pdf:
+    documentclass: article
+    toc: true
+    number-sections: true
+    fig-pos: "H"
+    keep-tex: true
+    latex-engine: lualatex
+    fontsize: 11pt
+    linestretch: 1.3
+    geometry: margin=2.5cm
+    colorlinks: true
+    linkcolor: "MidnightBlue"
+    citecolor: "MidnightBlue"
+    urlcolor: "MidnightBlue"
+    header-includes:
+      - \usepackage{microtype}
+      - \usepackage{float}
+      - \usepackage{booktabs}
+      - \usepackage{graphicx}
+      - \usepackage{amsmath, amssymb}
+      - \usepackage{caption}
+      - \captionsetup[figure]{labelfont=bf, labelsep=period}
+      - \usepackage{csquotes}
+      - \usepackage{hyperref}
+bibliography: references.bib
+lang: es
+---
+
+# Introducción
+
+-   El **bootstrapping** es un método de remuestreo propuesto por Efron (1979).
+-   Su objetivo es aproximar la distribución de un estimador estadístico utilizando remuestras de los datos observados.
+-   Se utiliza para construir **intervalos de confianza**, realizar **contrastes de hipótesis**, y estimar la **precisión** de estadísticas complejas.
+
+------------------------------------------------------------------------
+
+# Fundamento teórico
+
+-   Sea $\hat{\theta} = s(\mathbf{X})$ un estimador basado en la muestra $\mathbf{X} = (X_1, \dots, X_n)$.
+-   El problema: no conocemos la distribución de $\hat{\theta}$.
+-   Solución: estimarla mediante remuestreo de los datos.
+
+**Principio del bootstrapping**: \> La muestra observada es representativa de la población → simular nuevas muestras "como si" provinieran de ella.
+
+------------------------------------------------------------------------
+
+# Bootstrapping no paramétrico
+
+## Fundamentos conceptuales
+
+El bootstrapping no paramétrico es un método de remuestreo que permite estimar propiedades de distribuciones (sesgo, error estándar, intervalos de confianza) **sin asumir una forma paramétrica subyacente**. Se basa en el principio de que la muestra observada es la mejor representación disponible de la población subyacente.
+
+**Supuesto clave**: Las observaciones son independientes e idénticamente distribuidas (i.i.d.)
+
+## Procedimiento básico
+
+### 1. Muestra bootstrap
+
+Dada una muestra original $\mathbf{X} = (X_1, X_2, \dots, X_n)$: - Se genera $\mathbf{X}^{*}$ mediante muestreo con reemplazo - Cada $X_i^{*}$ se selecciona independientemente de $\mathbf{X}$ - Tamaño de $\mathbf{X}^{*}$ = tamaño de $\mathbf{X}$ ($n$ observaciones) - **Propiedad clave**: En promedio, el 63.2% de los datos originales aparecen en cada muestra bootstrap ($1 - (1 - 1/n)^n \approx 1-e^{-1}$)
+
+### 2. Cálculo del estadístico
+
+-   $\hat{\theta}^{*} = s(\mathbf{X}^{*})$ es la versión bootstrap del estadístico
+-   Ejemplos comunes:
+    -   Media: $\bar{X}^{*} = \frac{1}{n}\sum X_i^{*}$
+    -   Mediana
+    -   Coeficientes de regresión
+    -   Estadísticos de correlación
+
+### 3. Réplicas bootstrap
+
+-   Número de iteraciones $B$ típicos:
+    -   $B \geq 1000$ para errores estándar
+    -   $B \geq 10,000$ para intervalos de confianza
+-   Las réplicas $\hat{\theta}^{*(1)}, \dots, \hat{\theta}^{*(B)}$ forman una distribución empírica
+
+### 4. Estimación de la distribución
+
+-   **Error estándar bootstrap**: $$\widehat{se}_{boot} = \sqrt{\frac{1}{B-1} \sum_{b=1}^B \left( \hat{\theta}^{*(b)} - \bar{\hat{\theta}}^{*} \right)^2}$$ donde $\bar{\hat{\theta}}^{*} = \frac{1}{B}\sum_{b=1}^B \hat{\theta}^{*(b)}$
+
+-   **Sesgo estimado**: $$\widehat{Bias}_{boot} = \bar{\hat{\theta}}^{*} - \hat{\theta}$$
+
+-   **Intervalos de confianza** (métodos comunes):
+
+    1.  Percentil: $[\theta_{\alpha/2}^{*}, \theta_{1-\alpha/2}^{*}]$
+    2.  BCa (bias-corrected and accelerated)
+    3.  Normal: $\hat{\theta} \pm z_{\alpha/2} \cdot \widehat{se}_{boot}$
+
+### 5. Implementación básica en R
+
+```{r}
+#| label: bootstrap-example
+#| warning: false
+#| message: false
+
+library(boot)
+
+# 1. Función para calcular el estadístico
+media_boot <- function(data, indices) {
+  muestra <- data[indices]  # Remuestreo con índices
+  return(mean(muestra))
+}
+
+# 2. Datos originales (ejemplo: 100 observaciones)
+datos <- rnorm(100, mean = 10, sd = 2)
+
+# 3. Configurar bootstrap (B = 2000 réplicas)
+set.seed(123)
+resultados_boot <- boot(
+  data = datos,
+  statistic = media_boot,
+  R = 2000
+)
+
+# 4. Resultados
+print(resultados_boot)
+plot(resultados_boot)
+
+# 5. Intervalo de confianza percentil 95%
+boot.ci(resultados_boot, type = "perc")
+```
+
+## Tests bootstrap no paramétricos
+
+### Procedimiento general para un test de hipótesis
+
+1.  **Definir hipótesis**:
+
+    -   $H_0$: Hipótesis nula
+    -   $H_1$: Hipótesis alternativa
+
+2.  **Calcular el estadístico de prueba** $T$ en la muestra original.
+
+3.  **Generar muestras bootstrap bajo** $H_0$:
+
+    -   En el caso no paramétrico, esto implica remuestrear transformando los datos para que cumplan $H_0$.
+
+4.  **Para cada muestra bootstrap**:
+
+    -   Calcular el estadístico de prueba $T^{*b}$
+
+5.  **Calcular el p-valor**:
+
+    -   Para una prueba de una cola:
+
+### Ejemplo 1: Test para una media (vs. valor hipotético $\mu_0$)
+
+**Hipótesis**: - $H_0: \mu = \mu_0$ - $H_1: \mu \neq \mu_0$
+
+**Procedimiento**:
+
+1.  Centrar los datos a $H_0$: $X_i^{cent} = X_i - \bar{X} + \mu_0$
+
+2.  Remuestrear de $X_i^{cent}$
+
+3.  Calcular la media en cada remuestra
+
+4.  Calcular el estadístico $T = |\bar{X} - \mu_0|$ en original y en cada remuestra
+
+```{r}
+#| label: test-media-noparam
+#| warning: false
+
+library(boot)
+# Datos de ejemplo
+set.seed(123)
+muestra <- rnorm(50, mean = 10.5, sd = 2)
+mu0 <- 10  # Valor hipotético
+# 1. Calcular estadístico original
+T_orig <- abs(mean(muestra) - mu0)
+# 2. Centrar los datos bajo H0
+muestra_cent <- muestra - mean(muestra) + mu0
+# 3. Función para calcular estadístico en remuestras
+stat_func <- function(data, indices) {
+  remuestra <- data[indices]
+  return(abs(mean(remuestra) - mu0))
+}
+# 4. Bootstrap bajo H0
+boot_results <- boot(muestra_cent, statistic = stat_func, R = 9999)
+# 5. Calcular p-valor (dos colas: proporción de veces que T_boot >= T_orig)
+p_valor <- mean(boot_results$t >= T_orig)
+cat("Estadístico T observado:", T_orig, "\n")
+cat("p-valor:", p_valor, "\n")
+```
+
+### Ejemplo 2: Test de dos medias (muestras independientes)
+
+**Hipótesis**: - $H_0: \mu_1 = \mu_2$ - $H_1: \mu_1 \neq \mu_2$
+
+**Procedimiento**:
+
+1.  Combinar las muestras y centrar cada grupo a su media global.
+
+2.  Remuestrear con reemplazo dentro de cada grupo (manteniendo tamaños originales).
+
+3.  Calcular la diferencia de medias en cada remuestra.
+
+4.  Calcular el p-valor basado en la distribución de diferencias.
+
+```{r}
+#| label: test-dos-medias-noparam
+#| warning: false
+
+# Datos de ejemplo
+set.seed(456)
+grupo1 <- rnorm(30, mean = 100, sd = 15)
+grupo2 <- rnorm(40, mean = 114, sd = 15)
+
+# 1. Estadístico original: diferencia de medias
+T_orig <- abs(mean(grupo1) - mean(grupo2))
+
+# 2. Combinar datos y calcular media global
+datos_combinados <- c(grupo1, grupo2)
+media_global <- mean(datos_combinados)
+
+# 3. Centrar grupos bajo H0 (ambas muestras con media global)
+grupo1_cent <- grupo1 - mean(grupo1) + media_global
+grupo2_cent <- grupo2 - mean(grupo2) + media_global
+
+# 4. Función para bootstrap
+stat_diff <- function(data, indices, n1) {
+  
+  # Separar en dos grupos
+  remuestra1 <- data[indices][1:n1]
+  remuestra2 <- data[indices][-(1:n1)]
+  return(abs(mean(remuestra1) - mean(remuestra2)))
+}
+
+# 5. Configurar datos para boot (combinar grupos centrados)
+datos_cent <- c(grupo1_cent, grupo2_cent)
+n1 <- length(grupo1_cent)
+
+# 6. Ejecutar bootstrap
+boot_diff <- boot(datos_cent, statistic = stat_diff, R = 9999, n1 = n1)
+# 7. p-valor: proporción de diferencias bootstrap >= T_orig
+
+p_valor <- mean(boot_diff$t >= T_orig)
+cat("Diferencia observada (absoluta):", T_orig, "\n")
+cat("p-valor:", p_valor, "\n")
+```
+
+------------------------------------------------------------------------
+
+# Bootstrapping paramétrico
+
+## Fundamentos conceptuales
+
+El bootstrapping paramétrico asume que los datos proceden de una distribución paramétrica conocida (normal, exponencial, Poisson, etc.). A diferencia del método no paramétrico:
+
+-   **Supuesto fuerte**: Se conoce la forma funcional de la distribución subyacente $F_{\theta}$
+-   **Ventaja**: Mayor eficiencia cuando el modelo es correcto
+-   **Desventaja**: Sensible a errores de especificación del modelo
+
+## Procedimiento básico
+
+### 1. Ajustar modelo paramétrico
+
+Dada la muestra original $\mathbf{X} = (X_1, \dots, X_n)$: - Estimar $\hat{\theta}$ mediante máxima verosimilitud u otro método - Verificar el ajuste del modelo (QQ-plots, tests de bondad de ajuste)
+
+### 2. Generación de muestras bootstrap
+
+-   Simular $\mathbf{X}^{*(b)} \sim F_{\hat{\theta}}$ para cada réplica $b = 1, \dots, B$
+-   Mantener el mismo tamaño $n$ que la muestra original
+
+### 3. Cálculo del estadístico
+
+Para cada muestra simulada: - Calcular $\hat{\theta}^{*(b)} = s(\mathbf{X}^{*(b)})$ - El estadístico puede ser diferente al usado para ajustar el modelo
+
+### 4. Análisis de la distribución bootstrap
+
+-   Construir la distribución empírica de $\hat{\theta}^{*}$
+-   Calcular errores estándar, sesgos e intervalos de confianza
+
+### 5. Implementación básica en R: Ejemplo con distribución normal
+
+```{r}
+#| label: parametric-boot-normal
+#| warning: false
+#| message: false
+
+# 1. Datos originales (simulados)
+set.seed(123)
+datos <- rnorm(500, mean = 5, sd = 2)
+
+# 2. Ajuste paramétrico (distribución normal)
+mu_hat <- mean(datos)
+sigma_hat <- sd(datos)
+
+# 3. Función bootstrap paramétrico
+parametric_boot <- function(B, n, mu, sigma) {
+  theta_star <- numeric(B)
+  
+  for (b in 1:B) {
+    # Generar muestra de la distribución asumida
+    muestra_boot <- rnorm(n, mean = mu, sd = sigma)
+    # Calcular estadístico (media recortada al 10%)
+    theta_star[b] <- mean(muestra_boot, trim = 0.1)
+  }
+  
+  return(theta_star)
+}
+
+# 4. Configuración
+B <- 9999
+n <- length(datos)
+
+# 5. Ejecutar bootstrap
+set.seed(456)
+boot_results <- parametric_boot(B, n, mu_hat, sigma_hat)
+
+# 6. Análisis de resultados
+# Valor original del estadístico
+theta_orig <- mean(datos, trim = 0.1)
+
+# Error estándar bootstrap
+se_boot <- sd(boot_results)
+
+# Sesgo bootstrap
+bias_boot <- mean(boot_results) - theta_orig
+
+# Intervalo percentil 95%
+ci_boot <- quantile(boot_results, probs = c(0.025, 0.975))
+
+# 7. Visualización
+hist(boot_results, breaks = 30, col = "lightblue", 
+     main = "Distribución Bootstrap Paramétrico",
+     xlab = "Media recortada")
+abline(v = theta_orig, col = "red", lwd = 2)
+abline(v = ci_boot, col = "blue", lty = 2)
+
+# 8. Resultados
+cat("Estadístico original:", theta_orig, "\n")
+cat("Error estándar bootstrap:", se_boot, "\n")
+cat("Sesgo estimado:", bias_boot, "\n")
+cat("IC 95% percentil: [", ci_boot[1], ",", ci_boot[2], "]\n")
+```
+
+## Tests bootstrap paramétricos
+
+### Procedimiento general
+
+1.  **Ajustar un modelo paramétrico bajo** $H_0$.
+2.  **Generar muestras bootstrap** de la distribución estimada bajo $H_0$.
+3.  **Calcular el estadístico de prueba** para cada muestra bootstrap.
+4.  **Calcular el p-valor** comparando con el estadístico original.
+
+### Ejemplo: Test para la media (asumiendo normalidad) vs. $\mu_0$
+
+**Hipótesis**: - $H_0: \mu = \mu_0$ - $H_1: \mu \neq \mu_0$
+
+```{r}
+#| label: test-media-param
+#| warning: false
+
+# Datos de ejemplo (misma muestra que en el test no paramétrico)
+muestra <- rnorm(50, mean = 10.5, sd = 2)
+mu0 <- 10
+
+# 1. Ajustar modelo bajo H0: normal con media mu0 y sd estimado
+sigma_hat <- sd(muestra)  # Bajo H0, la media es mu0
+
+# 2. Estadístico original (misma muestra)
+T_orig <- abs(mean(muestra) - mu0)
+
+# 3. Función para generar muestras bajo H0 y calcular estadístico
+B <- 9999
+T_boot <- numeric(B)
+
+for (b in 1:B) {
+  # Generar muestra bajo H0: Normal(mu0, sigma_hat)
+  muestra_boot <- rnorm(length(muestra), mean = mu0, sd = sigma_hat)
+  T_boot[b] <- abs(mean(muestra_boot) - mu0)
+}
+
+# 4. p-valor: proporción de T_boot >= T_orig
+p_valor <- mean(T_boot >= T_orig)
+cat("Estadístico T observado:", T_orig, "\n")
+cat("p-valor paramétrico:", p_valor, "\n")
+```
+
+### Ejemplo: Test de razón de varianzas (asumiendo normalidad)
+
+**Hipótesis**: - $H_0: \sigma_1^2 / \sigma_2^2 = 1$ - $H_1: \sigma_1^2 / \sigma_2^2 \neq 1$
+
+```{r}
+#| label: test-razon-varianzas
+#| warning: false
+
+# Datos de ejemplo
+set.seed(789)
+grupo1 <- rnorm(40, sd = 5)
+grupo2 <- rnorm(60, sd = 5)  # Varianza mayor
+
+# Estadístico original: razón de varianzas (grupo1/grupo2)
+T_orig <- var(grupo1) / var(grupo2)
+
+# Bajo H0: ambas muestras vienen de normales con misma varianza (promedio ponderado)
+
+var_pooled <- ( (length(grupo1)-1)*var(grupo1) + (length(grupo2)-1)*var(grupo2) ) / (length(grupo1) + length(grupo2) - 2)
+
+# Generar muestras bootstrap bajo H0
+B <- 9999
+T_boot <- numeric(B)
+for (b in 1:B) {
+  # Generar grupo1: normal(media=0, sd=sqrt(var_pooled)) [bajo H0]
+  g1_boot <- rnorm(length(grupo1), sd = sqrt(var_pooled))
+  g2_boot <- rnorm(length(grupo2), sd = sqrt(var_pooled))
+  T_boot[b] <- var(g1_boot) / var(g2_boot)
+}
+
+# p-valor de dos colas: proporción de |T_boot - 1| >= |T_orig - 1|
+# Otra forma: considerar la distribución del estadístico y ver qué tan extremo es T_orig
+# Usamos la cola inferior y superior
+
+p_valor_left <- mean(T_boot <= T_orig)   # Si T_orig es pequeño
+p_valor_right <- mean(T_boot >= T_orig)  # Si T_orig es grande
+p_valor <- 2 * min(p_valor_left, p_valor_right)
+cat("Razón observada:", T_orig, "\n")
+cat("p-valor:", p_valor, "\n")
+```
+
+## Consideraciones sobre p-valores bootstrap
+
+-   **Número de réplicas**: $B$ debe ser grande (típicamente 9999 o más) para una buena precisión.
+-   **Estadísticos pivóticos**: En algunos casos se usan estadísticos estudentizados para mejorar la precisión.
+-   **Calibración**: El bootstrap puede usarse para calibrar tests existentes.
+-   **Ventaja**: Flexibilidad para estadísticos complejos y distribuciones desconocidas.
+
+## **Referencias recomendadas**
+
+-   Efron, B., & Tibshirani, R. J. (1993). *An Introduction to the Bootstrap*. Chapman & Hall.
+
+-   Davison, A. C., & Hinkley, D. V. (1997). *Bootstrap Methods and Their Application*. Cambridge University Press.
+
+-   Canty, A., & Ripley, B. (2021). boot: Bootstrap R (S-Plus) Functions. CRAN Package.
+
+-   Hall, P. (1992). *The Bootstrap and Edgeworth Expansion*. Springer.
+
+-   Efron, B. (1982). *The Jackknife, the Bootstrap and Other Resampling Plans*. SIAM.
