@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="David Valcárcel Herrera">
+
+<title>ACTIVIDAD 1</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="ACTIVIDAD1_files/libs/clipboard/clipboard.min.js"></script>
+<script src="ACTIVIDAD1_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="ACTIVIDAD1_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="ACTIVIDAD1_files/libs/quarto-html/popper.min.js"></script>
+<script src="ACTIVIDAD1_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="ACTIVIDAD1_files/libs/quarto-html/anchor.min.js"></script>
+<link href="ACTIVIDAD1_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="ACTIVIDAD1_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="ACTIVIDAD1_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="ACTIVIDAD1_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="ACTIVIDAD1_files/libs/bootstrap/bootstrap-bb462d781dde1847d9e3ccf7736099dd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">ACTIVIDAD 1</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>David Valcárcel Herrera </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="qué-es-un-data-scientist-diferencias-y-similitudes-entre-data-science-y-data-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="qué-es-un-data-scientist-diferencias-y-similitudes-entre-data-science-y-data-analysis"><strong>¿Qué es un data scientist? Diferencias y similitudes entre data science y data analysis</strong></h2>
+<p>La ciencia de datos (data science) es una ciencia interdisciplinar que se nutre y utiliza múltiples áreas de conocimiento como la estadística, la programación e incluso otras ramas de la informática en combinación con la información que recibe del entorno de interés (una consultoría, un laboratorio que trabaja con datos biológicos, una industria cárnica, etc.) para entender, procesar, analizar y extraer conclusiones sobre los datos recogidos de dicho entorno. El científico de datos (data scientist), básicamente, se encarga de manejar y crear código utilizando conocimientos de informática y matemáticas para no solo analizar esos datos, sino llegar a sus propias conclusiones y sugerir y contestar a nuevas preguntas sobre el objeto de interés.</p>
+<p>Un analista de datos (data analyst) también se encarga de procesar y analizar información para responder a preguntas a partir de un proceso de selección y análisis de datos. Sin embargo, las diferencias son claras entre el trabajo que realiza un data analyst y el trabajo que realiza un data scientist. Es más, en muchas empresas suelen convivir ambos tipos de especialistas que tienen focalizaciones distintas. Vemos las principales diferencias:</p>
+<ul>
+<li><p>En primer lugar, el data analyst normalmente solo responde a las preguntas que se le ofrecen en ese entorno de trabajo. Es decir, procesa y analiza los datos para obtener respuestas a las preguntas concretas que la empresa le encarga. Sin embargo, el data scientist va más allá y es capaz de entender la información de manera no tanto descriptiva sino para ser capaz de derivar nuevas preguntas a futuro.</p></li>
+<li><p>Por otro lado, en relación a lo anterior, el data analyst se centra más en lo que respecta a análisis descriptivo, visualización de datos y la identificación de patrones o tendencias para responder a esas preguntas (por ejemplo, hacer regresiones lineales o logísticas o un ANOVA/MANOVA de forma detallada para ver patrones, tendencias o interacciones entre datos). En cambio, el data scientist, debido a su enfoque más amplio, se centra más en análisis predictivo, modelización de datos, machine learning y sobre todo, en la generación de paquetes y software para ser usado a posteriori de ser necesario, reutilizando la información y los modelos para ser usados a futuro.</p></li>
+</ul>
+<p>Así, mientras que el data analyst no se sale tanto de su enfoque estadístico-matemático para ofrecer insights sobre los datos, el data scientist enfoca el problema desde una perspectiva más a futuro creando software que le pueda servir a la persona/empresa interesada, transformando los datos en modelos complejos para plantear otras preguntas, incluso por el propio data scientist.</p>
+</section>
+<section id="qué-es-el-poder-estadístico-cómo-se-relaciona-con-el-efecto-estadístico" class="level2">
+<h2 class="anchored" data-anchor-id="qué-es-el-poder-estadístico-cómo-se-relaciona-con-el-efecto-estadístico"><strong>¿Qué es el poder estadístico? ¿Cómo se relaciona con el efecto estadístico?</strong></h2>
+<p>El poder estadístico o la potencia estadística de un test (suponemos no aleatorizado) mide la capacidad de un test de detectar errores de tipo II, es decir, la probabilidad de aceptar la hipótesis nula H0 (que conocemos) dado que H0 es falsa.</p>
+<p>En otras palabras, el poder estadístico mide la capacidad de un estudio para identificar un efecto de estar este presente. Un poder estadístico bajo quiere decir que existe un mayor riesgo de no detectar efectos reales por lo anteriormente dicho, lo que puede llevar a una conclusión errónea.&nbsp;Por eso, en investigación y análisis de laboratorio, se suele buscar un poder estadístico mínimo de 0,80 (80%), lo que implica que hay un 80% de probabilidad de detectar un efecto si realmente existe, aunque dependiendo de la viabilidad de hacer más o menos réplicas independientes del experimento para cada grupo, podremos aceptar poderes estadísticos de 0,60-0,70 (menos de 0,50 en general no, aunque en algunos estudios no se suele hacer un análisis de poder&nbsp;previo al estudio y se aceptan poderes bajos), también dependerá de cuán formal queramos que sea el estudio. Aquí, por cómo es nuestro estudio (una probatina de laboratorio sencilla), hemos considerado un poder de 0,75 (cerca a 0,80) sin problemas, si bien como veremos es recomendable utilizar n &gt; 30 ya que en tal caso en general la distribución de los datos intergrupo (las réplicas) aproxima bien a una distribución normal (podremos suponer normalidad). El efecto a priori queremos que sea alto normalmente porque no solo queremos que el fármaco tenga algún efecto en la germinación, sino que queremos que el fármaco en cuestión tenga mucho efecto en esta.</p>
+<p>Así, lo que hemos estudiado primeramente es el tamaño mínimo de muestra necesario para detectar un efecto de interés con una probabilidad adecuada. Aquí se muestra la gráfica para varios f desde 0.25 a 0.45 y poder de 0,75 y un &nbsp;en un one-way ANOVA, que es lo que queremos estudiar.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clipboard-2393062070.png" class="img-fluid figure-img"></p>
+<figcaption>Poder estadístico frente a tamaño de muestra</figcaption>
+</figure>
+</div>
+<p>Nuestra N (número total de réplicas independientes) es aproximadamente N = 81 según la gráfica en G*Power para f = 0,45 y 1-β = 0,75 (el poder). Si lo hacemos en R, nos devuelve el número de réplicas por grupo que tenemos que tomar, que da n = 8,35, que redondeado hacia arriba es n = 9, que coincide con el análisis que hace G*Power, con un efecto de f = 0,45 (muy alto, alto se considera en general más de 0,4).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/lomismoenr.png" class="img-fluid figure-img"></p>
+<figcaption>Comando equivalente en R</figcaption>
+</figure>
+</div>
+</section>
+<section id="código-principal-con-pasos" class="level2">
+<h2 class="anchored" data-anchor-id="código-principal-con-pasos">Código principal con pasos</h2>
+<section id="preprocesamiento-de-datos" class="level3">
+<h3 class="anchored" data-anchor-id="preprocesamiento-de-datos">Preprocesamiento de datos</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Cargamos y preparamos los datos</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>farmaco <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"C:/Users/dvalh/Desktop/UA/MatesUA/Prácticas de empresa + privado/Actividades 1 a 3/Actividad 1/estudiofarmaco.txt"</span>, <span class="at">sep =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>farmaconuevo1 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(farmaco)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>farmaconuevo2 <span class="ot">&lt;-</span> farmaconuevo1  <span class="co"># Partimos de todos los datos sin filtrar</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Si X._germinados &gt; 100, lo dividimos entre 10</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>farmaconuevo2<span class="sc">$</span>X._germinados <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(farmaconuevo2<span class="sc">$</span>X._germinados <span class="sc">&gt;</span> <span class="dv">100</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                                      farmaconuevo2<span class="sc">$</span>X._germinados <span class="sc">/</span> <span class="dv">10</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                                      farmaconuevo2<span class="sc">$</span>X._germinados)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>niveles_trt <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"C"</span>, <span class="st">"1"</span>, <span class="st">"2.5"</span>, <span class="st">"5"</span>, <span class="st">"7.5"</span>, <span class="st">"10"</span>, <span class="st">"20"</span>, <span class="st">"30"</span>, <span class="st">"DMSO_35"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>farmaconuevo2<span class="sc">$</span>trt <span class="ot">&lt;-</span> <span class="fu">factor</span>(farmaconuevo2<span class="sc">$</span>trt, <span class="at">levels =</span> niveles_trt, <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>farmaconuevo2<span class="sc">$</span>trtf <span class="ot">&lt;-</span> <span class="fu">paste0</span>(farmaconuevo2<span class="sc">$</span>trt, <span class="st">"_"</span>, farmaconuevo2<span class="sc">$</span>time, <span class="st">"h"</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>niveles_trtf <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(niveles_trt, <span class="st">"_8h"</span>),</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(niveles_trt, <span class="st">"_24h"</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>farmaconuevo2<span class="sc">$</span>trtf <span class="ot">&lt;-</span> <span class="fu">factor</span>(farmaconuevo2<span class="sc">$</span>trtf,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">levels =</span> niveles_trtf,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">ordered =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtramos los datos</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>subfarmaco8 <span class="ot">=</span> <span class="fu">droplevels</span>(<span class="fu">subset</span>(farmaconuevo2, time <span class="sc">==</span> <span class="dv">8</span>))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>subfarmaco24 <span class="ot">=</span> <span class="fu">droplevels</span>(<span class="fu">subset</span>(farmaconuevo2, time <span class="sc">==</span> <span class="dv">24</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalamos y cargamos paquetes necesarios</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"pwr"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) <span class="fu">install.packages</span>(<span class="st">"pwr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'pwr' was built under R version 4.4.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"Superpower"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) <span class="fu">install.packages</span>(<span class="st">"Superpower"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'Superpower' was built under R version 4.4.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"car"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) <span class="fu">install.packages</span>(<span class="st">"car"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"DescTools"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) <span class="fu">install.packages</span>(<span class="st">"DescTools"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'DescTools' was built under R version 4.4.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Adjuntando el paquete: 'DescTools'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:car':
+
+    Recode</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"ggplot2"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) <span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggplot2' was built under R version 4.4.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pwr)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Superpower)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DescTools)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="inferencia-estadística-anova-de-un-factor" class="level3">
+<h3 class="anchored" data-anchor-id="inferencia-estadística-anova-de-un-factor">INFERENCIA ESTADÍSTICA (ANOVA de un factor)</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-------------INFERENCIA ESTADÍSTICA (ANOVA de un factor)-------------------</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pwr.anova.test</span>(<span class="at">k =</span> <span class="dv">9</span>, <span class="at">n =</span> <span class="cn">NULL</span>, <span class="at">f =</span> <span class="fl">0.4</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">power =</span> <span class="fl">0.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     Balanced one-way analysis of variance power calculation 
+
+              k = 9
+              n = 9.468808
+              f = 0.4
+      sig.level = 0.05
+          power = 0.7
+
+NOTE: n is number in each group</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#--Vemos cómo son los datos----------------</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(farmaconuevo2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   162 obs. of  5 variables:
+ $ trt          : Ord.factor w/ 9 levels "C"&lt;"1"&lt;"2.5"&lt;..: 1 1 1 1 1 1 1 1 2 2 ...
+ $ time         : int  8 8 8 8 8 8 8 8 8 8 ...
+ $ replica      : int  1 2 3 4 5 6 7 8 1 2 ...
+ $ X._germinados: num  89 85 89 85 87 90 88 89 84 90 ...
+ $ trtf         : Factor w/ 18 levels "C_8h","1_8h",..: 1 1 1 1 1 1 1 1 2 2 ...
+ - attr(*, "na.action")= 'omit' Named int 9
+  ..- attr(*, "names")= chr "9"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(farmaconuevo2<span class="sc">$</span>trtf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+       C_8h        1_8h      2.5_8h        5_8h      7.5_8h       10_8h 
+          8           9          10           9           9           9 
+      20_8h       30_8h  DMSO_35_8h       C_24h       1_24h     2.5_24h 
+          9           9           9           9           9           9 
+      5_24h     7.5_24h      10_24h      20_24h      30_24h DMSO_35_24h 
+          9           9           9           9           9           9 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(farmaconuevo2) <span class="co">#AQUÍ VEO SI HAY QUE HACER CLEANING DE LOS DATOS</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      trt          time       replica      X._germinados        trtf    
+ 2.5    :19   Min.   : 8   Min.   :1.000   Min.   :40.00   2.5_8h : 10  
+ 1      :18   1st Qu.: 8   1st Qu.:3.000   1st Qu.:74.00   1_8h   :  9  
+ 5      :18   Median :16   Median :5.000   Median :84.00   5_8h   :  9  
+ 7.5    :18   Mean   :16   Mean   :4.963   Mean   :79.69   7.5_8h :  9  
+ 10     :18   3rd Qu.:24   3rd Qu.:7.000   3rd Qu.:89.00   10_8h  :  9  
+ 20     :18   Max.   :24   Max.   :9.000   Max.   :98.00   20_8h  :  9  
+ (Other):53                                                (Other):107  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>                       <span class="co">#O HAY COSAS QUE NO ENCAJAN</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-----------------------</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Boxplots (abajo)</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">#-----------------------</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>modelo_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(X._germinados <span class="sc">~</span> trtf, <span class="at">data =</span> farmaconuevo2)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo_aov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             Df Sum Sq Mean Sq F value Pr(&gt;F)    
+trtf         17  25526  1501.5   154.4 &lt;2e-16 ***
+Residuals   144   1401     9.7                   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">resid</span>(modelo_aov))  <span class="co"># Normalidad</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  resid(modelo_aov)
+W = 0.97989, p-value = 0.01851</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(X._germinados <span class="sc">~</span> trtf, <span class="at">data =</span> farmaconuevo2)  <span class="co"># Homogeneidad de varianzas</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Levene's Test for Homogeneity of Variance (center = median)
+       Df F value   Pr(&gt;F)   
+group  17  2.1791 0.006951 **
+      144                    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>FALLAN TANTO LA NORMALIDAD COMO LA HOMOGENEIDAD, TRANSFORMAMOS LOS DATOS:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#----------Si ANOVA significativo--------------</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(modelo_aov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = X._germinados ~ trtf, data = farmaconuevo2)
+
+$trtf
+                              diff         lwr         upr     p adj
+1_8h-C_8h               -0.7500000  -6.1350764   4.6350764 1.0000000
+2.5_8h-C_8h             -4.1500000  -9.4068419   1.1068419 0.3217595
+5_8h-C_8h               -9.9722222 -15.3572987  -4.5871458 0.0000001
+7.5_8h-C_8h            -11.9722222 -17.3572987  -6.5871458 0.0000000
+10_8h-C_8h             -13.7500000 -19.1350764  -8.3649236 0.0000000
+20_8h-C_8h             -27.7500000 -33.1350764 -22.3649236 0.0000000
+30_8h-C_8h             -40.6388889 -46.0239653 -35.2538124 0.0000000
+DMSO_35_8h-C_8h          0.2500000  -5.1350764   5.6350764 1.0000000
+C_24h-C_8h               6.2500000   0.8649236  11.6350764 0.0075359
+1_24h-C_8h               4.2500000  -1.1350764   9.6350764 0.3222637
+2.5_24h-C_8h            -2.7500000  -8.1350764   2.6350764 0.9358163
+5_24h-C_8h               1.2500000  -4.1350764   6.6350764 0.9999954
+7.5_24h-C_8h            -1.8611111  -7.2461876   3.5239653 0.9989346
+10_24h-C_8h             -2.7500000  -8.1350764   2.6350764 0.9358163
+20_24h-C_8h            -14.7500000 -20.1350764  -9.3649236 0.0000000
+30_24h-C_8h            -28.7500000 -34.1350764 -23.3649236 0.0000000
+DMSO_35_24h-C_8h         3.2500000  -2.1350764   8.6350764 0.7853612
+2.5_8h-1_8h             -3.4000000  -8.4920095   1.6920095 0.6292851
+5_8h-1_8h               -9.2222222 -14.4465137  -3.9979307 0.0000006
+7.5_8h-1_8h            -11.2222222 -16.4465137  -5.9979307 0.0000000
+10_8h-1_8h             -13.0000000 -18.2242915  -7.7757085 0.0000000
+20_8h-1_8h             -27.0000000 -32.2242915 -21.7757085 0.0000000
+30_8h-1_8h             -39.8888889 -45.1131804 -34.6645974 0.0000000
+DMSO_35_8h-1_8h          1.0000000  -4.2242915   6.2242915 0.9999998
+C_24h-1_8h               7.0000000   1.7757085  12.2242915 0.0006333
+1_24h-1_8h               5.0000000  -0.2242915  10.2242915 0.0778494
+2.5_24h-1_8h            -2.0000000  -7.2242915   3.2242915 0.9963867
+5_24h-1_8h               2.0000000  -3.2242915   7.2242915 0.9963867
+7.5_24h-1_8h            -1.1111111  -6.3354026   4.1131804 0.9999988
+10_24h-1_8h             -2.0000000  -7.2242915   3.2242915 0.9963867
+20_24h-1_8h            -14.0000000 -19.2242915  -8.7757085 0.0000000
+30_24h-1_8h            -28.0000000 -33.2242915 -22.7757085 0.0000000
+DMSO_35_24h-1_8h         4.0000000  -1.2242915   9.2242915 0.3763081
+5_8h-2.5_8h             -5.8222222 -10.9142317  -0.7302127 0.0093805
+7.5_8h-2.5_8h           -7.8222222 -12.9142317  -2.7302127 0.0000298
+10_8h-2.5_8h            -9.6000000 -14.6920095  -4.5079905 0.0000001
+20_8h-2.5_8h           -23.6000000 -28.6920095 -18.5079905 0.0000000
+30_8h-2.5_8h           -36.4888889 -41.5808984 -31.3968794 0.0000000
+DMSO_35_8h-2.5_8h        4.4000000  -0.6920095   9.4920095 0.1825520
+C_24h-2.5_8h            10.4000000   5.3079905  15.4920095 0.0000000
+1_24h-2.5_8h             8.4000000   3.3079905  13.4920095 0.0000045
+2.5_24h-2.5_8h           1.4000000  -3.6920095   6.4920095 0.9999479
+5_24h-2.5_8h             5.4000000   0.3079905  10.4920095 0.0255534
+7.5_24h-2.5_8h           2.2888889  -2.8031206   7.3808984 0.9798881
+10_24h-2.5_8h            1.4000000  -3.6920095   6.4920095 0.9999479
+20_24h-2.5_8h          -10.6000000 -15.6920095  -5.5079905 0.0000000
+30_24h-2.5_8h          -24.6000000 -29.6920095 -19.5079905 0.0000000
+DMSO_35_24h-2.5_8h       7.4000000   2.3079905  12.4920095 0.0001127
+7.5_8h-5_8h             -2.0000000  -7.2242915   3.2242915 0.9963867
+10_8h-5_8h              -3.7777778  -9.0020693   1.4465137 0.4829350
+20_8h-5_8h             -17.7777778 -23.0020693 -12.5534863 0.0000000
+30_8h-5_8h             -30.6666667 -35.8909582 -25.4423751 0.0000000
+DMSO_35_8h-5_8h         10.2222222   4.9979307  15.4465137 0.0000000
+C_24h-5_8h              16.2222222  10.9979307  21.4465137 0.0000000
+1_24h-5_8h              14.2222222   8.9979307  19.4465137 0.0000000
+2.5_24h-5_8h             7.2222222   1.9979307  12.4465137 0.0003358
+5_24h-5_8h              11.2222222   5.9979307  16.4465137 0.0000000
+7.5_24h-5_8h             8.1111111   2.8868196  13.3354026 0.0000228
+10_24h-5_8h              7.2222222   1.9979307  12.4465137 0.0003358
+20_24h-5_8h             -4.7777778 -10.0020693   0.4465137 0.1171696
+30_24h-5_8h            -18.7777778 -24.0020693 -13.5534863 0.0000000
+DMSO_35_24h-5_8h        13.2222222   7.9979307  18.4465137 0.0000000
+10_8h-7.5_8h            -1.7777778  -7.0020693   3.4465137 0.9991213
+20_8h-7.5_8h           -15.7777778 -21.0020693 -10.5534863 0.0000000
+30_8h-7.5_8h           -28.6666667 -33.8909582 -23.4423751 0.0000000
+DMSO_35_8h-7.5_8h       12.2222222   6.9979307  17.4465137 0.0000000
+C_24h-7.5_8h            18.2222222  12.9979307  23.4465137 0.0000000
+1_24h-7.5_8h            16.2222222  10.9979307  21.4465137 0.0000000
+2.5_24h-7.5_8h           9.2222222   3.9979307  14.4465137 0.0000006
+5_24h-7.5_8h            13.2222222   7.9979307  18.4465137 0.0000000
+7.5_24h-7.5_8h          10.1111111   4.8868196  15.3354026 0.0000000
+10_24h-7.5_8h            9.2222222   3.9979307  14.4465137 0.0000006
+20_24h-7.5_8h           -2.7777778  -8.0020693   2.4465137 0.9111315
+30_24h-7.5_8h          -16.7777778 -22.0020693 -11.5534863 0.0000000
+DMSO_35_24h-7.5_8h      15.2222222   9.9979307  20.4465137 0.0000000
+20_8h-10_8h            -14.0000000 -19.2242915  -8.7757085 0.0000000
+30_8h-10_8h            -26.8888889 -32.1131804 -21.6645974 0.0000000
+DMSO_35_8h-10_8h        14.0000000   8.7757085  19.2242915 0.0000000
+C_24h-10_8h             20.0000000  14.7757085  25.2242915 0.0000000
+1_24h-10_8h             18.0000000  12.7757085  23.2242915 0.0000000
+2.5_24h-10_8h           11.0000000   5.7757085  16.2242915 0.0000000
+5_24h-10_8h             15.0000000   9.7757085  20.2242915 0.0000000
+7.5_24h-10_8h           11.8888889   6.6645974  17.1131804 0.0000000
+10_24h-10_8h            11.0000000   5.7757085  16.2242915 0.0000000
+20_24h-10_8h            -1.0000000  -6.2242915   4.2242915 0.9999998
+30_24h-10_8h           -15.0000000 -20.2242915  -9.7757085 0.0000000
+DMSO_35_24h-10_8h       17.0000000  11.7757085  22.2242915 0.0000000
+30_8h-20_8h            -12.8888889 -18.1131804  -7.6645974 0.0000000
+DMSO_35_8h-20_8h        28.0000000  22.7757085  33.2242915 0.0000000
+C_24h-20_8h             34.0000000  28.7757085  39.2242915 0.0000000
+1_24h-20_8h             32.0000000  26.7757085  37.2242915 0.0000000
+2.5_24h-20_8h           25.0000000  19.7757085  30.2242915 0.0000000
+5_24h-20_8h             29.0000000  23.7757085  34.2242915 0.0000000
+7.5_24h-20_8h           25.8888889  20.6645974  31.1131804 0.0000000
+10_24h-20_8h            25.0000000  19.7757085  30.2242915 0.0000000
+20_24h-20_8h            13.0000000   7.7757085  18.2242915 0.0000000
+30_24h-20_8h            -1.0000000  -6.2242915   4.2242915 0.9999998
+DMSO_35_24h-20_8h       31.0000000  25.7757085  36.2242915 0.0000000
+DMSO_35_8h-30_8h        40.8888889  35.6645974  46.1131804 0.0000000
+C_24h-30_8h             46.8888889  41.6645974  52.1131804 0.0000000
+1_24h-30_8h             44.8888889  39.6645974  50.1131804 0.0000000
+2.5_24h-30_8h           37.8888889  32.6645974  43.1131804 0.0000000
+5_24h-30_8h             41.8888889  36.6645974  47.1131804 0.0000000
+7.5_24h-30_8h           38.7777778  33.5534863  44.0020693 0.0000000
+10_24h-30_8h            37.8888889  32.6645974  43.1131804 0.0000000
+20_24h-30_8h            25.8888889  20.6645974  31.1131804 0.0000000
+30_24h-30_8h            11.8888889   6.6645974  17.1131804 0.0000000
+DMSO_35_24h-30_8h       43.8888889  38.6645974  49.1131804 0.0000000
+C_24h-DMSO_35_8h         6.0000000   0.7757085  11.2242915 0.0087970
+1_24h-DMSO_35_8h         4.0000000  -1.2242915   9.2242915 0.3763081
+2.5_24h-DMSO_35_8h      -3.0000000  -8.2242915   2.2242915 0.8441982
+5_24h-DMSO_35_8h         1.0000000  -4.2242915   6.2242915 0.9999998
+7.5_24h-DMSO_35_8h      -2.1111111  -7.3354026   3.1131804 0.9933683
+10_24h-DMSO_35_8h       -3.0000000  -8.2242915   2.2242915 0.8441982
+20_24h-DMSO_35_8h      -15.0000000 -20.2242915  -9.7757085 0.0000000
+30_24h-DMSO_35_8h      -29.0000000 -34.2242915 -23.7757085 0.0000000
+DMSO_35_24h-DMSO_35_8h   3.0000000  -2.2242915   8.2242915 0.8441982
+1_24h-C_24h             -2.0000000  -7.2242915   3.2242915 0.9963867
+2.5_24h-C_24h           -9.0000000 -14.2242915  -3.7757085 0.0000013
+5_24h-C_24h             -5.0000000 -10.2242915   0.2242915 0.0778494
+7.5_24h-C_24h           -8.1111111 -13.3354026  -2.8868196 0.0000228
+10_24h-C_24h            -9.0000000 -14.2242915  -3.7757085 0.0000013
+20_24h-C_24h           -21.0000000 -26.2242915 -15.7757085 0.0000000
+30_24h-C_24h           -35.0000000 -40.2242915 -29.7757085 0.0000000
+DMSO_35_24h-C_24h       -3.0000000  -8.2242915   2.2242915 0.8441982
+2.5_24h-1_24h           -7.0000000 -12.2242915  -1.7757085 0.0006333
+5_24h-1_24h             -3.0000000  -8.2242915   2.2242915 0.8441982
+7.5_24h-1_24h           -6.1111111 -11.3354026  -0.8868196 0.0066995
+10_24h-1_24h            -7.0000000 -12.2242915  -1.7757085 0.0006333
+20_24h-1_24h           -19.0000000 -24.2242915 -13.7757085 0.0000000
+30_24h-1_24h           -33.0000000 -38.2242915 -27.7757085 0.0000000
+DMSO_35_24h-1_24h       -1.0000000  -6.2242915   4.2242915 0.9999998
+5_24h-2.5_24h            4.0000000  -1.2242915   9.2242915 0.3763081
+7.5_24h-2.5_24h          0.8888889  -4.3354026   6.1131804 1.0000000
+10_24h-2.5_24h           0.0000000  -5.2242915   5.2242915 1.0000000
+20_24h-2.5_24h         -12.0000000 -17.2242915  -6.7757085 0.0000000
+30_24h-2.5_24h         -26.0000000 -31.2242915 -20.7757085 0.0000000
+DMSO_35_24h-2.5_24h      6.0000000   0.7757085  11.2242915 0.0087970
+7.5_24h-5_24h           -3.1111111  -8.3354026   2.1131804 0.8024108
+10_24h-5_24h            -4.0000000  -9.2242915   1.2242915 0.3763081
+20_24h-5_24h           -16.0000000 -21.2242915 -10.7757085 0.0000000
+30_24h-5_24h           -30.0000000 -35.2242915 -24.7757085 0.0000000
+DMSO_35_24h-5_24h        2.0000000  -3.2242915   7.2242915 0.9963867
+10_24h-7.5_24h          -0.8888889  -6.1131804   4.3354026 1.0000000
+20_24h-7.5_24h         -12.8888889 -18.1131804  -7.6645974 0.0000000
+30_24h-7.5_24h         -26.8888889 -32.1131804 -21.6645974 0.0000000
+DMSO_35_24h-7.5_24h      5.1111111  -0.1131804  10.3354026 0.0627459
+20_24h-10_24h          -12.0000000 -17.2242915  -6.7757085 0.0000000
+30_24h-10_24h          -26.0000000 -31.2242915 -20.7757085 0.0000000
+DMSO_35_24h-10_24h       6.0000000   0.7757085  11.2242915 0.0087970
+30_24h-20_24h          -14.0000000 -19.2242915  -8.7757085 0.0000000
+DMSO_35_24h-20_24h      18.0000000  12.7757085  23.2242915 0.0000000
+DMSO_35_24h-30_24h      32.0000000  26.7757085  37.2242915 0.0000000</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">EtaSq</span>(modelo_aov, <span class="at">type =</span> <span class="dv">1</span>) <span class="co">#TAMAÑO EFECTO eta^2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        eta.sq eta.sq.part
+trtf 0.9479774   0.9479774</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#--------------------- TRANSFORMACIONES -------------------------</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co">#PRIMERO PRUEBO CON UNA RAÍZ, POR EJEMPLO</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>farmaconuevo2<span class="sc">$</span>sqrt_germinados <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(farmaconuevo2<span class="sc">$</span>X._germinados)  <span class="co"># +1 para evitar log(0)</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>modelo_aov_sqrt <span class="ot">&lt;-</span> <span class="fu">aov</span>(sqrt_germinados <span class="sc">~</span> trtf, <span class="at">data =</span> farmaconuevo2)</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo_aov_sqrt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             Df Sum Sq Mean Sq F value Pr(&gt;F)    
+trtf         17  90.62   5.331     162 &lt;2e-16 ***
+Residuals   144   4.74   0.033                   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">resid</span>(modelo_aov_sqrt))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  resid(modelo_aov_sqrt)
+W = 0.98393, p-value = 0.05761</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(sqrt_germinados <span class="sc">~</span> trtf, <span class="at">data =</span> farmaconuevo2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Levene's Test for Homogeneity of Variance (center = median)
+       Df F value    Pr(&gt;F)    
+group  17  2.7084 0.0006791 ***
+      144                      
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#PRUEBO CON UNA TRANSFORMACIÓN BOX-COX QUE OPTIMIZA LOS DATOS PARA</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co">#QUE LA DISTRIBUCIÓN DE LOS DATOS SEA MÁS NORMAL Y LOS RESIDUOS</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="co">#MÁS HOMOGÉNEOS</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'MASS' was built under R version 4.4.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>boxcox_result <span class="ot">&lt;-</span> <span class="fu">boxcox</span>(farmaconuevo2<span class="sc">$</span>X._germinados <span class="sc">~</span> farmaconuevo2<span class="sc">$</span>trtf, <span class="at">lambda =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="fl">0.1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ACTIVIDAD1_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># El gráfico te indicará el lambda óptimo</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>lambda_optimo <span class="ot">&lt;-</span> boxcox_result<span class="sc">$</span>x[<span class="fu">which.max</span>(boxcox_result<span class="sc">$</span>y)]</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lambda_optimo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.575758</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">abs</span>(lambda_optimo) <span class="sc">&lt;</span> <span class="fl">0.01</span>) {</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  farmaconuevo2<span class="sc">$</span>Y_trans <span class="ot">&lt;-</span> <span class="fu">log</span>(farmaconuevo2<span class="sc">$</span>X._germinados <span class="sc">+</span> <span class="dv">1</span>)  <span class="co"># +1 para evitar log(0)</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  farmaconuevo2<span class="sc">$</span>Y_trans <span class="ot">&lt;-</span> ((farmaconuevo2<span class="sc">$</span>X._germinados <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">^</span>lambda_optimo <span class="sc">-</span> <span class="dv">1</span>)<span class="sc">/</span>lambda_optimo</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>modelo_aov_box <span class="ot">&lt;-</span> <span class="fu">aov</span>(Y_trans <span class="sc">~</span> trtf, <span class="at">data =</span> farmaconuevo2)</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo_aov_box)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             Df  Sum Sq Mean Sq F value Pr(&gt;F)    
+trtf         17 3562369  209551   142.5 &lt;2e-16 ***
+Residuals   144  211732    1470                   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">resid</span>(modelo_aov_box))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  resid(modelo_aov_box)
+W = 0.98317, p-value = 0.04645</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(Y_trans <span class="sc">~</span> trtf, <span class="at">data =</span> farmaconuevo2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Levene's Test for Homogeneity of Variance (center = median)
+       Df F value  Pr(&gt;F)  
+group  17  1.9952 0.01505 *
+      144                  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>Como no hay normalidad ni homogeneidad, no hacemos nada y usamos #un test no paramétrico equivalente al ANOVA (Kruskal-Wallis + Dunn):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Vería TukeyHSD </span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>tukeybox <span class="ot">=</span> <span class="fu">TukeyHSD</span>(modelo_aov_box)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-------------INFERENCIA ESTADÍSTICA (ANOVA de dos factores)-------------------</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertimos f a f2 (para modelos generales)</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fl">0.4</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>f2 <span class="ot">&lt;-</span> f<span class="sc">^</span><span class="dv">2</span>  <span class="co"># f^2 = 0.16</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Grados de libertad para el numerador:</span></span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a><span class="co"># k = número de grupos (combinaciones A x B) - 1</span></span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="dv">9</span> <span class="sc">-</span> <span class="dv">1</span>  <span class="co"># = 8</span></span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Potencia para detectar el efecto global (puede ser efecto principal o interacción)</span></span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>pwr_result <span class="ot">&lt;-</span> <span class="fu">pwr.f2.test</span>(<span class="at">u =</span> u, <span class="at">f2 =</span> f2, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">power =</span> <span class="fl">0.8</span>)</span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>pwr_result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     Multiple regression power calculation 
+
+              u = 8
+              v = 92.89476
+             f2 = 0.16
+      sig.level = 0.05
+          power = 0.8</code></pre>
+</div>
+</div>
+</section>
+<section id="inferencia-estadística-anova-de-dos-factores" class="level3">
+<h3 class="anchored" data-anchor-id="inferencia-estadística-anova-de-dos-factores">INFERENCIA ESTADÍSTICA (ANOVA de dos factores)</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-------------INFERENCIA ESTADÍSTICA (ANOVA de dos factores)-------------------</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertimos f a f2 (para modelos generales)</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fl">0.4</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>f2 <span class="ot">&lt;-</span> f<span class="sc">^</span><span class="dv">2</span>  <span class="co"># f^2 = 0.16</span></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Grados de libertad para el numerador:</span></span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a><span class="co"># k = número de grupos (combinaciones A x B) - 1</span></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="dv">9</span> <span class="sc">-</span> <span class="dv">1</span>  <span class="co"># = 8</span></span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Potencia para detectar el efecto global (puede ser efecto principal o interacción)</span></span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>pwr_result <span class="ot">&lt;-</span> <span class="fu">pwr.f2.test</span>(<span class="at">u =</span> u, <span class="at">f2 =</span> f2, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">power =</span> <span class="fl">0.8</span>)</span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a>pwr_result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     Multiple regression power calculation 
+
+              u = 8
+              v = 92.89476
+             f2 = 0.16
+      sig.level = 0.05
+          power = 0.8</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-----------------------</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Boxplots (abajo)</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="co">#-----------------------</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>modelo_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(X._germinados <span class="sc">~</span> trtf, <span class="at">data =</span> farmaconuevo2)</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo_aov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             Df Sum Sq Mean Sq F value Pr(&gt;F)    
+trtf         17  25526  1501.5   154.4 &lt;2e-16 ***
+Residuals   144   1401     9.7                   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">resid</span>(modelo_aov))  <span class="co"># Normalidad</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  resid(modelo_aov)
+W = 0.97989, p-value = 0.01851</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(X._germinados <span class="sc">~</span> trtf, <span class="at">data =</span> farmaconuevo2)  <span class="co"># Homogeneidad de varianzas</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Levene's Test for Homogeneity of Variance (center = median)
+       Df F value   Pr(&gt;F)   
+group  17  2.1791 0.006951 **
+      144                    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>FALLAN TANTO LA NORMALIDAD COMO LA HOMOGENEIDAD, TRANSFORMAMOS LOS DATOS:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co">#----------Si ANOVA significativo--------------</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(modelo_aov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = X._germinados ~ trtf, data = farmaconuevo2)
+
+$trtf
+                              diff         lwr         upr     p adj
+1_8h-C_8h               -0.7500000  -6.1350764   4.6350764 1.0000000
+2.5_8h-C_8h             -4.1500000  -9.4068419   1.1068419 0.3217595
+5_8h-C_8h               -9.9722222 -15.3572987  -4.5871458 0.0000001
+7.5_8h-C_8h            -11.9722222 -17.3572987  -6.5871458 0.0000000
+10_8h-C_8h             -13.7500000 -19.1350764  -8.3649236 0.0000000
+20_8h-C_8h             -27.7500000 -33.1350764 -22.3649236 0.0000000
+30_8h-C_8h             -40.6388889 -46.0239653 -35.2538124 0.0000000
+DMSO_35_8h-C_8h          0.2500000  -5.1350764   5.6350764 1.0000000
+C_24h-C_8h               6.2500000   0.8649236  11.6350764 0.0075359
+1_24h-C_8h               4.2500000  -1.1350764   9.6350764 0.3222637
+2.5_24h-C_8h            -2.7500000  -8.1350764   2.6350764 0.9358163
+5_24h-C_8h               1.2500000  -4.1350764   6.6350764 0.9999954
+7.5_24h-C_8h            -1.8611111  -7.2461876   3.5239653 0.9989346
+10_24h-C_8h             -2.7500000  -8.1350764   2.6350764 0.9358163
+20_24h-C_8h            -14.7500000 -20.1350764  -9.3649236 0.0000000
+30_24h-C_8h            -28.7500000 -34.1350764 -23.3649236 0.0000000
+DMSO_35_24h-C_8h         3.2500000  -2.1350764   8.6350764 0.7853612
+2.5_8h-1_8h             -3.4000000  -8.4920095   1.6920095 0.6292851
+5_8h-1_8h               -9.2222222 -14.4465137  -3.9979307 0.0000006
+7.5_8h-1_8h            -11.2222222 -16.4465137  -5.9979307 0.0000000
+10_8h-1_8h             -13.0000000 -18.2242915  -7.7757085 0.0000000
+20_8h-1_8h             -27.0000000 -32.2242915 -21.7757085 0.0000000
+30_8h-1_8h             -39.8888889 -45.1131804 -34.6645974 0.0000000
+DMSO_35_8h-1_8h          1.0000000  -4.2242915   6.2242915 0.9999998
+C_24h-1_8h               7.0000000   1.7757085  12.2242915 0.0006333
+1_24h-1_8h               5.0000000  -0.2242915  10.2242915 0.0778494
+2.5_24h-1_8h            -2.0000000  -7.2242915   3.2242915 0.9963867
+5_24h-1_8h               2.0000000  -3.2242915   7.2242915 0.9963867
+7.5_24h-1_8h            -1.1111111  -6.3354026   4.1131804 0.9999988
+10_24h-1_8h             -2.0000000  -7.2242915   3.2242915 0.9963867
+20_24h-1_8h            -14.0000000 -19.2242915  -8.7757085 0.0000000
+30_24h-1_8h            -28.0000000 -33.2242915 -22.7757085 0.0000000
+DMSO_35_24h-1_8h         4.0000000  -1.2242915   9.2242915 0.3763081
+5_8h-2.5_8h             -5.8222222 -10.9142317  -0.7302127 0.0093805
+7.5_8h-2.5_8h           -7.8222222 -12.9142317  -2.7302127 0.0000298
+10_8h-2.5_8h            -9.6000000 -14.6920095  -4.5079905 0.0000001
+20_8h-2.5_8h           -23.6000000 -28.6920095 -18.5079905 0.0000000
+30_8h-2.5_8h           -36.4888889 -41.5808984 -31.3968794 0.0000000
+DMSO_35_8h-2.5_8h        4.4000000  -0.6920095   9.4920095 0.1825520
+C_24h-2.5_8h            10.4000000   5.3079905  15.4920095 0.0000000
+1_24h-2.5_8h             8.4000000   3.3079905  13.4920095 0.0000045
+2.5_24h-2.5_8h           1.4000000  -3.6920095   6.4920095 0.9999479
+5_24h-2.5_8h             5.4000000   0.3079905  10.4920095 0.0255534
+7.5_24h-2.5_8h           2.2888889  -2.8031206   7.3808984 0.9798881
+10_24h-2.5_8h            1.4000000  -3.6920095   6.4920095 0.9999479
+20_24h-2.5_8h          -10.6000000 -15.6920095  -5.5079905 0.0000000
+30_24h-2.5_8h          -24.6000000 -29.6920095 -19.5079905 0.0000000
+DMSO_35_24h-2.5_8h       7.4000000   2.3079905  12.4920095 0.0001127
+7.5_8h-5_8h             -2.0000000  -7.2242915   3.2242915 0.9963867
+10_8h-5_8h              -3.7777778  -9.0020693   1.4465137 0.4829350
+20_8h-5_8h             -17.7777778 -23.0020693 -12.5534863 0.0000000
+30_8h-5_8h             -30.6666667 -35.8909582 -25.4423751 0.0000000
+DMSO_35_8h-5_8h         10.2222222   4.9979307  15.4465137 0.0000000
+C_24h-5_8h              16.2222222  10.9979307  21.4465137 0.0000000
+1_24h-5_8h              14.2222222   8.9979307  19.4465137 0.0000000
+2.5_24h-5_8h             7.2222222   1.9979307  12.4465137 0.0003358
+5_24h-5_8h              11.2222222   5.9979307  16.4465137 0.0000000
+7.5_24h-5_8h             8.1111111   2.8868196  13.3354026 0.0000228
+10_24h-5_8h              7.2222222   1.9979307  12.4465137 0.0003358
+20_24h-5_8h             -4.7777778 -10.0020693   0.4465137 0.1171696
+30_24h-5_8h            -18.7777778 -24.0020693 -13.5534863 0.0000000
+DMSO_35_24h-5_8h        13.2222222   7.9979307  18.4465137 0.0000000
+10_8h-7.5_8h            -1.7777778  -7.0020693   3.4465137 0.9991213
+20_8h-7.5_8h           -15.7777778 -21.0020693 -10.5534863 0.0000000
+30_8h-7.5_8h           -28.6666667 -33.8909582 -23.4423751 0.0000000
+DMSO_35_8h-7.5_8h       12.2222222   6.9979307  17.4465137 0.0000000
+C_24h-7.5_8h            18.2222222  12.9979307  23.4465137 0.0000000
+1_24h-7.5_8h            16.2222222  10.9979307  21.4465137 0.0000000
+2.5_24h-7.5_8h           9.2222222   3.9979307  14.4465137 0.0000006
+5_24h-7.5_8h            13.2222222   7.9979307  18.4465137 0.0000000
+7.5_24h-7.5_8h          10.1111111   4.8868196  15.3354026 0.0000000
+10_24h-7.5_8h            9.2222222   3.9979307  14.4465137 0.0000006
+20_24h-7.5_8h           -2.7777778  -8.0020693   2.4465137 0.9111315
+30_24h-7.5_8h          -16.7777778 -22.0020693 -11.5534863 0.0000000
+DMSO_35_24h-7.5_8h      15.2222222   9.9979307  20.4465137 0.0000000
+20_8h-10_8h            -14.0000000 -19.2242915  -8.7757085 0.0000000
+30_8h-10_8h            -26.8888889 -32.1131804 -21.6645974 0.0000000
+DMSO_35_8h-10_8h        14.0000000   8.7757085  19.2242915 0.0000000
+C_24h-10_8h             20.0000000  14.7757085  25.2242915 0.0000000
+1_24h-10_8h             18.0000000  12.7757085  23.2242915 0.0000000
+2.5_24h-10_8h           11.0000000   5.7757085  16.2242915 0.0000000
+5_24h-10_8h             15.0000000   9.7757085  20.2242915 0.0000000
+7.5_24h-10_8h           11.8888889   6.6645974  17.1131804 0.0000000
+10_24h-10_8h            11.0000000   5.7757085  16.2242915 0.0000000
+20_24h-10_8h            -1.0000000  -6.2242915   4.2242915 0.9999998
+30_24h-10_8h           -15.0000000 -20.2242915  -9.7757085 0.0000000
+DMSO_35_24h-10_8h       17.0000000  11.7757085  22.2242915 0.0000000
+30_8h-20_8h            -12.8888889 -18.1131804  -7.6645974 0.0000000
+DMSO_35_8h-20_8h        28.0000000  22.7757085  33.2242915 0.0000000
+C_24h-20_8h             34.0000000  28.7757085  39.2242915 0.0000000
+1_24h-20_8h             32.0000000  26.7757085  37.2242915 0.0000000
+2.5_24h-20_8h           25.0000000  19.7757085  30.2242915 0.0000000
+5_24h-20_8h             29.0000000  23.7757085  34.2242915 0.0000000
+7.5_24h-20_8h           25.8888889  20.6645974  31.1131804 0.0000000
+10_24h-20_8h            25.0000000  19.7757085  30.2242915 0.0000000
+20_24h-20_8h            13.0000000   7.7757085  18.2242915 0.0000000
+30_24h-20_8h            -1.0000000  -6.2242915   4.2242915 0.9999998
+DMSO_35_24h-20_8h       31.0000000  25.7757085  36.2242915 0.0000000
+DMSO_35_8h-30_8h        40.8888889  35.6645974  46.1131804 0.0000000
+C_24h-30_8h             46.8888889  41.6645974  52.1131804 0.0000000
+1_24h-30_8h             44.8888889  39.6645974  50.1131804 0.0000000
+2.5_24h-30_8h           37.8888889  32.6645974  43.1131804 0.0000000
+5_24h-30_8h             41.8888889  36.6645974  47.1131804 0.0000000
+7.5_24h-30_8h           38.7777778  33.5534863  44.0020693 0.0000000
+10_24h-30_8h            37.8888889  32.6645974  43.1131804 0.0000000
+20_24h-30_8h            25.8888889  20.6645974  31.1131804 0.0000000
+30_24h-30_8h            11.8888889   6.6645974  17.1131804 0.0000000
+DMSO_35_24h-30_8h       43.8888889  38.6645974  49.1131804 0.0000000
+C_24h-DMSO_35_8h         6.0000000   0.7757085  11.2242915 0.0087970
+1_24h-DMSO_35_8h         4.0000000  -1.2242915   9.2242915 0.3763081
+2.5_24h-DMSO_35_8h      -3.0000000  -8.2242915   2.2242915 0.8441982
+5_24h-DMSO_35_8h         1.0000000  -4.2242915   6.2242915 0.9999998
+7.5_24h-DMSO_35_8h      -2.1111111  -7.3354026   3.1131804 0.9933683
+10_24h-DMSO_35_8h       -3.0000000  -8.2242915   2.2242915 0.8441982
+20_24h-DMSO_35_8h      -15.0000000 -20.2242915  -9.7757085 0.0000000
+30_24h-DMSO_35_8h      -29.0000000 -34.2242915 -23.7757085 0.0000000
+DMSO_35_24h-DMSO_35_8h   3.0000000  -2.2242915   8.2242915 0.8441982
+1_24h-C_24h             -2.0000000  -7.2242915   3.2242915 0.9963867
+2.5_24h-C_24h           -9.0000000 -14.2242915  -3.7757085 0.0000013
+5_24h-C_24h             -5.0000000 -10.2242915   0.2242915 0.0778494
+7.5_24h-C_24h           -8.1111111 -13.3354026  -2.8868196 0.0000228
+10_24h-C_24h            -9.0000000 -14.2242915  -3.7757085 0.0000013
+20_24h-C_24h           -21.0000000 -26.2242915 -15.7757085 0.0000000
+30_24h-C_24h           -35.0000000 -40.2242915 -29.7757085 0.0000000
+DMSO_35_24h-C_24h       -3.0000000  -8.2242915   2.2242915 0.8441982
+2.5_24h-1_24h           -7.0000000 -12.2242915  -1.7757085 0.0006333
+5_24h-1_24h             -3.0000000  -8.2242915   2.2242915 0.8441982
+7.5_24h-1_24h           -6.1111111 -11.3354026  -0.8868196 0.0066995
+10_24h-1_24h            -7.0000000 -12.2242915  -1.7757085 0.0006333
+20_24h-1_24h           -19.0000000 -24.2242915 -13.7757085 0.0000000
+30_24h-1_24h           -33.0000000 -38.2242915 -27.7757085 0.0000000
+DMSO_35_24h-1_24h       -1.0000000  -6.2242915   4.2242915 0.9999998
+5_24h-2.5_24h            4.0000000  -1.2242915   9.2242915 0.3763081
+7.5_24h-2.5_24h          0.8888889  -4.3354026   6.1131804 1.0000000
+10_24h-2.5_24h           0.0000000  -5.2242915   5.2242915 1.0000000
+20_24h-2.5_24h         -12.0000000 -17.2242915  -6.7757085 0.0000000
+30_24h-2.5_24h         -26.0000000 -31.2242915 -20.7757085 0.0000000
+DMSO_35_24h-2.5_24h      6.0000000   0.7757085  11.2242915 0.0087970
+7.5_24h-5_24h           -3.1111111  -8.3354026   2.1131804 0.8024108
+10_24h-5_24h            -4.0000000  -9.2242915   1.2242915 0.3763081
+20_24h-5_24h           -16.0000000 -21.2242915 -10.7757085 0.0000000
+30_24h-5_24h           -30.0000000 -35.2242915 -24.7757085 0.0000000
+DMSO_35_24h-5_24h        2.0000000  -3.2242915   7.2242915 0.9963867
+10_24h-7.5_24h          -0.8888889  -6.1131804   4.3354026 1.0000000
+20_24h-7.5_24h         -12.8888889 -18.1131804  -7.6645974 0.0000000
+30_24h-7.5_24h         -26.8888889 -32.1131804 -21.6645974 0.0000000
+DMSO_35_24h-7.5_24h      5.1111111  -0.1131804  10.3354026 0.0627459
+20_24h-10_24h          -12.0000000 -17.2242915  -6.7757085 0.0000000
+30_24h-10_24h          -26.0000000 -31.2242915 -20.7757085 0.0000000
+DMSO_35_24h-10_24h       6.0000000   0.7757085  11.2242915 0.0087970
+30_24h-20_24h          -14.0000000 -19.2242915  -8.7757085 0.0000000
+DMSO_35_24h-20_24h      18.0000000  12.7757085  23.2242915 0.0000000
+DMSO_35_24h-30_24h      32.0000000  26.7757085  37.2242915 0.0000000</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">EtaSq</span>(modelo_aov, <span class="at">type =</span> <span class="dv">1</span>) <span class="co">#TAMAÑO EFECTO eta^2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        eta.sq eta.sq.part
+trtf 0.9479774   0.9479774</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co">#--------------------- TRANSFORMACIONES -------------------------</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="co">#PRIMERO PRUEBO CON UNA RAÍZ, POR EJEMPLO</span></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>farmaconuevo2<span class="sc">$</span>sqrt_germinados <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(farmaconuevo2<span class="sc">$</span>X._germinados)  <span class="co"># +1 para evitar log(0)</span></span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>modelo_aov_sqrt <span class="ot">&lt;-</span> <span class="fu">aov</span>(sqrt_germinados <span class="sc">~</span> trtf, <span class="at">data =</span> farmaconuevo2)</span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo_aov_sqrt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             Df Sum Sq Mean Sq F value Pr(&gt;F)    
+trtf         17  90.62   5.331     162 &lt;2e-16 ***
+Residuals   144   4.74   0.033                   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">resid</span>(modelo_aov_sqrt))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  resid(modelo_aov_sqrt)
+W = 0.98393, p-value = 0.05761</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(sqrt_germinados <span class="sc">~</span> trtf, <span class="at">data =</span> farmaconuevo2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Levene's Test for Homogeneity of Variance (center = median)
+       Df F value    Pr(&gt;F)    
+group  17  2.7084 0.0006791 ***
+      144                      
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co">#PRUEBO CON UNA TRANSFORMACIÓN BOX-COX QUE OPTIMIZA LOS DATOS PARA</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="co">#QUE LA DISTRIBUCIÓN DE LOS DATOS SEA MÁS NORMAL Y LOS RESIDUOS</span></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="co">#MÁS HOMOGÉNEOS</span></span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>boxcox_result <span class="ot">&lt;-</span> <span class="fu">boxcox</span>(farmaconuevo2<span class="sc">$</span>X._germinados <span class="sc">~</span> farmaconuevo2<span class="sc">$</span>trtf, <span class="at">lambda =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="fl">0.1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ACTIVIDAD1_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># El gráfico te indicará el lambda óptimo</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>lambda_optimo <span class="ot">&lt;-</span> boxcox_result<span class="sc">$</span>x[<span class="fu">which.max</span>(boxcox_result<span class="sc">$</span>y)]</span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lambda_optimo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.575758</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">abs</span>(lambda_optimo) <span class="sc">&lt;</span> <span class="fl">0.01</span>) {</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>  farmaconuevo2<span class="sc">$</span>Y_trans <span class="ot">&lt;-</span> <span class="fu">log</span>(farmaconuevo2<span class="sc">$</span>X._germinados <span class="sc">+</span> <span class="dv">1</span>)  <span class="co"># +1 para evitar log(0)</span></span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>  farmaconuevo2<span class="sc">$</span>Y_trans <span class="ot">&lt;-</span> ((farmaconuevo2<span class="sc">$</span>X._germinados <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">^</span>lambda_optimo <span class="sc">-</span> <span class="dv">1</span>)<span class="sc">/</span>lambda_optimo</span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a>modelo_aov_box <span class="ot">&lt;-</span> <span class="fu">aov</span>(Y_trans <span class="sc">~</span> trtf, <span class="at">data =</span> farmaconuevo2)</span>
+<span id="cb75-8"><a href="#cb75-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo_aov_box)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             Df  Sum Sq Mean Sq F value Pr(&gt;F)    
+trtf         17 3562369  209551   142.5 &lt;2e-16 ***
+Residuals   144  211732    1470                   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">resid</span>(modelo_aov_box))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  resid(modelo_aov_box)
+W = 0.98317, p-value = 0.04645</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(Y_trans <span class="sc">~</span> trtf, <span class="at">data =</span> farmaconuevo2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Levene's Test for Homogeneity of Variance (center = median)
+       Df F value  Pr(&gt;F)  
+group  17  1.9952 0.01505 *
+      144                  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>Como no hay normalidad ni homogeneidad, no hacemos nada y usamos un test no paramétrico equivalente al ANOVA (Kruskal-Wallis + Dunn).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Vería TukeyHSD </span></span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>tukeybox <span class="ot">=</span> <span class="fu">TukeyHSD</span>(modelo_aov_box)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="tests-no-paramétricos-y-boxplot" class="level3">
+<h3 class="anchored" data-anchor-id="tests-no-paramétricos-y-boxplot">Tests no paramétricos y boxplot</h3>
+<p>Hacemos los gráficos:</p>
+<p><strong>GRÁFICO DE 8 H</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-------------------------------- TESTS NO PARAMÉTRICOS Y BOXPLOT --------------------------------------</span></span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a><span class="co">#---------------8 H-------------------------</span></span>
+<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a>modelo_kruskal <span class="ot">=</span> <span class="fu">kruskal.test</span>(X._germinados <span class="sc">~</span> trtf, <span class="at">data =</span> subfarmaco8)</span>
+<span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a>modelo_kruskal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Kruskal-Wallis rank sum test
+
+data:  X._germinados by trtf
+Kruskal-Wallis chi-squared = 70.158, df = 8, p-value = 4.571e-12</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(<span class="st">"FSA"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)){<span class="fu">install.packages</span>(<span class="st">"FSA"</span>)}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'FSA' was built under R version 4.4.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Registered S3 methods overwritten by 'FSA':
+  method       from
+  confint.boot car 
+  hist.boot    car </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>## FSA v0.10.0. See citation('FSA') if used in publication.
+## Run fishR() for related website and fishR('IFAR') for related book.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Adjuntando el paquete: 'FSA'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:car':
+
+    bootCase</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(<span class="st">"rcompanion"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)){<span class="fu">install.packages</span>(<span class="st">"rcompanion"</span>)}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'rcompanion' was built under R version 4.4.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"multcompView"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) <span class="fu">install.packages</span>(<span class="st">"multcompView"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'multcompView' was built under R version 4.4.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FSA)</span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rcompanion)</span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-4"><a href="#cb94-4" aria-hidden="true" tabindex="-1"></a><span class="co"># COMPRUEBO OTRA VEZ SI trtf es factor (debe ser factor, no ordered factor)</span></span>
+<span id="cb94-5"><a href="#cb94-5" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(farmaconuevo2<span class="sc">$</span>trtf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "factor"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co"># COMPRUEBO OTRA VEZ SI trtf es factor (debe ser factor, no ordered factor)</span></span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(farmaconuevo2<span class="sc">$</span>trtf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "factor"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test de Dunn con corrección de Bonferroni (puedes usar "holm" o "BH" también)</span></span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>dunn_result <span class="ot">&lt;-</span> <span class="fu">dunnTest</span>(X._germinados <span class="sc">~</span> trtf,</span>
+<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">data =</span> subfarmaco8,</span>
+<span id="cb98-4"><a href="#cb98-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">method =</span> <span class="st">"bonferroni"</span>)</span>
+<span id="cb98-5"><a href="#cb98-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-6"><a href="#cb98-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(dunn_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Dunn (1964) Kruskal-Wallis multiple comparison</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  p-values adjusted with the Bonferroni method.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Comparison           Z      P.unadj        P.adj
+1         1_8h - 10_8h  3.20885462 1.332649e-03 4.797535e-02
+2        1_8h - 2.5_8h  1.05659537 2.906963e-01 1.000000e+00
+3       10_8h - 2.5_8h -2.23562000 2.537667e-02 9.135602e-01
+4         1_8h - 20_8h  4.52247948 6.111941e-06 2.200299e-04
+5        10_8h - 20_8h  1.31362486 1.889725e-01 1.000000e+00
+6       2.5_8h - 20_8h  3.58337067 3.391887e-04 1.221079e-02
+7         1_8h - 30_8h  5.33472080 9.569168e-08 3.444901e-06
+8        10_8h - 30_8h  2.12586618 3.351440e-02 1.000000e+00
+9       2.5_8h - 30_8h  4.41671268 1.002133e-05 3.607679e-04
+10       20_8h - 30_8h  0.81224132 4.166532e-01 1.000000e+00
+11         1_8h - 5_8h  2.49689000 1.252878e-02 4.510361e-01
+12        10_8h - 5_8h -0.71196462 4.764867e-01 1.000000e+00
+13       2.5_8h - 5_8h  1.50515972 1.322830e-01 1.000000e+00
+14        20_8h - 5_8h -2.02558948 4.280687e-02 1.000000e+00
+15        30_8h - 5_8h -2.83783080 4.542125e-03 1.635165e-01
+16       1_8h - 7.5_8h  2.71749875 6.577740e-03 2.367987e-01
+17      10_8h - 7.5_8h -0.49135586 6.231748e-01 1.000000e+00
+18     2.5_8h - 7.5_8h  1.73149952 8.336271e-02 1.000000e+00
+19      20_8h - 7.5_8h -1.80498072 7.107770e-02 1.000000e+00
+20      30_8h - 7.5_8h -2.61722205 8.864865e-03 3.191352e-01
+21       5_8h - 7.5_8h  0.22060875 8.253971e-01 1.000000e+00
+22         1_8h - C_8h -0.32407298 7.458828e-01 1.000000e+00
+23        10_8h - C_8h -3.43711922 5.879368e-04 2.116572e-02
+24       2.5_8h - C_8h -1.35544335 1.752763e-01 1.000000e+00
+25        20_8h - C_8h -4.71152252 2.458729e-06 8.851425e-05
+26        30_8h - C_8h -5.49951235 3.808430e-08 1.371035e-06
+27         5_8h - C_8h -2.74641208 6.025103e-03 2.169037e-01
+28       7.5_8h - C_8h -2.96043401 3.072059e-03 1.105941e-01
+29   1_8h - DMSO_35_8h -0.35598231 7.218538e-01 1.000000e+00
+30  10_8h - DMSO_35_8h -3.56483693 3.640825e-04 1.310697e-02
+31 2.5_8h - DMSO_35_8h -1.42182551 1.550769e-01 1.000000e+00
+32  20_8h - DMSO_35_8h -4.87846178 1.069164e-06 3.848989e-05
+33  30_8h - DMSO_35_8h -5.69070311 1.265173e-08 4.554624e-07
+34   5_8h - DMSO_35_8h -2.85287231 4.332603e-03 1.559737e-01
+35 7.5_8h - DMSO_35_8h -3.07348106 2.115771e-03 7.616776e-02
+36   C_8h - DMSO_35_8h -0.02128059 9.830218e-01 1.000000e+00</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>comparaciones <span class="ot">&lt;-</span> dunn_result<span class="sc">$</span>res</span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a><span class="co">#LETRAS</span></span>
+<span id="cb102-4"><a href="#cb102-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-5"><a href="#cb102-5" aria-hidden="true" tabindex="-1"></a>niveles_8h <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"C_8h"</span>, <span class="st">"1_8h"</span>, <span class="st">"2.5_8h"</span>, <span class="st">"5_8h"</span>, <span class="st">"7.5_8h"</span>, <span class="st">"10_8h"</span>, <span class="st">"20_8h"</span>, <span class="st">"30_8h"</span>, <span class="st">"DMSO_35_8h"</span>)</span>
+<span id="cb102-6"><a href="#cb102-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-7"><a href="#cb102-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multcompView)</span>
+<span id="cb102-8"><a href="#cb102-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-9"><a href="#cb102-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Formatear las comparaciones para multcompView</span></span>
+<span id="cb102-10"><a href="#cb102-10" aria-hidden="true" tabindex="-1"></a><span class="co"># multcompView necesita vector named con p-values y nombres del tipo "A-B"</span></span>
+<span id="cb102-11"><a href="#cb102-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-12"><a href="#cb102-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertir "A_8h - B_8h" a "A_8h-B_8h" para multcompView</span></span>
+<span id="cb102-13"><a href="#cb102-13" aria-hidden="true" tabindex="-1"></a>names_pvals <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">" "</span>, <span class="st">""</span>, <span class="fu">gsub</span>(<span class="st">" - "</span>, <span class="st">"-"</span>, comparaciones<span class="sc">$</span>Comparison))</span>
+<span id="cb102-14"><a href="#cb102-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-15"><a href="#cb102-15" aria-hidden="true" tabindex="-1"></a>pvals <span class="ot">&lt;-</span> comparaciones<span class="sc">$</span>P.adj</span>
+<span id="cb102-16"><a href="#cb102-16" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(pvals) <span class="ot">&lt;-</span> names_pvals</span>
+<span id="cb102-17"><a href="#cb102-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-18"><a href="#cb102-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Ahora generar el agrupamiento en letras</span></span>
+<span id="cb102-19"><a href="#cb102-19" aria-hidden="true" tabindex="-1"></a>letters <span class="ot">&lt;-</span> <span class="fu">multcompLetters</span>(pvals, <span class="at">threshold =</span> <span class="fl">0.05</span>)<span class="sc">$</span>Letters</span>
+<span id="cb102-20"><a href="#cb102-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-21"><a href="#cb102-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Ordenar letras según niveles_8h</span></span>
+<span id="cb102-22"><a href="#cb102-22" aria-hidden="true" tabindex="-1"></a>letters_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb102-23"><a href="#cb102-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">trtf =</span> niveles_8h,</span>
+<span id="cb102-24"><a href="#cb102-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">Letters1 =</span> letters[niveles_8h]</span>
+<span id="cb102-25"><a href="#cb102-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb102-26"><a href="#cb102-26" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(letters_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 trtf Letters1
+C_8h             C_8h        a
+1_8h             1_8h        a
+2.5_8h         2.5_8h       ab
+5_8h             5_8h      abc
+7.5_8h         7.5_8h      abc
+10_8h           10_8h       bc
+20_8h           20_8h        c
+30_8h           30_8h        c
+DMSO_35_8h DMSO_35_8h        a</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="co">#GRÁFICOS</span></span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb104-4"><a href="#cb104-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-5"><a href="#cb104-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Gráfico</span></span>
+<span id="cb104-6"><a href="#cb104-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-7"><a href="#cb104-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular las posiciones para las letras (por ejemplo, máximo + un poco)</span></span>
+<span id="cb104-8"><a href="#cb104-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'dplyr' was built under R version 4.4.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Adjuntando el paquete: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:MASS':
+
+    select</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:car':
+
+    recode</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>pos_letras <span class="ot">&lt;-</span> subfarmaco8 <span class="sc">%&gt;%</span></span>
+<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(trtf) <span class="sc">%&gt;%</span></span>
+<span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">ypos =</span> <span class="fu">max</span>(X._germinados, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> <span class="dv">5</span>)</span>
+<span id="cb111-4"><a href="#cb111-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb111-5"><a href="#cb111-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Añadimos las letras al dataframe de posiciones</span></span>
+<span id="cb111-6"><a href="#cb111-6" aria-hidden="true" tabindex="-1"></a>pos_letras <span class="ot">&lt;-</span> <span class="fu">left_join</span>(pos_letras, letters_df, <span class="at">by =</span> <span class="st">"trtf"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co"># El gráfico con letras:</span></span>
+<span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(subfarmaco8, <span class="fu">aes</span>(<span class="at">x =</span> trtf, <span class="at">y =</span> X._germinados, <span class="at">fill =</span> trtf)) <span class="sc">+</span></span>
+<span id="cb112-3"><a href="#cb112-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb112-4"><a href="#cb112-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>), <span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">100</span>,<span class="dv">20</span>)) <span class="sc">+</span></span>
+<span id="cb112-5"><a href="#cb112-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb112-6"><a href="#cb112-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Control"</span>, <span class="st">"1"</span>, <span class="st">"2.5"</span>, <span class="st">"5"</span>, <span class="st">"7.5"</span>, <span class="st">"10"</span>, <span class="st">"20"</span>, <span class="st">"30"</span>,</span>
+<span id="cb112-7"><a href="#cb112-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expression</span>(<span class="st">"DMSO (0.35%)"</span>)</span>
+<span id="cb112-8"><a href="#cb112-8" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">+</span></span>
+<span id="cb112-9"><a href="#cb112-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb112-10"><a href="#cb112-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"#A6CEE3"</span>, <span class="st">"#1F78B4"</span>, <span class="st">"#B2DF8A"</span>, <span class="st">"#33A02C"</span>,</span>
+<span id="cb112-11"><a href="#cb112-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"#FB9A99"</span>, <span class="st">"#E31A1C"</span>, <span class="st">"#FDBF6F"</span>, <span class="st">"#FF7F00"</span>, <span class="st">"#CAB2D6"</span></span>
+<span id="cb112-12"><a href="#cb112-12" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">+</span></span>
+<span id="cb112-13"><a href="#cb112-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb112-14"><a href="#cb112-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Boxplot % Germinación por Tratamiento (8h)"</span>,</span>
+<span id="cb112-15"><a href="#cb112-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">expression</span>(<span class="st">"Tratamiento ("</span> <span class="sc">*</span> mu <span class="sc">*</span> <span class="st">"g/ml)"</span>),</span>
+<span id="cb112-16"><a href="#cb112-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"% Germinación"</span></span>
+<span id="cb112-17"><a href="#cb112-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb112-18"><a href="#cb112-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> pos_letras, <span class="fu">aes</span>(<span class="at">x =</span> trtf, <span class="at">y =</span> ypos, <span class="at">label =</span> Letters1), <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb112-19"><a href="#cb112-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb112-20"><a href="#cb112-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ACTIVIDAD1_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(subfarmaco8, <span class="fu">aes</span>(<span class="at">x =</span> trtf, <span class="at">y =</span> X._germinados, <span class="at">fill =</span> trtf)) <span class="sc">+</span></span>
+<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">trim =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span>   <span class="co"># Violinplot con borde negro</span></span>
+<span id="cb113-3"><a href="#cb113-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">110</span>), <span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">100</span>,<span class="dv">20</span>)) <span class="sc">+</span></span>
+<span id="cb113-4"><a href="#cb113-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb113-5"><a href="#cb113-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Control"</span>, <span class="st">"1"</span>, <span class="st">"2.5"</span>, <span class="st">"5"</span>, <span class="st">"7.5"</span>, <span class="st">"10"</span>, <span class="st">"20"</span>, <span class="st">"30"</span>,</span>
+<span id="cb113-6"><a href="#cb113-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expression</span>(<span class="st">"DMSO (0.35%)"</span>)</span>
+<span id="cb113-7"><a href="#cb113-7" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">+</span></span>
+<span id="cb113-8"><a href="#cb113-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb113-9"><a href="#cb113-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"#A6CEE3"</span>, <span class="st">"#1F78B4"</span>, <span class="st">"#B2DF8A"</span>, <span class="st">"#33A02C"</span>,</span>
+<span id="cb113-10"><a href="#cb113-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"#FB9A99"</span>, <span class="st">"#E31A1C"</span>, <span class="st">"#FDBF6F"</span>, <span class="st">"#FF7F00"</span>, <span class="st">"#CAB2D6"</span></span>
+<span id="cb113-11"><a href="#cb113-11" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">+</span></span>
+<span id="cb113-12"><a href="#cb113-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb113-13"><a href="#cb113-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Violinplot % Germinación por Tratamiento (8h)"</span>,</span>
+<span id="cb113-14"><a href="#cb113-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">expression</span>(<span class="st">"Tratamiento ("</span> <span class="sc">*</span> mu <span class="sc">*</span> <span class="st">"g/ml)"</span>),</span>
+<span id="cb113-15"><a href="#cb113-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"% Germinación"</span></span>
+<span id="cb113-16"><a href="#cb113-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb113-17"><a href="#cb113-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> pos_letras, <span class="fu">aes</span>(<span class="at">x =</span> trtf, <span class="at">y =</span> ypos<span class="sc">+</span><span class="dv">9</span>, <span class="at">label =</span> Letters1), <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb113-18"><a href="#cb113-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb113-19"><a href="#cb113-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb113-20"><a href="#cb113-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb113-21"><a href="#cb113-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb113-22"><a href="#cb113-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb113-23"><a href="#cb113-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ACTIVIDAD1_files/figure-html/unnamed-chunk-26-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>GRÁFICO 24 H</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="co">#---------------24 H-------------------------</span></span>
+<span id="cb114-2"><a href="#cb114-2" aria-hidden="true" tabindex="-1"></a>modelo_kruskal2 <span class="ot">=</span> <span class="fu">kruskal.test</span>(X._germinados <span class="sc">~</span> trtf, <span class="at">data =</span> subfarmaco24)</span>
+<span id="cb114-3"><a href="#cb114-3" aria-hidden="true" tabindex="-1"></a>modelo_kruskal2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Kruskal-Wallis rank sum test
+
+data:  X._germinados by trtf
+Kruskal-Wallis chi-squared = 67.015, df = 8, p-value = 1.925e-11</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(<span class="st">"FSA"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)){<span class="fu">install.packages</span>(<span class="st">"FSA"</span>)}</span>
+<span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(<span class="st">"rcompanion"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)){<span class="fu">install.packages</span>(<span class="st">"rcompanion"</span>)}</span>
+<span id="cb116-3"><a href="#cb116-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"multcompView"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) <span class="fu">install.packages</span>(<span class="st">"multcompView"</span>)</span>
+<span id="cb116-4"><a href="#cb116-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-5"><a href="#cb116-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FSA)</span>
+<span id="cb116-6"><a href="#cb116-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rcompanion)</span>
+<span id="cb116-7"><a href="#cb116-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-8"><a href="#cb116-8" aria-hidden="true" tabindex="-1"></a><span class="co"># COMPRUEBO OTRA VEZ SI trtf es factor (debe ser factor, no ordered factor)</span></span>
+<span id="cb116-9"><a href="#cb116-9" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(farmaconuevo2<span class="sc">$</span>trtf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "factor"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test de Dunn con corrección de Bonferroni (puedes usar "holm" o "BH" también)</span></span>
+<span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a>dunn_result2 <span class="ot">&lt;-</span> <span class="fu">dunnTest</span>(X._germinados <span class="sc">~</span> trtf,</span>
+<span id="cb118-3"><a href="#cb118-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">data =</span> subfarmaco24,</span>
+<span id="cb118-4"><a href="#cb118-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">method =</span> <span class="st">"bonferroni"</span>)</span>
+<span id="cb118-5"><a href="#cb118-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb118-6"><a href="#cb118-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(dunn_result2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Dunn (1964) Kruskal-Wallis multiple comparison</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  p-values adjusted with the Bonferroni method.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              Comparison           Z      P.unadj        P.adj
+1         1_24h - 10_24h  2.80804958 4.984255e-03 1.794332e-01
+2        1_24h - 2.5_24h  2.88827957 3.873554e-03 1.394480e-01
+3       10_24h - 2.5_24h  0.08022999 9.360543e-01 1.000000e+00
+4         1_24h - 20_24h  4.54803744 5.414850e-06 1.949346e-04
+5        10_24h - 20_24h  1.73998786 8.186115e-02 1.000000e+00
+6       2.5_24h - 20_24h  1.65975788 9.696317e-02 1.000000e+00
+7         1_24h - 30_24h  5.36036607 8.305348e-08 2.989925e-06
+8        10_24h - 30_24h  2.55231649 1.070093e-02 3.852333e-01
+9       2.5_24h - 30_24h  2.47208650 1.343270e-02 4.835772e-01
+10       20_24h - 30_24h  0.81232863 4.166031e-01 1.000000e+00
+11         1_24h - 5_24h  1.19342107 2.327045e-01 1.000000e+00
+12        10_24h - 5_24h -1.61462851 1.063912e-01 1.000000e+00
+13       2.5_24h - 5_24h -1.69485850 9.010227e-02 1.000000e+00
+14        20_24h - 5_24h -3.35461637 7.947512e-04 2.861104e-02
+15        30_24h - 5_24h -4.16694500 3.087089e-05 1.111352e-03
+16       1_24h - 7.5_24h  2.45202901 1.420532e-02 5.113916e-01
+17      10_24h - 7.5_24h -0.35602057 7.218252e-01 1.000000e+00
+18     2.5_24h - 7.5_24h -0.43625056 6.626549e-01 1.000000e+00
+19      20_24h - 7.5_24h -2.09600844 3.608144e-02 1.000000e+00
+20      30_24h - 7.5_24h -2.90833706 3.633565e-03 1.308083e-01
+21       5_24h - 7.5_24h  1.25860794 2.081720e-01 1.000000e+00
+22         1_24h - C_24h -0.62679678 5.307925e-01 1.000000e+00
+23        10_24h - C_24h -3.43484636 5.928899e-04 2.134404e-02
+24       2.5_24h - C_24h -3.51507635 4.396276e-04 1.582659e-02
+25        20_24h - C_24h -5.17483422 2.281134e-07 8.212083e-06
+26        30_24h - C_24h -5.98716285 2.135330e-09 7.687186e-08
+27         5_24h - C_24h -1.82021785 6.872584e-02 1.000000e+00
+28       7.5_24h - C_24h -3.07882579 2.078182e-03 7.481454e-02
+29   1_24h - DMSO_35_24h  0.37607807 7.068589e-01 1.000000e+00
+30  10_24h - DMSO_35_24h -2.43197151 1.501689e-02 5.406080e-01
+31 2.5_24h - DMSO_35_24h -2.51220150 1.199806e-02 4.319300e-01
+32  20_24h - DMSO_35_24h -4.17195938 3.019915e-05 1.087169e-03
+33  30_24h - DMSO_35_24h -4.98428800 6.219039e-07 2.238854e-05
+34   5_24h - DMSO_35_24h -0.81734300 4.137324e-01 1.000000e+00
+35 7.5_24h - DMSO_35_24h -2.07595094 3.789849e-02 1.000000e+00
+36   C_24h - DMSO_35_24h  1.00287485 3.159212e-01 1.000000e+00</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a>comparaciones2 <span class="ot">&lt;-</span> dunn_result2<span class="sc">$</span>res</span>
+<span id="cb122-2"><a href="#cb122-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-3"><a href="#cb122-3" aria-hidden="true" tabindex="-1"></a><span class="co">#LETRAS</span></span>
+<span id="cb122-4"><a href="#cb122-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-5"><a href="#cb122-5" aria-hidden="true" tabindex="-1"></a>niveles_24h <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"C_24h"</span>, <span class="st">"1_24h"</span>, <span class="st">"2.5_24h"</span>, <span class="st">"5_24h"</span>, <span class="st">"7.5_24h"</span>, <span class="st">"10_24h"</span>, <span class="st">"20_24h"</span>, <span class="st">"30_24h"</span>, <span class="st">"DMSO_35_24h"</span>)</span>
+<span id="cb122-6"><a href="#cb122-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-7"><a href="#cb122-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multcompView)</span>
+<span id="cb122-8"><a href="#cb122-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-9"><a href="#cb122-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Formatear las comparaciones para multcompView</span></span>
+<span id="cb122-10"><a href="#cb122-10" aria-hidden="true" tabindex="-1"></a><span class="co"># multcompView necesita vector named con p-values y nombres del tipo "A-B"</span></span>
+<span id="cb122-11"><a href="#cb122-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-12"><a href="#cb122-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertir "A_8h - B_8h" a "A_8h-B_8h" para multcompView</span></span>
+<span id="cb122-13"><a href="#cb122-13" aria-hidden="true" tabindex="-1"></a>names_pvals2 <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">" "</span>, <span class="st">""</span>, <span class="fu">gsub</span>(<span class="st">" - "</span>, <span class="st">"-"</span>, comparaciones2<span class="sc">$</span>Comparison))</span>
+<span id="cb122-14"><a href="#cb122-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-15"><a href="#cb122-15" aria-hidden="true" tabindex="-1"></a>pvals2 <span class="ot">&lt;-</span> comparaciones2<span class="sc">$</span>P.adj</span>
+<span id="cb122-16"><a href="#cb122-16" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(pvals2) <span class="ot">&lt;-</span> names_pvals2</span>
+<span id="cb122-17"><a href="#cb122-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-18"><a href="#cb122-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Ahora generar el agrupamiento en letras</span></span>
+<span id="cb122-19"><a href="#cb122-19" aria-hidden="true" tabindex="-1"></a>letters2 <span class="ot">&lt;-</span> <span class="fu">multcompLetters</span>(pvals2, <span class="at">threshold =</span> <span class="fl">0.05</span>)<span class="sc">$</span>Letters</span>
+<span id="cb122-20"><a href="#cb122-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-21"><a href="#cb122-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Ordenar letras según niveles_8h</span></span>
+<span id="cb122-22"><a href="#cb122-22" aria-hidden="true" tabindex="-1"></a>letters_df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb122-23"><a href="#cb122-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">trtf =</span> niveles_24h,</span>
+<span id="cb122-24"><a href="#cb122-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">Letters2 =</span> letters2[niveles_24h]</span>
+<span id="cb122-25"><a href="#cb122-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb122-26"><a href="#cb122-26" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(letters_df2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   trtf Letters2
+C_24h             C_24h        b
+1_24h             1_24h       ab
+2.5_24h         2.5_24h       ac
+5_24h             5_24h       ab
+7.5_24h         7.5_24h      abc
+10_24h           10_24h       ac
+20_24h           20_24h        c
+30_24h           30_24h        c
+DMSO_35_24h DMSO_35_24h       ab</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb124-2"><a href="#cb124-2" aria-hidden="true" tabindex="-1"></a>pos_letras2 <span class="ot">&lt;-</span> subfarmaco24 <span class="sc">%&gt;%</span></span>
+<span id="cb124-3"><a href="#cb124-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(trtf) <span class="sc">%&gt;%</span></span>
+<span id="cb124-4"><a href="#cb124-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">ypos =</span> <span class="fu">max</span>(X._germinados, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> <span class="dv">5</span>)</span>
+<span id="cb124-5"><a href="#cb124-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb124-6"><a href="#cb124-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Añadimos las letras al dataframe de posiciones</span></span>
+<span id="cb124-7"><a href="#cb124-7" aria-hidden="true" tabindex="-1"></a>pos_letras2 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(pos_letras2, letters_df2, <span class="at">by =</span> <span class="st">"trtf"</span>)</span>
+<span id="cb124-8"><a href="#cb124-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb124-9"><a href="#cb124-9" aria-hidden="true" tabindex="-1"></a><span class="co"># El gráfico con letras:</span></span>
+<span id="cb124-10"><a href="#cb124-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(subfarmaco24, <span class="fu">aes</span>(<span class="at">x =</span> trtf, <span class="at">y =</span> X._germinados, <span class="at">fill =</span> trtf)) <span class="sc">+</span></span>
+<span id="cb124-11"><a href="#cb124-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb124-12"><a href="#cb124-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">110</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">100</span>,<span class="dv">20</span>)) <span class="sc">+</span></span>
+<span id="cb124-13"><a href="#cb124-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb124-14"><a href="#cb124-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Control"</span>, <span class="st">"1"</span>, <span class="st">"2.5"</span>, <span class="st">"5"</span>, <span class="st">"7.5"</span>, <span class="st">"10"</span>, <span class="st">"20"</span>, <span class="st">"30"</span>,</span>
+<span id="cb124-15"><a href="#cb124-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expression</span>(<span class="st">"DMSO (0.35%)"</span>)</span>
+<span id="cb124-16"><a href="#cb124-16" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">+</span></span>
+<span id="cb124-17"><a href="#cb124-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb124-18"><a href="#cb124-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"#A6CEE3"</span>, <span class="st">"#1F78B4"</span>, <span class="st">"#B2DF8A"</span>, <span class="st">"#33A02C"</span>,</span>
+<span id="cb124-19"><a href="#cb124-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"#FB9A99"</span>, <span class="st">"#E31A1C"</span>, <span class="st">"#FDBF6F"</span>, <span class="st">"#FF7F00"</span>, <span class="st">"#CAB2D6"</span></span>
+<span id="cb124-20"><a href="#cb124-20" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">+</span></span>
+<span id="cb124-21"><a href="#cb124-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb124-22"><a href="#cb124-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Boxplot % Germinación por Tratamiento (24h)"</span>,</span>
+<span id="cb124-23"><a href="#cb124-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">expression</span>(<span class="st">"Tratamiento ("</span> <span class="sc">*</span> mu <span class="sc">*</span> <span class="st">"g/ml)"</span>),</span>
+<span id="cb124-24"><a href="#cb124-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"% Germinación"</span></span>
+<span id="cb124-25"><a href="#cb124-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb124-26"><a href="#cb124-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> pos_letras2, <span class="fu">aes</span>(<span class="at">x =</span> trtf, <span class="at">y =</span> ypos, <span class="at">label =</span> Letters2), <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb124-27"><a href="#cb124-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb124-28"><a href="#cb124-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ACTIVIDAD1_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb125"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(subfarmaco24, <span class="fu">aes</span>(<span class="at">x =</span> trtf, <span class="at">y =</span> X._germinados, <span class="at">fill =</span> trtf)) <span class="sc">+</span></span>
+<span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">trim =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span>   <span class="co"># Violinplot con borde negro</span></span>
+<span id="cb125-3"><a href="#cb125-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">110</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">100</span>,<span class="dv">20</span>)) <span class="sc">+</span></span>
+<span id="cb125-4"><a href="#cb125-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb125-5"><a href="#cb125-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Control"</span>, <span class="st">"1"</span>, <span class="st">"2.5"</span>, <span class="st">"5"</span>, <span class="st">"7.5"</span>, <span class="st">"10"</span>, <span class="st">"20"</span>, <span class="st">"30"</span>,</span>
+<span id="cb125-6"><a href="#cb125-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expression</span>(<span class="st">"DMSO (0.35%)"</span>)</span>
+<span id="cb125-7"><a href="#cb125-7" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">+</span></span>
+<span id="cb125-8"><a href="#cb125-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb125-9"><a href="#cb125-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"#A6CEE3"</span>, <span class="st">"#1F78B4"</span>, <span class="st">"#B2DF8A"</span>, <span class="st">"#33A02C"</span>,</span>
+<span id="cb125-10"><a href="#cb125-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"#FB9A99"</span>, <span class="st">"#E31A1C"</span>, <span class="st">"#FDBF6F"</span>, <span class="st">"#FF7F00"</span>, <span class="st">"#CAB2D6"</span></span>
+<span id="cb125-11"><a href="#cb125-11" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">+</span></span>
+<span id="cb125-12"><a href="#cb125-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb125-13"><a href="#cb125-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Violinplot % Germinación por Tratamiento (24h)"</span>,</span>
+<span id="cb125-14"><a href="#cb125-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">expression</span>(<span class="st">"Tratamiento ("</span> <span class="sc">*</span> mu <span class="sc">*</span> <span class="st">"g/ml)"</span>),</span>
+<span id="cb125-15"><a href="#cb125-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"% Germinación"</span></span>
+<span id="cb125-16"><a href="#cb125-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb125-17"><a href="#cb125-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> pos_letras2, <span class="fu">aes</span>(<span class="at">x =</span> trtf, <span class="at">y =</span> ypos<span class="sc">+</span><span class="dv">3</span>, <span class="at">label =</span> Letters2), <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb125-18"><a href="#cb125-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb125-19"><a href="#cb125-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ACTIVIDAD1_files/figure-html/unnamed-chunk-29-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="conclusiones-de-la-actividad" class="level2">
+<h2 class="anchored" data-anchor-id="conclusiones-de-la-actividad">Conclusiones de la actividad</h2>
+<ol type="1">
+<li><p>Para 8 h, observamos que con respecto al control, vemos una diferencia de medias (la media de las réplicas por grupo) en el % de germinación estadísticamente significativa a partir de 10 µg/ml de fármaco+DMSO. Sin embargo, el mayor efecto se alcanza con concentraciones de 20 y 30 µg/ml, pero puesto que no hay diferencia estadísticamente significativa de medias entre 20 y 30 µg/ml, recomendaría utilizar el <strong>fármaco+DMSO</strong> con una dosis de <strong>20 µg/ml</strong>. Para 24 h, la conclusión es idéntica, salvo que para 2.5 µg/ml la diferencia sí es estadísticamente significativa con el control, aunque no lo es con respecto a 1 µg/ml y 5 µg/ml, de manera que tampoco nos interesa porque el efecto es relativamente pequeño. Notamos también que en 24 h el % de germinación es en general mayor (lo cual tiene bastante sentido ya que dejamos más tiempo para que el hongo crezca).</p></li>
+<li><p>Asimismo, notamos que la diferencia de medias en el % de germinación <strong>se debe fundamentalmente a la concentración de fármaco en µg/ml y no al DMSO</strong>. Esto es porque la diferencia de medias entre el control y la mezcla con DMSO puro 0.35% (sin fármaco) no es estadísticamente significativa, como se observa en el boxplot.</p></li>
+</ol>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

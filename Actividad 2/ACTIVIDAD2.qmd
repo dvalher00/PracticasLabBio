@@ -1,0 +1,241 @@
+---
+title: "ACTIVIDAD 2"
+author: "David Valcárcel Herrera"
+lang: es
+format:
+  pdf:
+    toc: true
+    toc-depth: 3
+    toc-title: "Índice de la actividad 3"
+    number-sections: true
+    papersize: a4
+    geometry:
+      - top=2.5cm
+      - bottom=2.5cm
+      - left=2.5cm
+      - right=2.5cm
+    fontsize: 11pt
+    pdf-engine: lualatex
+    colorlinks: true
+
+editor: visual
+---
+
+## Objetivo
+
+En esta segunda actividad propuesta trabajamos con un conjunto de datos de capturas de insectos en distintos tratamientos.\
+Nuestro flujo de trabajo consiste en:
+
+1.  **Carga de datos y exploración inicial.**
+    -   Leemos los datos desde un Excel e inspeccionamos su estructura.
+2.  **ANOVA clásico.**
+    -   Probamos normalidad y homogeneidad de varianzas.
+    -   Aplicamos transformaciones Box-Cox si es necesario.
+3.  **Modelos GLM.**
+    -   Ajustamos modelos con distribuciones *gaussian*, *poisson*, *binomial negativa*, *beta* y *gamma*.
+    -   Comparamos mediante diagnóstico de residuos (DHARMa).
+4.  **Selección del mejor modelo.**
+    -   El modelo con distribución binomial negativa se ajusta mejor a los datos.
+5.  **Comparaciones post-hoc.**
+    -   Usamos `glht` y `emmeans` para contrastes de Tukey y obtenemos letras de significación.
+6.  **Visualización.**
+    -   Generamos boxplots con las letras de comparación entre tratamientos.
+
+------------------------------------------------------------------------
+
+## Código
+
+### Preprocesamiento de datos
+
+```{r}
+# Instalación y carga de librerías
+if(!require("readxl")) install.packages("readxl")
+if(!require("pwr")) install.packages("pwr")
+if(!require("car")) install.packages("car")
+if(!require("MASS")) install.packages("MASS")
+
+library(readxl)
+library(pwr)
+library(car)
+library(MASS)
+
+# Lectura de datos
+insectos = read_xlsx("C:/Users/dvalh/Desktop/UA/MatesUA/Prácticas de empresa + privado/Actividades 1 a 3/Actividad 2/capturas_insectos_.xlsx")
+summary(insectos)
+```
+
+```{r}
+#ANOVA clásico
+pwr.anova.test(k = 4, n = NULL, f = 0.4, sig.level = 0.05, power = 0.8)
+#n = 15
+
+insectos$Tratamiento = as.factor(insectos$Tratamiento)
+
+modelo_aovtr = aov(Conteo ~ Tratamiento, data = insectos)
+summary(modelo_aovtr)
+```
+
+```{r}
+# Normalidad y homogeneidad
+shapiro.test(resid(modelo_aovtr))
+leveneTest(Conteo ~ Tratamiento, data = insectos)
+
+# Transformación Box-Cox
+insectos$Conteo_mod = insectos$Conteo + 0.00001
+boxcox_result <- boxcox(insectos$Conteo_mod ~ insectos$Tratamiento, lambda = seq(-4, 4, 0.1))
+lambda_optimo <- boxcox_result$x[which.max(boxcox_result$y)]
+
+if(abs(lambda_optimo) < 0.01) {
+  insectos$conteo_trans <- log(insectos$Conteo_mod + 1)
+} else {
+  insectos$conteo_trans <- ((insectos$Conteo_mod + 1)^lambda_optimo - 1)/lambda_optimo
+}
+
+modelo_aov_box <- aov(conteo_trans ~ Tratamiento, data = insectos)
+summary(modelo_aov_box)
+shapiro.test(resid(modelo_aov_box))
+leveneTest(conteo_trans ~ Tratamiento, data = insectos)
+```
+
+### GLMs con diferentes distribuciones
+
+```{r}
+if(!require("DHARMa")) install.packages("DHARMa")
+library(DHARMa)
+
+# Reordenar niveles (Control como referencia)
+insectos$Tratamiento <- factor(insectos$Tratamiento,
+                                levels = c("Control", "A", "B", "A+B"))
+
+# Gaussian
+modelo_glm1 <- glm(Conteo ~ Tratamiento, family = gaussian(link = "identity"), data = insectos)
+summary(modelo_glm1)
+Anova(modelo_glm1)
+plot(simulateResiduals(modelo_glm1))
+
+# Poisson
+modelo_glm2 <- glm(Conteo ~ Tratamiento, family = poisson(link = "log"), data = insectos)
+summary(modelo_glm2)
+Anova(modelo_glm2)
+plot(simulateResiduals(modelo_glm2))
+
+# Binomial negativa (mejor ajuste)
+modelo_glmnb <- glm.nb(Conteo ~ Tratamiento, data = insectos)
+summary(modelo_glmnb)
+Anova(modelo_glmnb)
+plot(simulateResiduals(modelo_glmnb))
+```
+
+### Comparaciones post-hoc y letras de significación
+
+```{r}
+if(!require("multcomp")) install.packages("multcomp")
+if(!require("emmeans")) install.packages("emmeans")
+if(!require("multcompView")) install.packages("multcompView")
+
+library(multcomp)
+library(emmeans)
+library(multcompView)
+
+# Tukey post-hoc
+posthoc <- glht(modelo_glmnb, linfct = mcp(Tratamiento = "Tukey"))
+summary(posthoc)
+plot(posthoc)
+```
+
+```{r}
+# emmeans + letras
+emmeans_trat <- emmeans(modelo_glmnb, ~ Tratamiento)
+```
+
+```{r}
+cld(emmeans_trat, Letters = letters, adjust = "tukey")
+```
+
+### Visualización final
+
+```{r}
+if(!require("ggplot2")) install.packages("ggplot2")
+library(ggplot2)
+
+pos_letras <- data.frame(
+  Tratamiento = factor(c("A+B", "A", "B", "Control"), levels = c("Control", "A", "B", "A+B")),
+  ypos = c(280, 290, 300, 310),
+  Letters = c("a", "ab", "b", "b")
+)
+
+ggplot(insectos, aes(x = Tratamiento, y = Conteo, fill = Tratamiento)) +
+  geom_boxplot(color = "black") +
+  scale_y_continuous(limits = c(0, 320)) +
+  scale_x_discrete(labels = c("Control", "A", "B", "A+B")) +
+  scale_fill_manual(values = c("#A6CEE3", "#1F78B4", "#B2DF8A", "#33A02C")) +
+  labs(title = "Boxplot de Conteos de Insectos", x = "Tratamiento", y = "Conteo (uds.)") +
+  geom_text(data = pos_letras, aes(x = Tratamiento, y = ypos-120, label = Letters), size = 5) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+## Conclusiones de la actividad
+
+### En cuanto a las conclusiones del modelo utillizado (el mejor de todos los probados)
+
+-   **ANOVA clásico**
+
+    -   El ANOVA inicial no cumplía del todo el supuesto de normalidad de los residuos.
+
+    -   La homogeneidad de varianzas sí se cumplía.
+
+    -   Una transformación Box-Cox mejoró los residuos, pero no fue la mejor solución final.
+
+<!-- -->
+
+-   **Modelos GLM**
+    -   Se probaron varios modelos con distintas distribuciones:
+
+        -   **Gaussiano:** no adecuado (residuos no bien ajustados).
+
+        -   **Poisson:** problemas de sobredispersión.
+
+        -   **Binomial negativa:** buen ajuste a los datos, con residuos adecuados y estabilidad.
+
+        -   **Beta y Gamma:** útiles como comparación, pero menos interpretables en este caso.
+
+    -   Por tanto, el **modelo binomial negativa** fue el mejor para modelar los conteos de insectos. Tiene sentido, ya que la distribución binomial negativa sirve para casos de conteo en los que la Poisson da problemas. También nótese que sus curvas son discretas y sus funciones de probabilidad tienen su moda/máximo ligeramente desplazado a la izquierda.
+
+### En cuanto a las conclusiones sobre el conteo de insectos (del boxplot)
+
+1.  **Control**
+    -   Tiene los valores de conteo más altos y variables (con varias réplicas por encima de 100 y un máximo de 141).
+
+    -   Los tests de comparación múltiple le asignan la letra **b** (en el boxplot), lo que indica que **se diferencia significativamente de A+B** y en parte de A.
+
+<!-- -->
+
+2.  **Tratamiento A**
+    -   Generalmente bajos (muchas réplicas entre 6–27 insectos), aunque con un par de valores atípicos (69 y 134).
+
+    -   En el boxplot figura como **ab**, lo que significa que **no se diferencia significativamente ni de Control ni de A+B**, pero sí tiende a mostrar menores conteos que el control.
+
+<!-- -->
+
+3.  **Tratamiento B**
+    -   Tiene gran variabilidad, con réplicas bajas (8–38) pero también picos altos (96 y 292).
+
+    -   En el análisis se agrupa con la letra **b**, mostrando conteos similares al **Control**, y significativamente distintos de A+B.
+
+<!-- -->
+
+4.  **Tratamiento A+B (combinado)**
+    -   Es el que muestra los valores más bajos en promedio (varias réplicas con 0–22).
+
+    -   Se ubica en la categoría **a**, lo que confirma que **reduce significativamente los conteos frente al Control y B**, y se diferencia también de A en parte.
+
+<!-- -->
+
+5.  **Resumen:**
+
+    -   **El tratamiento más efectivo es la combinación A+B**, pues logra **la reducción más significativa en el número de insectos**.
+
+    -   **El Control y el Tratamiento B** se mantienen en el grupo con mayores conteos, sin diferencias significativas entre ellos.
+
+    -   **El Tratamiento A** queda en una posición intermedia: reduce insectos respecto a Control, pero no con la misma consistencia que A+B.
