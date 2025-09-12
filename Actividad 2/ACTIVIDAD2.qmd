@@ -23,7 +23,7 @@ editor: visual
 
 ## Objetivo
 
-En esta segunda actividad propuesta trabajamos con un conjunto de datos de capturas de insectos en distintos tratamientos.\
+En esta segunda actividad propuesta trabajamos con un conjunto de datos de capturas de insectos aplicando distintos tratamientos A y B y una mezcla de los dos.\
 Nuestro flujo de trabajo consiste en:
 
 1.  **Carga de datos y exploración inicial.**

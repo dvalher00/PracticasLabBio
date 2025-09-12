@@ -2,21 +2,7 @@
 title: "ACTIVIDAD 1"
 author: "David Valcárcel Herrera"
 lang: es
-format:
-  pdf:
-    toc: true
-    toc-depth: 3
-    toc-title: "Índice de la actividad 3"
-    number-sections: true
-    papersize: a4
-    geometry:
-      - top=2.5cm
-      - bottom=2.5cm
-      - left=2.5cm
-      - right=2.5cm
-    fontsize: 11pt
-    pdf-engine: lualatex
-    colorlinks: true
+format: html
 
 editor: visual
 ---
@@ -121,11 +107,9 @@ summary(farmaconuevo2) #AQUÍ VEO SI HAY QUE HACER CLEANING DE LOS DATOS
 ```
 
 ```{r}
-#-----------------------
-#Boxplots (abajo)
-#-----------------------
+#---------- ANOVA -----------
 
-modelo_aov <- aov(X._germinados ~ trtf, data = farmaconuevo2)
+modelo_aov <- aov(X._germinados ~ trtf, data = farmaconuevo2) #Hacemos el anova
 summary(modelo_aov)
 
 shapiro.test(resid(modelo_aov))  # Normalidad
@@ -184,114 +168,6 @@ leveneTest(Y_trans ~ trtf, data = farmaconuevo2)
 ```
 
 Como no hay normalidad ni homogeneidad, no hacemos nada y usamos #un test no paramétrico equivalente al ANOVA (Kruskal-Wallis + Dunn):
-
-```{r}
-#Vería TukeyHSD 
-
-tukeybox = TukeyHSD(modelo_aov_box)
-```
-
-```{r}
-#-------------INFERENCIA ESTADÍSTICA (ANOVA de dos factores)-------------------
-
-# Convertimos f a f2 (para modelos generales)
-f <- 0.4
-f2 <- f^2  # f^2 = 0.16
-
-# Grados de libertad para el numerador:
-# k = número de grupos (combinaciones A x B) - 1
-u <- 9 - 1  # = 8
-
-# Potencia para detectar el efecto global (puede ser efecto principal o interacción)
-pwr_result <- pwr.f2.test(u = u, f2 = f2, sig.level = 0.05, power = 0.8)
-
-pwr_result
-```
-
-### INFERENCIA ESTADÍSTICA (ANOVA de dos factores)
-
-```{r}
-#-------------INFERENCIA ESTADÍSTICA (ANOVA de dos factores)-------------------
-
-# Convertimos f a f2 (para modelos generales)
-f <- 0.4
-f2 <- f^2  # f^2 = 0.16
-
-# Grados de libertad para el numerador:
-# k = número de grupos (combinaciones A x B) - 1
-u <- 9 - 1  # = 8
-
-# Potencia para detectar el efecto global (puede ser efecto principal o interacción)
-pwr_result <- pwr.f2.test(u = u, f2 = f2, sig.level = 0.05, power = 0.8)
-
-pwr_result
-```
-
-```{r}
-#-----------------------
-#Boxplots (abajo)
-#-----------------------
-
-modelo_aov <- aov(X._germinados ~ trtf, data = farmaconuevo2)
-summary(modelo_aov)
-
-shapiro.test(resid(modelo_aov))  # Normalidad
-leveneTest(X._germinados ~ trtf, data = farmaconuevo2)  # Homogeneidad de varianzas
-```
-
-FALLAN TANTO LA NORMALIDAD COMO LA HOMOGENEIDAD, TRANSFORMAMOS LOS DATOS:
-
-```{r}
-#----------Si ANOVA significativo--------------
-
-TukeyHSD(modelo_aov)
-
-EtaSq(modelo_aov, type = 1) #TAMAÑO EFECTO eta^2
-```
-
-```{r}
-#--------------------- TRANSFORMACIONES -------------------------
-
-#PRIMERO PRUEBO CON UNA RAÍZ, POR EJEMPLO
-
-farmaconuevo2$sqrt_germinados <- sqrt(farmaconuevo2$X._germinados)  # +1 para evitar log(0)
-modelo_aov_sqrt <- aov(sqrt_germinados ~ trtf, data = farmaconuevo2)
-summary(modelo_aov_sqrt)
-```
-
-```{r}
-shapiro.test(resid(modelo_aov_sqrt))
-leveneTest(sqrt_germinados ~ trtf, data = farmaconuevo2)
-```
-
-```{r}
-#PRUEBO CON UNA TRANSFORMACIÓN BOX-COX QUE OPTIMIZA LOS DATOS PARA
-#QUE LA DISTRIBUCIÓN DE LOS DATOS SEA MÁS NORMAL Y LOS RESIDUOS
-#MÁS HOMOGÉNEOS
-
-library(MASS)
-boxcox_result <- boxcox(farmaconuevo2$X._germinados ~ farmaconuevo2$trtf, lambda = seq(-4, 4, 0.1))
-# El gráfico te indicará el lambda óptimo
-
-lambda_optimo <- boxcox_result$x[which.max(boxcox_result$y)]
-print(lambda_optimo)
-
-if(abs(lambda_optimo) < 0.01) {
-  farmaconuevo2$Y_trans <- log(farmaconuevo2$X._germinados + 1)  # +1 para evitar log(0)
-} else {
-  farmaconuevo2$Y_trans <- ((farmaconuevo2$X._germinados + 1)^lambda_optimo - 1)/lambda_optimo
-}
-
-modelo_aov_box <- aov(Y_trans ~ trtf, data = farmaconuevo2)
-summary(modelo_aov_box)
-```
-
-```{r}
-shapiro.test(resid(modelo_aov_box))
-leveneTest(Y_trans ~ trtf, data = farmaconuevo2)
-```
-
-Como no hay normalidad ni homogeneidad, no hacemos nada y usamos un test no paramétrico equivalente al ANOVA (Kruskal-Wallis + Dunn).
 
 ```{r}
 #Vería TukeyHSD 
