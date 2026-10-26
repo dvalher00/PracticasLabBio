@@ -39,6 +39,7 @@
       <span class="theme-toggle__icon" aria-hidden="true"></span>
     </button>
   </div>
+  <div class="progress" aria-hidden="true"><span class="progress__bar" id="progress-bar"></span></div>
 </header>
 
 <main>
@@ -52,6 +53,15 @@
     <div class="hero__actions">
       <a class="btn btn--primary" href="#actividad-3">Ver el estudio de insecticidas</a>
       <a class="btn btn--ghost" href="assets/docs/memoria-practicas.pdf">Memoria en PDF</a>
+    </div>
+    <div class="hero__letters">
+      <span class="hero__letters-label">Letras de significación · germinación a 8 h</span>
+      <ul aria-label="Ejemplo de letras de significación de la Actividad 1 a 8 horas">
+        <li><span class="mono">a</span>Control</li>
+        <li><span class="mono">ab</span>2,5 µg/ml</li>
+        <li><span class="mono">bc</span>10 µg/ml</li>
+        <li><span class="mono">c</span>20 µg/ml</li>
+      </ul>
     </div>
   </div>
   <aside class="ficha" aria-label="Ficha de las prácticas">
@@ -77,7 +87,7 @@
       <li class="stat"><span class="stat__num">9 × 2</span><span class="stat__label">tratamientos y tiempos (8 h, 24 h) en el ensayo de germinación</span></li>
       <li class="stat"><span class="stat__num">5</span><span class="stat__label">familias de GLM comparadas en el conteo de insectos</span></li>
       <li class="stat"><span class="stat__num">2017 · 2018</span><span class="stat__label">campañas de semicampo en Italia con 7 y 6 tratamientos</span></li>
-      <li class="stat"><span class="stat__num">24</span><span class="stat__label">diapositivas entregadas a la Universidad de Bari</span></li>
+      <li class="stat"><span class="stat__num">82,5 %</span><span class="stat__label">de la varianza recogida por la primera componente del PCA final</span></li>
     </ul>
     <div class="summary-grid">
       <article class="summary-card">
@@ -166,25 +176,74 @@
     <div class="two-col two-col--wide-left">
       <div class="prose">
         <h3>Antes de analizar: poder estadístico</h3>
-        <p>El tutor pidió primero explicar qué es el poder estadístico y calcular el tamaño de muestra necesario. Con un ANOVA de un factor de 9 grupos, un tamaño de efecto alto (<span class="mono">f = 0,45</span>) y un poder de 0,75, G*Power y el paquete <code>pwr</code> de R coinciden: unas 9 réplicas por grupo, es decir, unas 81 observaciones en total.</p>
-        <h3>Del ANOVA al test no paramétrico</h3>
-        <p>El ANOVA de un factor sobre el factor combinado tratamiento × tiempo salió significativo, pero Shapiro–Wilk y Levene mostraron que ni la normalidad ni la homogeneidad de varianzas se cumplían. Ni la raíz cuadrada ni la transformación Box–Cox lo arreglaron, así que se pasó a Kruskal–Wallis por separado para 8 h y 24 h, seguido del test de Dunn con corrección de Bonferroni y agrupación por letras.</p>
+        <p>El poder estadístico es la probabilidad de detectar un efecto real cuando existe. Depende del tamaño del efecto, del número de réplicas y del nivel de significación. El tutor pidió calcular cuántas réplicas hacían falta antes de mirar los datos.</p>
+        <p>Con un ANOVA de un factor de 9 grupos, un tamaño de efecto alto (<span class="mono">f = 0,45</span>) y un poder de 0,75, G*Power y el paquete <code>pwr</code> de R coinciden: 8,35 réplicas por grupo, que se redondean a 9, es decir, 81 observaciones en total.</p>
+        <p>La calculadora hace el mismo cálculo que <code>pwr.anova.test</code>. Mueve los controles para ver cómo crece la muestra necesaria cuando el efecto es pequeño o se exige más poder.</p>
+        <figure class="figure figure--thumb">
+          <a class="zoom" href="assets/img/a1_gpower.png"><img src="assets/img/a1_gpower.png" alt="Gráfica de G*Power: tamaño de muestra total frente a poder estadístico para tamaños de efecto f de 0,25, 0,35 y 0,45 en un ANOVA de un factor con 9 grupos." loading="lazy" width="886" height="644"></a>
+          <figcaption>Comprobación original en G*Power. Pulsa para ampliar.</figcaption>
+        </figure>
       </div>
-      <figure class="figure figure--small">
-        <a class="zoom" href="assets/img/a1_gpower.png"><img src="assets/img/a1_gpower.png" alt="Gráfica de G*Power: tamaño de muestra total frente a poder estadístico para tamaños de efecto f de 0,25, 0,35 y 0,45 en un ANOVA de un factor con 9 grupos." loading="lazy" width="886" height="644"></a>
-        <figcaption>Tamaño de muestra total frente a poder (1−β) para tres tamaños de efecto, calculado en G*Power.</figcaption>
-      </figure>
+
+      <div class="calc" id="power-calc">
+        <p class="widget-label">Calculadora · ANOVA de un factor, <span class="nocase">α</span> = 0,05</p>
+        <div class="calc__controls">
+          <div class="calc__row">
+            <label for="pc-f">Tamaño del efecto <span class="mono">f</span></label>
+            <output class="mono" id="pc-f-out" for="pc-f">0,45</output>
+            <input type="range" id="pc-f" min="0.10" max="0.80" step="0.01" value="0.45">
+            <div class="calc__presets" role="group" aria-label="Convenciones de Cohen">
+              <button type="button" data-f="0.10">pequeño 0,10</button>
+              <button type="button" data-f="0.25">medio 0,25</button>
+              <button type="button" data-f="0.40">grande 0,40</button>
+            </div>
+          </div>
+          <div class="calc__row">
+            <label for="pc-power">Poder (1 − β)</label>
+            <output class="mono" id="pc-power-out" for="pc-power">0,75</output>
+            <input type="range" id="pc-power" min="0.50" max="0.95" step="0.01" value="0.75">
+          </div>
+          <div class="calc__row">
+            <label for="pc-k">Número de grupos <span class="mono">k</span></label>
+            <output class="mono" id="pc-k-out" for="pc-k">9</output>
+            <input type="range" id="pc-k" min="2" max="12" step="1" value="9">
+          </div>
+        </div>
+        <div class="calc__result" aria-live="polite">
+          <div class="calc__figure"><span class="calc__big" id="pc-n">9</span><span class="calc__unit">réplicas por grupo</span><span class="calc__exact mono" id="pc-nexact">n = 8,35</span></div>
+          <div class="calc__figure"><span class="calc__big" id="pc-N">81</span><span class="calc__unit">observaciones en total</span><span class="calc__exact mono" id="pc-ktimes">9 grupos × 9</span></div>
+        </div>
+        <div class="calc__chart" id="pc-chart" aria-hidden="true"></div>
+        <p class="calc__note" id="pc-note">Valores de la actividad: f = 0,45, poder 0,75 y 9 grupos.</p>
+        <button type="button" class="link-btn" id="pc-reset">Volver a los valores de la actividad</button>
+      </div>
     </div>
 
-    <div class="figure-pair">
+    <div class="prose">
+      <h3>Del ANOVA al test no paramétrico</h3>
+      <p>El ANOVA de un factor sobre el factor combinado tratamiento × tiempo salió significativo, pero Shapiro–Wilk y Levene mostraron que ni la normalidad ni la homogeneidad de varianzas se cumplían. Ni la raíz cuadrada ni la transformación Box–Cox lo arreglaron, así que se pasó a Kruskal–Wallis por separado para 8 h y 24 h, seguido del test de Dunn con corrección de Bonferroni y agrupación por letras.</p>
+    </div>
+
+    <div class="viewer" id="a1-viewer">
+      <div class="viewer__bar">
+        <div class="seg" role="group" aria-label="Tiempo de incubación">
+          <button type="button" aria-pressed="true" data-time="8h">8 horas</button>
+          <button type="button" aria-pressed="false" data-time="24h">24 horas</button>
+        </div>
+        <div class="seg" role="group" aria-label="Tipo de gráfico">
+          <button type="button" aria-pressed="true" data-plot="boxplot">Boxplot</button>
+          <button type="button" aria-pressed="false" data-plot="violin">Violín</button>
+        </div>
+      </div>
       <figure class="figure">
-        <a class="zoom" href="assets/img/a1_boxplot_8h.png"><img src="assets/img/a1_boxplot_8h.png" alt="Boxplot del porcentaje de germinación por tratamiento a 8 horas, con letras de grupos: control, 1 µg/ml y DMSO comparten la letra a; 20 y 30 µg/ml comparten la letra c." loading="lazy" width="1897" height="1036"></a>
-        <figcaption><strong>8 h.</strong> Kruskal–Wallis χ² = 70,2 (8 gl, p &lt; 0,001). A partir de 10 µg/ml la germinación cae de forma significativa respecto al control.</figcaption>
+        <a class="zoom" href="assets/img/a1_boxplot_8h.png" id="a1-link"><img id="a1-img" src="assets/img/a1_boxplot_8h.png" alt="Boxplot del porcentaje de germinación por tratamiento a 8 horas con letras de grupos." width="1897" height="1036"></a>
+        <figcaption id="a1-cap"><strong>8 h.</strong> Kruskal–Wallis χ² = 70,2 (8 gl, p &lt; 0,001). A partir de 10 µg/ml la germinación cae de forma significativa respecto al control.</figcaption>
       </figure>
-      <figure class="figure">
-        <a class="zoom" href="assets/img/a1_boxplot_24h.png"><img src="assets/img/a1_boxplot_24h.png" alt="Boxplot del porcentaje de germinación por tratamiento a 24 horas, con letras de grupos: 20 y 30 µg/ml forman el grupo c, claramente por debajo del resto." loading="lazy" width="1912" height="1035"></a>
-        <figcaption><strong>24 h.</strong> Kruskal–Wallis χ² = 67,0 (8 gl, p &lt; 0,001). Mismo patrón, con porcentajes de germinación más altos en general.</figcaption>
-      </figure>
+      <div class="cld" id="a1-cld" data-set="a1_8h">
+        <p class="widget-label">Comparador de letras · pulsa un tratamiento</p>
+        <div class="cld__chips" role="group" aria-label="Tratamientos"></div>
+        <p class="cld__result" aria-live="polite">Dos tratamientos que comparten alguna letra no difieren de forma significativa.</p>
+      </div>
     </div>
 
     <div class="conclusions">
@@ -208,33 +267,54 @@
     <div class="two-col">
       <div class="prose">
         <h3>Elegir la distribución correcta</h3>
-        <p>El ANOVA clásico cumplía la homogeneidad de varianzas, pero no del todo la normalidad de los residuos, y Box–Cox mejoraba sin resolver. Se ajustaron entonces cinco GLM y se compararon con los residuos simulados de DHARMa.</p>
-        <table class="table table--compact">
-          <caption>Modelos probados para los conteos</caption>
-          <thead><tr><th scope="col">Distribución</th><th scope="col">Resultado del diagnóstico</th></tr></thead>
-          <tbody>
-            <tr><td>Gaussiana</td><td>Residuos mal ajustados</td></tr>
-            <tr><td>Poisson</td><td>Sobredispersión</td></tr>
-            <tr class="table__hl"><td>Binomial negativa</td><td>Buen ajuste, residuos adecuados y estable</td></tr>
-            <tr><td>Beta</td><td>Útil como comparación, menos interpretable</td></tr>
-            <tr><td>Gamma</td><td>Útil como comparación, menos interpretable</td></tr>
-          </tbody>
-        </table>
-        <p>Con el modelo binomial negativo se hicieron contrastes de Tukey con <code>glht</code> y <code>emmeans</code> y se obtuvieron las letras de significación.</p>
+        <p>El ANOVA clásico cumplía la homogeneidad de varianzas, pero no del todo la normalidad de los residuos, y Box–Cox mejoraba sin resolver. Se ajustaron entonces varios GLM y se compararon con los residuos simulados de DHARMa. Elige un modelo para ver su diagnóstico.</p>
+        <div class="table-wrap">
+          <table class="table table--pick" id="glm-table">
+            <caption>Modelos probados para los conteos</caption>
+            <thead><tr><th scope="col">Distribución</th><th scope="col">Resultado del diagnóstico</th></tr></thead>
+            <tbody>
+              <tr data-model="gaussian"><td><button type="button" class="pick" aria-pressed="false">Gaussiana</button></td><td>Desviaciones de cuantiles en residuo frente a predicción</td></tr>
+              <tr data-model="poisson"><td><button type="button" class="pick" aria-pressed="false">Poisson</button></td><td>Sobredispersión; fallan las tres pruebas</td></tr>
+              <tr data-model="negbin" class="is-picked"><td><button type="button" class="pick" aria-pressed="true">Binomial negativa</button></td><td>Sin problemas detectados</td></tr>
+              <tr class="is-muted"><td>Beta, gamma</td><td>Citadas como comparación en las conclusiones; el cuaderno no guarda su diagnóstico</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-      <figure class="figure">
-        <a class="zoom" href="assets/img/a2_boxplot.png"><img src="assets/img/a2_boxplot.png" alt="Boxplot de conteos de insectos por tratamiento: Control con letra b, A con letra ab, B con letra b y la combinación A+B con letra a, que es la que muestra los conteos más bajos." loading="lazy" width="1344" height="960"></a>
-        <figcaption>Conteos por tratamiento con letras del modelo binomial negativo. A+B queda sola en el grupo <span class="mono">a</span>.</figcaption>
-      </figure>
+      <div class="dharma" id="dharma">
+        <p class="widget-label" id="dharma-title">Diagnóstico DHARMa · binomial negativa</p>
+        <figure class="figure">
+          <a class="zoom" href="assets/img/a2_dharma_negbin.png" id="dharma-link"><img id="dharma-img" src="assets/img/a2_dharma_negbin.png" alt="Diagnóstico DHARMa del modelo binomial negativo: QQ plot sobre la diagonal y residuos sin desviaciones." width="1344" height="960" loading="lazy"></a>
+        </figure>
+        <ul class="checks" id="dharma-checks" role="list">
+          <li class="ok"><span>Uniformidad (KS)</span><span class="mono">p = 0,951</span></li>
+          <li class="ok"><span>Dispersión</span><span class="mono">p = 0,528</span></li>
+          <li class="ok"><span>Valores atípicos</span><span class="mono">p = 1</span></li>
+          <li class="ok"><span>Residuo frente a predicción</span><span class="mono">sin problemas</span></li>
+        </ul>
+      </div>
     </div>
 
-    <div class="conclusions">
-      <h3>Conclusiones</h3>
-      <ul>
-        <li><strong>A+B es el tratamiento más eficaz.</strong> Varias réplicas entre 0 y 22 insectos; se diferencia significativamente del control y de B.</li>
-        <li><strong>Control y B no se distinguen.</strong> Ambos en el grupo <span class="mono">b</span>, con conteos altos y muy variables (máximos de 141 y 292).</li>
-        <li><strong>A queda en posición intermedia.</strong> Reduce las capturas respecto al control pero sin la consistencia de A+B.</li>
-      </ul>
+    <div class="two-col">
+      <figure class="figure">
+        <a class="zoom" href="assets/img/a2_boxplot.png"><img src="assets/img/a2_boxplot.png" alt="Boxplot de conteos de insectos por tratamiento: Control con letra b, A con letra ab, B con letra b y la combinación A+B con letra a, que es la que muestra los conteos más bajos." loading="lazy" width="1344" height="960"></a>
+        <figcaption>Conteos por tratamiento con letras del modelo binomial negativo (contrastes de Tukey con <code>glht</code> y <code>emmeans</code>).</figcaption>
+      </figure>
+      <div class="stack">
+        <div class="cld" id="a2-cld" data-set="a2">
+          <p class="widget-label">Comparador de letras · pulsa un tratamiento</p>
+          <div class="cld__chips" role="group" aria-label="Tratamientos"></div>
+          <p class="cld__result" aria-live="polite">Dos tratamientos que comparten alguna letra no difieren de forma significativa.</p>
+        </div>
+        <div class="conclusions">
+          <h3>Conclusiones</h3>
+          <ul>
+            <li><strong>A+B es el tratamiento más eficaz.</strong> Varias réplicas entre 0 y 22 insectos; se diferencia significativamente del control y de B.</li>
+            <li><strong>Control y B no se distinguen.</strong> Ambos en el grupo <span class="mono">b</span>, con conteos altos y muy variables (máximos de 141 y 292).</li>
+            <li><strong>A queda en posición intermedia.</strong> Reduce las capturas respecto al control pero sin la consistencia de A+B.</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -247,18 +327,31 @@
     <p class="section__intro"><em>Philaenus spumarius</em>, la espumadora de los prados, es el principal vector de <em>Xylella fastidiosa</em> en Europa. Controlarla es clave para frenar los brotes. El laboratorio recibió de la Universidad de Bari los datos de dos campañas de semicampo con varios insecticidas, entre ellos ISOCLAST (sulfoxaflor, GF-2626), y encargó un informe que respondiera a tres preguntas.</p>
 
     <div class="questions">
-      <div class="question"><span class="question__n">Q1</span><p>¿Qué tratamiento es más eficaz cada año, y cuánto pesa la parcela en la variabilidad?</p></div>
-      <div class="question"><span class="question__n">Q2</span><p>¿Es mejor la aplicación foliar o la inyección en tronco para cada producto?</p></div>
-      <div class="question"><span class="question__n">Q3</span><p>¿Cuán persistente es cada tratamiento y cuál protege durante más tiempo?</p></div>
+      <a class="question" href="#q1"><span class="question__n">Q1</span><p>¿Qué tratamiento es más eficaz cada año, y cuánto pesa la parcela en la variabilidad?</p></a>
+      <a class="question" href="#q2"><span class="question__n">Q2</span><p>¿Es mejor la aplicación foliar o la inyección en tronco para cada producto?</p></a>
+      <a class="question" href="#q3"><span class="question__n">Q3</span><p>¿Cuán persistente es cada tratamiento y cuál protege durante más tiempo?</p></a>
     </div>
 
-    <div class="prose">
-      <h3>Cómo se modeló</h3>
-      <p>La respuesta es la mortalidad acumulada (%) de cada réplica. Al haber varias réplicas dentro de cada parcela, se ajustaron modelos lineales mixtos (LMM) con el tratamiento como efecto fijo y la parcela como efecto aleatorio, y en varios casos LMM ponderados para absorber la heterocedasticidad entre grupos. Los residuos se validaron con DHARMa y las comparaciones entre tratamientos se hicieron con <code>emmeans</code>. Los datos originales son confidenciales: aquí solo aparecen figuras y conclusiones, igual que en el repositorio.</p>
+    <div class="two-col two-col--wide-left">
+      <div class="prose">
+        <h3>Cómo se modeló</h3>
+        <p>La respuesta es la mortalidad acumulada (%) de cada réplica. Al haber varias réplicas dentro de cada parcela, se ajustaron modelos lineales mixtos con el tratamiento como efecto fijo y la parcela como efecto aleatorio. Para absorber la heterocedasticidad, cada tratamiento tiene su propia varianza residual: es un LMM ponderado.</p>
+        <p>Los residuos se validaron con DHARMa y las comparaciones entre tratamientos se hicieron con <code>emmeans</code>. Los datos originales son confidenciales: aquí aparecen figuras y resúmenes publicados en la presentación, igual que en el repositorio.</p>
+      </div>
+      <div class="formula" aria-label="Modelo lineal mixto ponderado">
+        <p class="widget-label">Modelo · LMM ponderado</p>
+        <p class="formula__eq"><i>y</i><sub><i>ij</i></sub> = <i>μ</i> + <i>β</i><sub><i>i</i></sub> + <i>b</i><sub><i>j</i></sub> + <i>ε</i><sub><i>ij</i></sub></p>
+        <p class="formula__eq formula__eq--small"><i>b</i><sub><i>j</i></sub> ~ N(0, <i>τ</i>²) &nbsp;&nbsp; <i>ε</i><sub><i>ij</i></sub> ~ N(0, <i>σ</i><sub><i>i</i></sub>²)</p>
+        <dl class="formula__legend">
+          <div><dt><i>β</i><sub><i>i</i></sub></dt><dd>efecto fijo del tratamiento <i>i</i></dd></div>
+          <div><dt><i>b</i><sub><i>j</i></sub></dt><dd>efecto aleatorio de la parcela <i>j</i></dd></div>
+          <div><dt><i>σ</i><sub><i>i</i></sub>²</dt><dd>varianza residual propia de cada tratamiento</dd></div>
+        </dl>
+      </div>
     </div>
 
     <!-- Q1 -->
-    <h3 class="subhead"><span class="subhead__tag">Q1</span> Eficacia por año</h3>
+    <h3 class="subhead" id="q1"><span class="subhead__tag">Q1</span> Eficacia por año</h3>
     <div class="tabs" data-tabs>
       <div class="tabs__list" role="tablist" aria-label="Campaña">
         <button class="tabs__tab" role="tab" type="button" id="tab-2017" aria-controls="panel-2017" aria-selected="true">Campaña 2017</button>
@@ -267,18 +360,20 @@
       <div class="tabs__panel" role="tabpanel" id="panel-2017" aria-labelledby="tab-2017">
         <div class="two-col two-col--wide-left">
           <figure class="figure">
-            <a class="zoom" href="assets/img/a3_efficacy_2017.png"><img src="assets/img/a3_efficacy_2017.png" alt="Boxplot de mortalidad por tratamiento en 2017. CONFIDOR 200 OD foliar tiene la letra e y la mortalidad más alta; KARATE ZEON 10CS la d; los tratamientos de GF-2626 las letras bc y cd; CONFIDOR por inyección comparte letra con el control." loading="lazy" width="964" height="583"></a>
-            <figcaption>Mortalidad (%) por tratamiento en 2017 con letras del LMM. FOL = aplicación foliar, INJ = inyección en tronco.</figcaption>
+            <a class="zoom" href="assets/img/a3_efficacy_2017.png"><img src="assets/img/a3_efficacy_2017.png" alt="Boxplot de mortalidad por tratamiento en 2017. CONFIDOR 200 OD foliar tiene la letra d y la mortalidad más alta; KARATE ZEON 10CS la c; los tres tratamientos de GF-2626 la b; CONFIDOR por inyección comparte la letra a con el control." loading="lazy" width="973" height="585"></a>
+            <figcaption>Mortalidad (%) por tratamiento en 2017 con letras del LMM ponderado. FOL = aplicación foliar, INJ = inyección en tronco.</figcaption>
           </figure>
-          <div class="prose">
-            <p>La aplicación foliar de <strong>CONFIDOR 200 OD</strong> fue la más eficaz, seguida de lambda-cihalotrina (<strong>KARATE ZEON 10 CS</strong>) y, por último, los tratamientos de sulfoxaflor. CONFIDOR inyectado en tronco no tuvo efecto sobre la mortalidad.</p>
-            <p>Entre los tres tratamientos de sulfoxaflor (GF-2626) no hay diferencias significativas, independientemente de la dosis y del método de aplicación, pero todos se diferencian del control.</p>
+          <div class="stack">
+            <div class="prose">
+              <p>La aplicación foliar de <strong>CONFIDOR 200 OD</strong> fue la más eficaz, seguida de lambda-cihalotrina (<strong>KARATE ZEON 10 CS</strong>) y, por último, los tratamientos de sulfoxaflor. CONFIDOR inyectado en tronco no tuvo efecto sobre la mortalidad.</p>
+              <p>Entre los tres tratamientos de sulfoxaflor (GF-2626) no hay diferencias significativas, independientemente de la dosis y del método de aplicación, pero todos se diferencian del control.</p>
+            </div>
             <div class="variance" aria-label="Partición de la varianza en 2017">
-              <p class="variance__title">Partición de la varianza · 2017</p>
+              <p class="widget-label">Partición de la varianza · 2017</p>
               <div class="variance__bar" role="img" aria-label="El tratamiento explica el 27,9 % de la varianza, la parcela el 1,13 % y el 70,9 % queda sin explicar.">
-                <span class="variance__seg variance__seg--trt" style="--w:27.95%"></span>
-                <span class="variance__seg variance__seg--plot" style="--w:1.13%"></span>
-                <span class="variance__seg variance__seg--res" style="--w:70.92%"></span>
+                <span class="variance__seg variance__seg--trt" style="--w:27.95%" title="Tratamiento: 27,9 %"></span>
+                <span class="variance__seg variance__seg--plot" style="--w:1.13%" title="Parcela: 1,1 %"></span>
+                <span class="variance__seg variance__seg--res" style="--w:70.92%" title="No explicada: 70,9 %"></span>
               </div>
               <ul class="variance__legend">
                 <li><span class="swatch swatch--trt"></span>Tratamiento <span class="mono">27,9 %</span></li>
@@ -286,28 +381,35 @@
                 <li><span class="swatch swatch--res"></span>No explicada <span class="mono">70,9 %</span></li>
               </ul>
             </div>
+            <div class="cld" data-set="a3_2017">
+              <p class="widget-label">Comparador de letras · 2017</p>
+              <div class="cld__chips" role="group" aria-label="Tratamientos de 2017"></div>
+              <p class="cld__result" aria-live="polite">Pulsa un tratamiento para ver de cuáles difiere.</p>
+            </div>
           </div>
         </div>
         <figure class="figure figure--wide">
           <a class="zoom" href="assets/img/a3_blups_2017.png"><img src="assets/img/a3_blups_2017.png" alt="Gráfico de BLUPs por parcela con intervalos de confianza del 95 % en 2017; casi todos los intervalos cruzan el cero." loading="lazy" width="958" height="600"></a>
-          <figcaption>Efectos aleatorios de parcela (BLUP) con IC del 95 %: casi todos cruzan el cero, lo que confirma la escasa influencia de la parcela.</figcaption>
+          <figcaption>Efectos aleatorios de parcela (BLUP) con IC del 95 %: casi todos cruzan el cero, lo que confirma la escasa influencia de la parcela. Solo las parcelas 101, 102 y 206 se alejan más de 1,5 desviaciones típicas.</figcaption>
         </figure>
       </div>
       <div class="tabs__panel" role="tabpanel" id="panel-2018" aria-labelledby="tab-2018" hidden>
         <div class="two-col two-col--wide-left">
           <figure class="figure">
             <a class="zoom" href="assets/img/a3_efficacy_2018.png"><img src="assets/img/a3_efficacy_2018.png" alt="Boxplot de mortalidad por tratamiento en 2018. CONFIDOR foliar y los dos tratamientos de EPIK tienen la letra b con mortalidades altas; los dos de GF-2626 comparten la letra a con el control." loading="lazy" width="948" height="607"></a>
-            <figcaption>Mortalidad (%) por tratamiento en 2018 con letras del LMM.</figcaption>
+            <figcaption>Mortalidad (%) por tratamiento en 2018 con letras del LMM ponderado.</figcaption>
           </figure>
-          <div class="prose">
-            <p>En 2018 hay dos grupos claros. <strong>CONFIDOR 200 OD</strong> foliar y <strong>EPIK</strong> (en cualquiera de sus dos aplicaciones) tienen el mayor impacto sobre la mortalidad y se diferencian del control.</p>
-            <p>Los tratamientos de sulfoxaflor, tanto foliar como por inyección, no se diferencian estadísticamente del control en esta campaña.</p>
+          <div class="stack">
+            <div class="prose">
+              <p>En 2018 hay dos grupos claros. <strong>CONFIDOR 200 OD</strong> foliar y <strong>EPIK</strong> (en cualquiera de sus dos aplicaciones) tienen el mayor impacto sobre la mortalidad y se diferencian del control.</p>
+              <p>Los tratamientos de sulfoxaflor, tanto foliar como por inyección, no se diferencian estadísticamente del control en esta campaña.</p>
+            </div>
             <div class="variance" aria-label="Partición de la varianza en 2018">
-              <p class="variance__title">Partición de la varianza · 2018</p>
+              <p class="widget-label">Partición de la varianza · 2018</p>
               <div class="variance__bar" role="img" aria-label="El tratamiento explica el 54,4 % de la varianza, la parcela el 15,4 % y el 30,3 % queda sin explicar.">
-                <span class="variance__seg variance__seg--trt" style="--w:54.36%"></span>
-                <span class="variance__seg variance__seg--plot" style="--w:15.38%"></span>
-                <span class="variance__seg variance__seg--res" style="--w:30.26%"></span>
+                <span class="variance__seg variance__seg--trt" style="--w:54.36%" title="Tratamiento: 54,4 %"></span>
+                <span class="variance__seg variance__seg--plot" style="--w:15.38%" title="Parcela: 15,4 %"></span>
+                <span class="variance__seg variance__seg--res" style="--w:30.26%" title="No explicada: 30,3 %"></span>
               </div>
               <ul class="variance__legend">
                 <li><span class="swatch swatch--trt"></span>Tratamiento <span class="mono">54,4 %</span></li>
@@ -315,13 +417,18 @@
                 <li><span class="swatch swatch--res"></span>No explicada <span class="mono">30,3 %</span></li>
               </ul>
             </div>
+            <div class="cld" data-set="a3_2018">
+              <p class="widget-label">Comparador de letras · 2018</p>
+              <div class="cld__chips" role="group" aria-label="Tratamientos de 2018"></div>
+              <p class="cld__result" aria-live="polite">Pulsa un tratamiento para ver de cuáles difiere.</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Q2 -->
-    <h3 class="subhead"><span class="subhead__tag">Q2</span> Foliar frente a inyección en tronco</h3>
+    <h3 class="subhead" id="q2"><span class="subhead__tag">Q2</span> Foliar frente a inyección en tronco</h3>
     <div class="figure-pair">
       <figure class="figure">
         <a class="zoom" href="assets/img/a3_method_2017.png"><img src="assets/img/a3_method_2017.png" alt="Boxplot de mortalidad en 2017 ordenado por producto y método: CONFIDOR foliar letra c, CONFIDOR inyección letra a como el control, y los tres GF-2626 letra b." loading="lazy" width="960" height="593"></a>
@@ -337,38 +444,118 @@
     </div>
 
     <!-- Q3 -->
-    <h3 class="subhead"><span class="subhead__tag">Q3</span> Persistencia en el tiempo</h3>
+    <h3 class="subhead" id="q3"><span class="subhead__tag">Q3</span> Persistencia en el tiempo</h3>
     <div class="two-col two-col--wide-left">
-      <figure class="figure">
-        <a class="zoom" href="assets/img/a3_curves_pooled.png"><img src="assets/img/a3_curves_pooled.png" alt="Curvas de mortalidad media por periodo para los nueve tratamientos agrupando los dos años. CONFIDOR foliar y EPIK foliar suben rápido por encima del 75 % y se mantienen; el control queda por debajo del 25 %." loading="lazy" width="1386" height="787"></a>
-        <figcaption>Mortalidad media por periodo, agrupando 2017 y 2018. Las líneas verticales marcan los puntos de codo de algunos tratamientos.</figcaption>
-      </figure>
+      <div class="viewer" id="curves-viewer">
+        <div class="viewer__bar">
+          <div class="seg" role="group" aria-label="Campaña de las curvas">
+            <button type="button" aria-pressed="true" data-curves="pooled">Ambos años</button>
+            <button type="button" aria-pressed="false" data-curves="2017">2017</button>
+            <button type="button" aria-pressed="false" data-curves="2018">2018</button>
+          </div>
+        </div>
+        <figure class="figure">
+          <a class="zoom" href="assets/img/a3_curves_pooled.png" id="curves-link"><img id="curves-img" src="assets/img/a3_curves_pooled.png" alt="Curvas de mortalidad media por periodo para los nueve tratamientos agrupando los dos años." loading="lazy" width="1386" height="787"></a>
+          <figcaption id="curves-cap">Mortalidad media por periodo, agrupando 2017 y 2018. Las líneas verticales marcan los puntos de codo de algunos tratamientos.</figcaption>
+        </figure>
+      </div>
       <div class="prose">
-        <p>Para medir la persistencia se calcularon cuatro variables por tratamiento y se compararon con cuatro LMM:</p>
+        <p>Para medir la persistencia se calcularon cuatro variables por réplica y se compararon entre tratamientos con cuatro LMM, con corrección FDR:</p>
         <dl class="defs">
-          <div><dt>AUC</dt><dd>Área bajo la curva de mortalidad a lo largo de los periodos.</dd></div>
-          <div><dt>m<sub>elbow</sub></dt><dd>Mortalidad media en el punto de codo, donde la curva cambia de ritmo.</dd></div>
-          <div><dt>m<sub>final</sub></dt><dd>Mortalidad media en el último periodo.</dd></div>
-          <div><dt>Δ<sub>elbow</sub></dt><dd>m<sub>elbow</sub> − m<sub>final</sub>: cuánto cae (o sube) la mortalidad tras el codo.</dd></div>
+          <div><dt>AUC</dt><dd>Área bajo la curva de mortalidad a lo largo de los periodos. Resume la eficacia total.</dd></div>
+          <div><dt>m<sub>codo</sub></dt><dd>Mortalidad en el punto de codo, donde la curva cambia de ritmo de forma más marcada.</dd></div>
+          <div><dt>m<sub>final</sub></dt><dd>Mortalidad en el último periodo.</dd></div>
+          <div><dt>Δ<sub>codo</sub></dt><dd>m<sub>final</sub> − m<sub>codo</sub>. Un valor negativo indica que la mortalidad cae tras el codo, es decir, menos persistencia.</dd></div>
         </dl>
       </div>
     </div>
 
-    <div class="two-col">
-      <figure class="figure">
-        <a class="zoom" href="assets/img/a3_pca_clusters.png"><img src="assets/img/a3_pca_clusters.png" alt="Gráfico de clústeres sobre las dos primeras componentes principales. Clúster rojo a la izquierda: EPIK foliar, EPIK inyección, CONFIDOR foliar y KARATE foliar. Clúster azul a la derecha: CONFIDOR inyección, los tres tratamientos de sulfoxaflor y el control." loading="lazy" width="1411" height="849"></a>
-        <figcaption>Dos clústeres sobre las dos primeras componentes (Dim1 84,5 %, Dim2 15,3 %). Dim1 representa sobre todo la eficacia; Dim2, la persistencia.</figcaption>
-      </figure>
-      <figure class="figure">
-        <a class="zoom" href="assets/img/a3_hierarchical.png"><img src="assets/img/a3_hierarchical.png" alt="Dendrograma jerárquico de los tratamientos basado en distancias de Wasserstein entre sus curvas de mortalidad." loading="lazy" width="1479" height="804"></a>
-        <figcaption>Agrupamiento jerárquico de los tratamientos a partir de la distancia de Wasserstein entre curvas de mortalidad.</figcaption>
-      </figure>
+    <div class="explorer" id="explorer">
+      <div class="explorer__head">
+        <div>
+          <p class="widget-label">Explorador de persistencia · 9 tratamientos, ambos años</p>
+          <h4 class="explorer__title">Eficacia frente a persistencia</h4>
+        </div>
+        <div class="explorer__controls">
+          <div class="seg" role="group" aria-label="Vista del gráfico">
+            <button type="button" aria-pressed="true" data-view="pca">PCA y clústeres</button>
+            <button type="button" aria-pressed="false" data-view="vars">Variables</button>
+          </div>
+          <div class="explorer__axes" id="ex-axes" hidden>
+            <label for="ex-x">Eje X</label>
+            <select id="ex-x"></select>
+            <label for="ex-y">Eje Y</label>
+            <select id="ex-y"></select>
+            <label class="check" for="ex-sd"><input type="checkbox" id="ex-sd"> ± sd</label>
+          </div>
+        </div>
+      </div>
+      <div class="explorer__body">
+        <div class="explorer__chart">
+          <div class="explorer__svg" id="ex-chart"></div>
+          <ul class="legend" aria-label="Leyenda">
+            <li><span class="legend__dot legend__dot--c1"></span>Clúster 1 · alta eficacia</li>
+            <li><span class="legend__dot legend__dot--c2"></span>Clúster 2 · menor eficacia</li>
+            <li><span class="legend__dot legend__dot--c0"></span>Sin tratar</li>
+            <li><span class="legend__shape legend__shape--fol"></span>Foliar</li>
+            <li><span class="legend__shape legend__shape--inj"></span>Inyección</li>
+          </ul>
+        </div>
+        <aside class="explorer__detail" id="ex-detail" aria-live="polite"></aside>
+      </div>
+      <p class="explorer__caption" id="ex-caption"></p>
+      <p class="explorer__tablenote" id="ex-table-note">Medias ± desviación típica y agrupación estadística (superíndice) por tratamiento y variable, con corrección FDR. Pulsa una cabecera para ordenar o una fila para verla en el gráfico.</p>
+      <div class="table-wrap">
+        <table class="table table--sortable" id="ex-table" aria-describedby="ex-table-note">
+          <thead>
+            <tr>
+              <th scope="col"><button type="button" data-sort="name">Tratamiento</button></th>
+              <th scope="col"><button type="button" data-sort="method">Aplicación</button></th>
+              <th scope="col" class="num"><button type="button" data-sort="auc">AUC</button></th>
+              <th scope="col" class="num"><button type="button" data-sort="fin">m<sub>final</sub></button></th>
+              <th scope="col" class="num"><button type="button" data-sort="elb">m<sub>codo</sub></button></th>
+              <th scope="col" class="num"><button type="button" data-sort="dlt">Δ<sub>codo</sub></button></th>
+              <th scope="col"><button type="button" data-sort="cluster">Clúster</button></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
     </div>
 
-    <figure class="figure figure--wide figure--diagram">
-      <a class="zoom" href="assets/img/a3_summary_diagram.png"><img src="assets/img/a3_summary_diagram.png" alt="Diagrama resumen: clúster 1 de alta eficacia con CONFIDOR foliar y KARATE foliar como mejores y EPIK como buenos; clúster 2 de menor eficacia con CONFIDOR inyección como peor y los sulfoxaflor." loading="lazy" width="3840" height="410"></a>
-      <figcaption>Diagrama resumen entregado con el informe: dos clústeres de tratamientos y las conclusiones transversales.</figcaption>
-    </figure>
+    <div class="board" aria-label="Resumen de clústeres">
+      <div class="board__col board__col--c1">
+        <p class="widget-label">Clúster 1</p>
+        <h4>Alta eficacia, persistencia moderada o baja</h4>
+        <ul class="board__list" role="list">
+          <li><button type="button" data-select="CONFIDOR_750_FOLIAR">CONFIDOR 200 OD · foliar <span class="badge badge--best">Mejor</span></button></li>
+          <li><button type="button" data-select="KARATE_250_FOLIAR">KARATE ZEON 10 CS · foliar <span class="badge badge--best">Mejor</span></button></li>
+          <li><button type="button" data-select="EPIK_1500_FOLIAR">EPIK · foliar <span class="badge badge--good">Bueno</span></button></li>
+          <li><button type="button" data-select="EPIK_1500_INJCTREE">EPIK · inyección <span class="badge badge--good">Bueno</span></button></li>
+        </ul>
+      </div>
+      <div class="board__col board__col--c2">
+        <p class="widget-label">Clúster 2</p>
+        <h4>Menor eficacia, persistencia algo mayor pero variable</h4>
+        <ul class="board__list" role="list">
+          <li><button type="button" data-select="CONFIDOR_750_INJCTREE">CONFIDOR 200 OD · inyección <span class="badge badge--worst">Peor</span></button></li>
+          <li><button type="button" data-select="SULFOXAFLOR_400_FOLIAR">Sulfoxaflor 400 · foliar</button></li>
+          <li><button type="button" data-select="SULFOXAFLOR_400_INJCTREE">Sulfoxaflor 400 · inyección</button></li>
+          <li><button type="button" data-select="SULFOXAFLOR_200_FOLIAR">Sulfoxaflor 200 · foliar</button></li>
+        </ul>
+      </div>
+      <p class="board__note">Resumen del diagrama entregado con el informe. <a class="zoom-link" href="assets/img/a3_summary_diagram.png" data-caption="Diagrama resumen original entregado con el informe.">Ver el diagrama original</a>.</p>
+    </div>
+
+    <details class="appendix">
+      <summary>Análisis complementario: agrupamiento jerárquico de las curvas</summary>
+      <div class="appendix__body">
+        <figure class="figure figure--wide">
+          <a class="zoom" href="assets/img/a3_hierarchical.png"><img src="assets/img/a3_hierarchical.png" alt="Dendrograma jerárquico de los tratamientos basado en distancias de Wasserstein entre sus curvas de mortalidad." loading="lazy" width="1479" height="804"></a>
+          <figcaption>Agrupamiento jerárquico (Ward) de los tratamientos a partir de la distancia de Wasserstein entre sus curvas de mortalidad. Separa los mismos dos bloques que el k-medias.</figcaption>
+        </figure>
+      </div>
+    </details>
 
     <div class="conclusions conclusions--featured">
       <h3>Conclusiones finales</h3>
@@ -440,10 +627,10 @@
       <article class="concept"><h3>Letras de significación</h3><p>Tras un post-hoc (Tukey, Dunn), los tratamientos que comparten una letra no difieren significativamente. Es la síntesis visual que aparece en todos los boxplots.</p></article>
       <article class="concept"><h3>Factor anidado y cruzado</h3><p>Un factor es anidado cuando sus niveles solo existen dentro de los de otro (la clase 2 del colegio B no es la del colegio C). Es cruzado cuando los mismos niveles aparecen en todos los del otro, como tiempo dentro de tratamiento en la Actividad 1.</p></article>
       <article class="concept"><h3>LMM y GLMM</h3><p>Modelos con efectos fijos (el tratamiento) y aleatorios (la parcela), que introducen variabilidad no controlada en el modelo. Los GLMM extienden la idea a respuestas no normales.</p></article>
-      <article class="concept"><h3>LMM ponderado</h3><p>Modelo mixto que estima pesos por grupo para absorber la heterocedasticidad. Se usó para que el diagnóstico de residuos validara mejor los modelos de la Actividad 3.</p></article>
+      <article class="concept"><h3>LMM ponderado</h3><p>Modelo mixto que estima una varianza residual por grupo para absorber la heterocedasticidad. Se usó para que el diagnóstico de residuos validara mejor los modelos de la Actividad 3.</p></article>
       <article class="concept"><h3>DHARMa</h3><p>Paquete de R que genera residuos cuantílicos escalados por simulación para diagnosticar LM, GLM, LMM, GLMM y GAM con gráficos y tests uniformes.</p></article>
       <article class="concept"><h3>BLUP</h3><p>Mejor predictor lineal insesgado de un efecto aleatorio. Permite ver cuánto se desvía cada parcela de la media y si su intervalo cruza el cero.</p></article>
-      <article class="concept"><h3>Punto de codo</h3><p>Punto de una curva donde el ritmo de cambio se frena de golpe. Sirvió para fijar el número de clústeres y para definir la mortalidad "de codo" en las curvas de persistencia.</p></article>
+      <article class="concept"><h3>Punto de codo</h3><p>Punto de una curva donde el ritmo de cambio se frena de golpe. Sirvió para elegir el número de clústeres y para definir la mortalidad en el codo de las curvas de persistencia.</p></article>
       <article class="concept"><h3>PCA y clústeres</h3><p>El análisis de componentes principales reduce las variables de eficacia y persistencia a dos dimensiones; k-medias y el agrupamiento jerárquico separan después los tratamientos en grupos.</p></article>
     </div>
   </div>
@@ -454,10 +641,12 @@
   <div class="section__inner">
     <p class="eyebrow">Presentación</p>
     <h2 id="pres-title">Las diapositivas entregadas a la Universidad de Bari</h2>
-    <p class="section__intro">Resumen en inglés de la Actividad 3 tal y como se envió a los investigadores italianos. Veinticuatro diapositivas con objetivos, resultados por año, método de aplicación, persistencia y conclusiones.</p>
-    <div class="carousel" data-carousel aria-roledescription="carrusel" aria-label="Diapositivas de la presentación">
+    <p class="section__intro">Resumen en inglés de la Actividad 3 tal y como se envió a los investigadores italianos. Veinticuatro diapositivas con objetivos, resultados por año, método de aplicación, persistencia y conclusiones. Usa las flechas del teclado o desliza en el móvil.</p>
+    <div class="carousel" data-carousel tabindex="0" aria-roledescription="carrusel" aria-label="Diapositivas de la presentación">
       <div class="carousel__viewport">
-        <img class="carousel__img" id="carousel-img" src="assets/slides/slide-01.png" alt="Diapositiva 1 de 24: portada de la presentación Efficacy evaluation of ISOCLAST against Philaenus spumarius on weeds in semi-field, Italy." width="1280" height="720">
+        <button type="button" class="carousel__open" id="carousel-open" aria-label="Ampliar la diapositiva">
+          <img class="carousel__img" id="carousel-img" src="assets/slides/slide-01.png" alt="Diapositiva 1 de 24: portada de la presentación Efficacy evaluation of ISOCLAST against Philaenus spumarius on weeds in semi-field, Italy." width="1280" height="720">
+        </button>
       </div>
       <div class="carousel__controls">
         <button class="carousel__btn" type="button" data-prev aria-label="Diapositiva anterior">&#8592;</button>
@@ -501,13 +690,15 @@
 <footer class="footer">
   <div class="footer__inner">
     <p><strong>David Valcárcel Herrera</strong> · Prácticas externas en el Laboratorio de Fitopatología, Departamento de Ciencias del Mar y Biología Aplicada, Universidad de Alicante · Julio de 2025.</p>
-    <p class="muted">Tutor de empresa: Federico López Moya. Supervisión: Miguel Rodrigo Valverde Urrea. Datos de la Actividad 3 cedidos por la Universidad de Bari; se publican solo figuras y conclusiones.</p>
+    <p class="muted">Tutor de empresa: Federico López Moya. Supervisión: Miguel Rodrigo Valverde Urrea. Datos de la Actividad 3 cedidos por la Universidad de Bari; se publican solo figuras, resúmenes y conclusiones.</p>
   </div>
 </footer>
 
-<div class="lightbox" id="lightbox" hidden>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Figura ampliada" hidden>
   <button class="lightbox__close" type="button" aria-label="Cerrar">×</button>
-  <img class="lightbox__img" id="lightbox-img" src="" alt="">
+  <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Figura anterior">&#8592;</button>
+  <img class="lightbox__img" id="lightbox-img" src="data:," alt="">
+  <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Figura siguiente">&#8594;</button>
   <p class="lightbox__caption" id="lightbox-caption"></p>
 </div>
 

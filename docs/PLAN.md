@@ -56,3 +56,27 @@ Sirve como brief: qué se cuenta, para quién, con qué tema visual y con qué e
 - [x] Escribir `docs/index.html`, `docs/css/style.css` y `docs/js/main.js`.
 - [x] Comprobar el renderizado en escritorio y móvil, en claro y oscuro.
 - [x] Documentar cómo activar GitHub Pages en el README.
+
+## 6. Segunda iteración: más interactiva y fiel a la entrega final
+
+Revisión de la primera versión: la maquetación funcionaba, pero casi todo era estático y la Actividad 3 usaba dos figuras de una versión anterior a la presentación.
+
+**Cambios**
+
+- **Hero**: fondo de papel milimetrado de cuaderno de laboratorio y una tira con letras de significación reales; barra de progreso de lectura.
+- **Actividad 1**: calculadora de tamaño muestral para ANOVA de un factor (F no central, mismo método que `pwr.anova.test`; reproduce n = 8,35 de la actividad y n = 44,60 del ejemplo de la documentación de `pwr`). Visor 8 h / 24 h y boxplot / violín. Comparador de letras: al pulsar un tratamiento indica con cuáles comparte grupo y de cuáles difiere.
+- **Actividad 2**: la tabla de GLM es seleccionable y muestra el diagnóstico DHARMa real de cada modelo (gaussiano, Poisson, binomial negativo) con sus p-valores.
+- **Actividad 3**: figura de 2017 sustituida por la versión de la presentación (letras a, b, b, b, d, a, c); fórmula del LMM ponderado; comparadores de letras por año; curvas de persistencia por campaña; explorador interactivo de eficacia y persistencia con PCA, vista de variables con ± sd y tabla ordenable; tablero de clústeres enlazado al explorador.
+- **Navegación**: lightbox con flechas entre figuras, diapositivas ampliables y carrusel con deslizamiento en móvil.
+
+**Fuentes de los datos interactivos**
+
+- Medias, desviaciones típicas y letras de persistencia: tabla de la diapositiva 12 de la presentación.
+- PCA: recalculado con esas medias para los 8 tratamientos (sin el control) y variables estandarizadas, igual que `prcomp(scale = TRUE)` del informe. Da 82,52 % y 17,26 % de varianza y las mismas cargas que el informe.
+- Letras de significación: las figuras de R de cada actividad.
+
+**Discrepancias detectadas en el material original**
+
+- La diapositiva 10 define Δ_elbow = m_elbow − m_final, pero los valores de la tabla corresponden a m_final − m_elbow. La web usa la definición que cuadra con los números.
+- La leyenda de las curvas de 2017 etiqueta como inyección GF-2626 a 200 ml/ha y KARATE ZEON, que son foliares según la tabla de tratamientos. La web lo indica en el pie de figura.
+- El PCA de `pcaclusters_pool.png` (84,5 % / 15,3 %, con el control incluido) es anterior al de la presentación (82,5 % / 17,3 %); se usa el de la presentación.
