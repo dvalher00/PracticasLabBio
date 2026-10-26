@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Prácticas en el Laboratorio de Fitopatología</title>
+  <meta name="description" content="Memoria web de las prácticas externas de análisis de datos de bioensayos en el Laboratorio de Fitopatología de la Universidad de Alicante: germinación de esporas, capturas de insectos y eficacia de insecticidas contra Philaenus spumarius.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%232a6b4f'/%3E%3Ctext x='16' y='21' font-family='Georgia,serif' font-size='16' font-style='italic' fill='%23f3b64a' text-anchor='middle'%3Eab%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip-link" href="#resumen">Saltar al contenido</a>
+
+<header class="topbar" id="top">
+  <div class="topbar__inner">
+    <a class="brand" href="#top">
+      <span class="brand__mark" aria-hidden="true">ab</span>
+      <span class="brand__text">Lab. Fitopatología <span class="brand__sep">·</span> Prácticas 2025</span>
+    </a>
+    <nav class="nav" aria-label="Secciones">
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-list">Menú</button>
+      <ul class="nav__list" id="nav-list">
+        <li><a href="#resumen">Resumen</a></li>
+        <li><a href="#contexto">Contexto</a></li>
+        <li><a href="#metodo">Método</a></li>
+        <li><a href="#actividad-1">Act. 1</a></li>
+        <li><a href="#actividad-2">Act. 2</a></li>
+        <li><a href="#actividad-3">Act. 3</a></li>
+        <li><a href="#conceptos">Conceptos</a></li>
+        <li><a href="#presentacion">Diapositivas</a></li>
+        <li><a href="#descargas">Descargas</a></li>
+      </ul>
+    </nav>
+    <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Cambiar tema claro u oscuro">
+      <span class="theme-toggle__icon" aria-hidden="true"></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__inner">
+    <p class="eyebrow">Memoria de prácticas externas · Universidad de Alicante · Julio de 2025</p>
+    <h1 id="hero-title">Análisis de datos de bioensayos en el <em>Laboratorio de Fitopatología</em></h1>
+    <p class="lede">Tres actividades con datos reales de laboratorio y semicampo, resueltas en R y Quarto: desde un ANOVA de un factor hasta modelos mixtos, análisis de componentes principales y clústeres para evaluar insecticidas contra el vector de <em>Xylella fastidiosa</em>.</p>
+    <div class="hero__actions">
+      <a class="btn btn--primary" href="#actividad-3">Ver el estudio de insecticidas</a>
+      <a class="btn btn--ghost" href="assets/docs/memoria-practicas.pdf">Memoria en PDF</a>
+    </div>
+  </div>
+  <aside class="ficha" aria-label="Ficha de las prácticas">
+    <h2 class="ficha__title">Ficha</h2>
+    <dl class="ficha__list">
+      <div><dt>Alumno</dt><dd>David Valcárcel Herrera</dd></div>
+      <div><dt>Tutor de empresa</dt><dd>Federico López Moya</dd></div>
+      <div><dt>Supervisión diaria</dt><dd>Miguel Rodrigo Valverde Urrea</dd></div>
+      <div><dt>Lugar</dt><dd>Laboratorio de Fitopatología, Dpto. de Ciencias del Mar y Biología Aplicada (Edificio Polivalente II – EIDUA)</dd></div>
+      <div><dt>Periodo</dt><dd>Julio de 2025, de lunes a viernes, 10:00 a 16:30 h</dd></div>
+      <div><dt>Herramientas</dt><dd><span class="chips"><span class="chip">R</span><span class="chip">Quarto</span><span class="chip">dplyr</span><span class="chip">ggplot2</span><span class="chip">nlme</span><span class="chip">lme4</span><span class="chip">glmmTMB</span><span class="chip">emmeans</span><span class="chip">DHARMa</span><span class="chip">factoextra</span><span class="chip">G*Power</span></span></dd></div>
+    </dl>
+  </aside>
+</section>
+
+<!-- ============ RESUMEN ============ -->
+<section class="section" id="resumen" aria-labelledby="resumen-title">
+  <div class="section__inner">
+    <p class="eyebrow">Resumen</p>
+    <h2 id="resumen-title">El trabajo en cifras</h2>
+    <ul class="stats" role="list">
+      <li class="stat"><span class="stat__num">3</span><span class="stat__label">actividades con datos reales de bioensayos</span></li>
+      <li class="stat"><span class="stat__num">9 × 2</span><span class="stat__label">tratamientos y tiempos (8 h, 24 h) en el ensayo de germinación</span></li>
+      <li class="stat"><span class="stat__num">5</span><span class="stat__label">familias de GLM comparadas en el conteo de insectos</span></li>
+      <li class="stat"><span class="stat__num">2017 · 2018</span><span class="stat__label">campañas de semicampo en Italia con 7 y 6 tratamientos</span></li>
+      <li class="stat"><span class="stat__num">24</span><span class="stat__label">diapositivas entregadas a la Universidad de Bari</span></li>
+    </ul>
+    <div class="summary-grid">
+      <article class="summary-card">
+        <p class="summary-card__num">Actividad 01</p>
+        <h3>Germinación de esporas</h3>
+        <p>Efecto de un fármaco a distintas dosis sobre el porcentaje de germinación de un hongo a 8 y 24 h. Se parte de un ANOVA, se prueban transformaciones y se termina con Kruskal–Wallis y el test de Dunn.</p>
+        <a class="link-arrow" href="#actividad-1">Leer la actividad</a>
+      </article>
+      <article class="summary-card">
+        <p class="summary-card__num">Actividad 02</p>
+        <h3>Capturas de insectos</h3>
+        <p>Conteos de insectos bajo dos tratamientos y su mezcla. Se comparan modelos lineales generalizados con distintas distribuciones y se elige el binomial negativo tras diagnosticar los residuos con DHARMa.</p>
+        <a class="link-arrow" href="#actividad-2">Leer la actividad</a>
+      </article>
+      <article class="summary-card summary-card--featured">
+        <p class="summary-card__num">Actividad 03</p>
+        <h3>Eficacia de insecticidas contra <em>Philaenus spumarius</em></h3>
+        <p>Informe de eficacia y persistencia de ISOCLAST (sulfoxaflor) y otros productos en semicampo para la Universidad de Bari: modelos mixtos, partición de varianza, curvas de mortalidad, PCA y clústeres.</p>
+        <a class="link-arrow" href="#actividad-3">Leer la actividad</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTEXTO ============ -->
+<section class="section section--alt" id="contexto" aria-labelledby="contexto-title">
+  <div class="section__inner">
+    <p class="eyebrow">Contexto</p>
+    <h2 id="contexto-title">Dónde, con quién y para qué</h2>
+    <div class="two-col">
+      <div class="prose">
+        <p>Las prácticas se realizaron dentro de la propia Universidad de Alicante, en el Laboratorio de Fitopatología del Departamento de Ciencias del Mar y Biología Aplicada. El personal investigador del laboratorio estudia cómo responden plantas y árboles a enfermedades y plagas, y de ahí el carácter de las tres actividades.</p>
+        <p>El objetivo fue familiarizarse con la aplicación práctica de técnicas de análisis de datos a bioensayos: ANOVA, modelos lineales, GLM y GLMM, y técnicas no supervisadas como el análisis de componentes principales y el análisis de clústeres, para procesar, transformar e interpretar datos biológicos.</p>
+        <p>Cada actividad empezaba con una explicación biológica del experimento y de los conceptos estadísticos necesarios. Después, el trabajo era autónomo: escribir el código en Quarto, interpretar los resultados y explicarlos al supervisor. El tercer proyecto se entregó en inglés porque los investigadores destinatarios son de la Universidad de Bari.</p>
+      </div>
+      <div class="timeline" aria-label="Desarrollo de las prácticas">
+        <div class="timeline__item">
+          <span class="timeline__dot"></span>
+          <h3>Reunión inicial</h3>
+          <p>Planteamiento del trabajo con Federico y Miguel. El proyecto previsto de RNAseq se sustituye por el informe de insecticidas, más ajustado al tiempo disponible.</p>
+        </div>
+        <div class="timeline__item">
+          <span class="timeline__dot"></span>
+          <h3>Actividades 1 y 2</h3>
+          <p>Ocho o nueve días para repasar ANOVA, transformaciones, tests no paramétricos y GLM con conjuntos de datos reales.</p>
+        </div>
+        <div class="timeline__item">
+          <span class="timeline__dot"></span>
+          <h3>Actividad 3</h3>
+          <p>El resto del mes: modelos mixtos, persistencia y clústeres. Entregas cada 5–7 días con el PowerPoint que se iba construyendo.</p>
+        </div>
+        <div class="timeline__item">
+          <span class="timeline__dot"></span>
+          <h3>Memoria y presentación</h3>
+          <p>Informe final en Quarto, presentación en inglés y memoria de prácticas. Todo el código está en el repositorio.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MÉTODO ============ -->
+<section class="section" id="metodo" aria-labelledby="metodo-title">
+  <div class="section__inner">
+    <p class="eyebrow">Metodología común</p>
+    <h2 id="metodo-title">El mismo flujo en las tres actividades</h2>
+    <p class="section__intro">Cada análisis sigue un esquema que se repite: mirar los datos, ajustar un modelo sencillo, comprobar si cumple sus supuestos y, si no, transformar o cambiar de modelo antes de comparar tratamientos.</p>
+    <ol class="pipeline" aria-label="Flujo de análisis">
+      <li class="pipeline__step"><span class="pipeline__n">1</span><h3>Datos</h3><p>Lectura desde TXT o Excel, limpieza (<code>na.omit</code>, corrección de porcentajes), factores y subconjuntos.</p></li>
+      <li class="pipeline__step"><span class="pipeline__n">2</span><h3>Diagnóstico</h3><p>Shapiro–Wilk y Levene en los modelos clásicos; residuos cuantílicos simulados con DHARMa en GLM y GLMM.</p></li>
+      <li class="pipeline__step"><span class="pipeline__n">3</span><h3>Transformación</h3><p>Raíz cuadrada y Box–Cox con λ óptimo cuando los supuestos fallan.</p></li>
+      <li class="pipeline__step"><span class="pipeline__n">4</span><h3>Modelo</h3><p>ANOVA, Kruskal–Wallis, GLM (Poisson, binomial negativa…), LMM y GLMM con parcela como efecto aleatorio.</p></li>
+      <li class="pipeline__step"><span class="pipeline__n">5</span><h3>Post-hoc</h3><p>Tukey, Dunn con Bonferroni y contrastes con <code>emmeans</code>; letras de significación con <code>multcompView</code>.</p></li>
+      <li class="pipeline__step"><span class="pipeline__n">6</span><h3>Visualización</h3><p>Boxplots y violines con letras superpuestas, curvas de mortalidad, PCA y dendrogramas en ggplot2.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ ACTIVIDAD 1 ============ -->
+<section class="section section--alt activity" id="actividad-1" aria-labelledby="a1-title">
+  <div class="section__inner">
+    <p class="eyebrow">Actividad 01 · Ensayo de laboratorio</p>
+    <h2 id="a1-title">¿Qué dosis inhibe la germinación de las esporas?</h2>
+    <p class="section__intro">Ensayo de germinación de esporas de un hongo con 9 tratamientos (control, DMSO al 0,35 % y siete concentraciones del fármaco con DMSO, de 1 a 30 µg/ml) medidos a 8 y 24 horas. Se quería saber qué tratamientos alteran la germinación y si el efecto cambia con el tiempo.</p>
+
+    <div class="two-col two-col--wide-left">
+      <div class="prose">
+        <h3>Antes de analizar: poder estadístico</h3>
+        <p>El tutor pidió primero explicar qué es el poder estadístico y calcular el tamaño de muestra necesario. Con un ANOVA de un factor de 9 grupos, un tamaño de efecto alto (<span class="mono">f = 0,45</span>) y un poder de 0,75, G*Power y el paquete <code>pwr</code> de R coinciden: unas 9 réplicas por grupo, es decir, unas 81 observaciones en total.</p>
+        <h3>Del ANOVA al test no paramétrico</h3>
+        <p>El ANOVA de un factor sobre el factor combinado tratamiento × tiempo salió significativo, pero Shapiro–Wilk y Levene mostraron que ni la normalidad ni la homogeneidad de varianzas se cumplían. Ni la raíz cuadrada ni la transformación Box–Cox lo arreglaron, así que se pasó a Kruskal–Wallis por separado para 8 h y 24 h, seguido del test de Dunn con corrección de Bonferroni y agrupación por letras.</p>
+      </div>
+      <figure class="figure figure--small">
+        <a class="zoom" href="assets/img/a1_gpower.png"><img src="assets/img/a1_gpower.png" alt="Gráfica de G*Power: tamaño de muestra total frente a poder estadístico para tamaños de efecto f de 0,25, 0,35 y 0,45 en un ANOVA de un factor con 9 grupos." loading="lazy" width="886" height="644"></a>
+        <figcaption>Tamaño de muestra total frente a poder (1−β) para tres tamaños de efecto, calculado en G*Power.</figcaption>
+      </figure>
+    </div>
+
+    <div class="figure-pair">
+      <figure class="figure">
+        <a class="zoom" href="assets/img/a1_boxplot_8h.png"><img src="assets/img/a1_boxplot_8h.png" alt="Boxplot del porcentaje de germinación por tratamiento a 8 horas, con letras de grupos: control, 1 µg/ml y DMSO comparten la letra a; 20 y 30 µg/ml comparten la letra c." loading="lazy" width="1897" height="1036"></a>
+        <figcaption><strong>8 h.</strong> Kruskal–Wallis χ² = 70,2 (8 gl, p &lt; 0,001). A partir de 10 µg/ml la germinación cae de forma significativa respecto al control.</figcaption>
+      </figure>
+      <figure class="figure">
+        <a class="zoom" href="assets/img/a1_boxplot_24h.png"><img src="assets/img/a1_boxplot_24h.png" alt="Boxplot del porcentaje de germinación por tratamiento a 24 horas, con letras de grupos: 20 y 30 µg/ml forman el grupo c, claramente por debajo del resto." loading="lazy" width="1912" height="1035"></a>
+        <figcaption><strong>24 h.</strong> Kruskal–Wallis χ² = 67,0 (8 gl, p &lt; 0,001). Mismo patrón, con porcentajes de germinación más altos en general.</figcaption>
+      </figure>
+    </div>
+
+    <div class="conclusions">
+      <h3>Conclusiones</h3>
+      <ul>
+        <li><strong>Dosis recomendada: 20 µg/ml.</strong> El mayor efecto se alcanza con 20 y 30 µg/ml, pero no hay diferencia significativa entre ambas, así que la dosis menor es suficiente.</li>
+        <li><strong>El DMSO no explica el efecto.</strong> El control y el DMSO al 0,35 % sin fármaco comparten letra en los dos tiempos, por lo que la caída de la germinación se debe a la concentración del fármaco.</li>
+        <li><strong>A 24 h germina más.</strong> Los porcentajes suben con el tiempo, como cabe esperar al dejar crecer más al hongo. A 24 h, 2,5 µg/ml ya se diferencia del control, pero el efecto es pequeño.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACTIVIDAD 2 ============ -->
+<section class="section activity" id="actividad-2" aria-labelledby="a2-title">
+  <div class="section__inner">
+    <p class="eyebrow">Actividad 02 · Conteo de capturas</p>
+    <h2 id="a2-title">¿Qué tratamiento reduce más las capturas de insectos?</h2>
+    <p class="section__intro">Conteos de insectos capturados bajo un control, dos tratamientos (A y B) y su combinación (A+B). La actividad más corta, pero la que sirvió para repasar qué GLM usar cuando la variable respuesta es un conteo.</p>
+
+    <div class="two-col">
+      <div class="prose">
+        <h3>Elegir la distribución correcta</h3>
+        <p>El ANOVA clásico cumplía la homogeneidad de varianzas, pero no del todo la normalidad de los residuos, y Box–Cox mejoraba sin resolver. Se ajustaron entonces cinco GLM y se compararon con los residuos simulados de DHARMa.</p>
+        <table class="table table--compact">
+          <caption>Modelos probados para los conteos</caption>
+          <thead><tr><th scope="col">Distribución</th><th scope="col">Resultado del diagnóstico</th></tr></thead>
+          <tbody>
+            <tr><td>Gaussiana</td><td>Residuos mal ajustados</td></tr>
+            <tr><td>Poisson</td><td>Sobredispersión</td></tr>
+            <tr class="table__hl"><td>Binomial negativa</td><td>Buen ajuste, residuos adecuados y estable</td></tr>
+            <tr><td>Beta</td><td>Útil como comparación, menos interpretable</td></tr>
+            <tr><td>Gamma</td><td>Útil como comparación, menos interpretable</td></tr>
+          </tbody>
+        </table>
+        <p>Con el modelo binomial negativo se hicieron contrastes de Tukey con <code>glht</code> y <code>emmeans</code> y se obtuvieron las letras de significación.</p>
+      </div>
+      <figure class="figure">
+        <a class="zoom" href="assets/img/a2_boxplot.png"><img src="assets/img/a2_boxplot.png" alt="Boxplot de conteos de insectos por tratamiento: Control con letra b, A con letra ab, B con letra b y la combinación A+B con letra a, que es la que muestra los conteos más bajos." loading="lazy" width="1344" height="960"></a>
+        <figcaption>Conteos por tratamiento con letras del modelo binomial negativo. A+B queda sola en el grupo <span class="mono">a</span>.</figcaption>
+      </figure>
+    </div>
+
+    <div class="conclusions">
+      <h3>Conclusiones</h3>
+      <ul>
+        <li><strong>A+B es el tratamiento más eficaz.</strong> Varias réplicas entre 0 y 22 insectos; se diferencia significativamente del control y de B.</li>
+        <li><strong>Control y B no se distinguen.</strong> Ambos en el grupo <span class="mono">b</span>, con conteos altos y muy variables (máximos de 141 y 292).</li>
+        <li><strong>A queda en posición intermedia.</strong> Reduce las capturas respecto al control pero sin la consistencia de A+B.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACTIVIDAD 3 ============ -->
+<section class="section section--alt activity activity--featured" id="actividad-3" aria-labelledby="a3-title">
+  <div class="section__inner">
+    <p class="eyebrow">Actividad 03 · Semicampo, Italia, 2017 y 2018</p>
+    <h2 id="a3-title">Eficacia de ISOCLAST contra <em>Philaenus spumarius</em></h2>
+    <p class="section__intro"><em>Philaenus spumarius</em>, la espumadora de los prados, es el principal vector de <em>Xylella fastidiosa</em> en Europa. Controlarla es clave para frenar los brotes. El laboratorio recibió de la Universidad de Bari los datos de dos campañas de semicampo con varios insecticidas, entre ellos ISOCLAST (sulfoxaflor, GF-2626), y encargó un informe que respondiera a tres preguntas.</p>
+
+    <div class="questions">
+      <div class="question"><span class="question__n">Q1</span><p>¿Qué tratamiento es más eficaz cada año, y cuánto pesa la parcela en la variabilidad?</p></div>
+      <div class="question"><span class="question__n">Q2</span><p>¿Es mejor la aplicación foliar o la inyección en tronco para cada producto?</p></div>
+      <div class="question"><span class="question__n">Q3</span><p>¿Cuán persistente es cada tratamiento y cuál protege durante más tiempo?</p></div>
+    </div>
+
+    <div class="prose">
+      <h3>Cómo se modeló</h3>
+      <p>La respuesta es la mortalidad acumulada (%) de cada réplica. Al haber varias réplicas dentro de cada parcela, se ajustaron modelos lineales mixtos (LMM) con el tratamiento como efecto fijo y la parcela como efecto aleatorio, y en varios casos LMM ponderados para absorber la heterocedasticidad entre grupos. Los residuos se validaron con DHARMa y las comparaciones entre tratamientos se hicieron con <code>emmeans</code>. Los datos originales son confidenciales: aquí solo aparecen figuras y conclusiones, igual que en el repositorio.</p>
+    </div>
+
+    <!-- Q1 -->
+    <h3 class="subhead"><span class="subhead__tag">Q1</span> Eficacia por año</h3>
+    <div class="tabs" data-tabs>
+      <div class="tabs__list" role="tablist" aria-label="Campaña">
+        <button class="tabs__tab" role="tab" type="button" id="tab-2017" aria-controls="panel-2017" aria-selected="true">Campaña 2017</button>
+        <button class="tabs__tab" role="tab" type="button" id="tab-2018" aria-controls="panel-2018" aria-selected="false" tabindex="-1">Campaña 2018</button>
+      </div>
+      <div class="tabs__panel" role="tabpanel" id="panel-2017" aria-labelledby="tab-2017">
+        <div class="two-col two-col--wide-left">
+          <figure class="figure">
+            <a class="zoom" href="assets/img/a3_efficacy_2017.png"><img src="assets/img/a3_efficacy_2017.png" alt="Boxplot de mortalidad por tratamiento en 2017. CONFIDOR 200 OD foliar tiene la letra e y la mortalidad más alta; KARATE ZEON 10CS la d; los tratamientos de GF-2626 las letras bc y cd; CONFIDOR por inyección comparte letra con el control." loading="lazy" width="964" height="583"></a>
+            <figcaption>Mortalidad (%) por tratamiento en 2017 con letras del LMM. FOL = aplicación foliar, INJ = inyección en tronco.</figcaption>
+          </figure>
+          <div class="prose">
+            <p>La aplicación foliar de <strong>CONFIDOR 200 OD</strong> fue la más eficaz, seguida de lambda-cihalotrina (<strong>KARATE ZEON 10 CS</strong>) y, por último, los tratamientos de sulfoxaflor. CONFIDOR inyectado en tronco no tuvo efecto sobre la mortalidad.</p>
+            <p>Entre los tres tratamientos de sulfoxaflor (GF-2626) no hay diferencias significativas, independientemente de la dosis y del método de aplicación, pero todos se diferencian del control.</p>
+            <div class="variance" aria-label="Partición de la varianza en 2017">
+              <p class="variance__title">Partición de la varianza · 2017</p>
+              <div class="variance__bar" role="img" aria-label="El tratamiento explica el 27,9 % de la varianza, la parcela el 1,13 % y el 70,9 % queda sin explicar.">
+                <span class="variance__seg variance__seg--trt" style="--w:27.95%"></span>
+                <span class="variance__seg variance__seg--plot" style="--w:1.13%"></span>
+                <span class="variance__seg variance__seg--res" style="--w:70.92%"></span>
+              </div>
+              <ul class="variance__legend">
+                <li><span class="swatch swatch--trt"></span>Tratamiento <span class="mono">27,9 %</span></li>
+                <li><span class="swatch swatch--plot"></span>Parcela <span class="mono">1,1 %</span></li>
+                <li><span class="swatch swatch--res"></span>No explicada <span class="mono">70,9 %</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <figure class="figure figure--wide">
+          <a class="zoom" href="assets/img/a3_blups_2017.png"><img src="assets/img/a3_blups_2017.png" alt="Gráfico de BLUPs por parcela con intervalos de confianza del 95 % en 2017; casi todos los intervalos cruzan el cero." loading="lazy" width="958" height="600"></a>
+          <figcaption>Efectos aleatorios de parcela (BLUP) con IC del 95 %: casi todos cruzan el cero, lo que confirma la escasa influencia de la parcela.</figcaption>
+        </figure>
+      </div>
+      <div class="tabs__panel" role="tabpanel" id="panel-2018" aria-labelledby="tab-2018" hidden>
+        <div class="two-col two-col--wide-left">
+          <figure class="figure">
+            <a class="zoom" href="assets/img/a3_efficacy_2018.png"><img src="assets/img/a3_efficacy_2018.png" alt="Boxplot de mortalidad por tratamiento en 2018. CONFIDOR foliar y los dos tratamientos de EPIK tienen la letra b con mortalidades altas; los dos de GF-2626 comparten la letra a con el control." loading="lazy" width="948" height="607"></a>
+            <figcaption>Mortalidad (%) por tratamiento en 2018 con letras del LMM.</figcaption>
+          </figure>
+          <div class="prose">
+            <p>En 2018 hay dos grupos claros. <strong>CONFIDOR 200 OD</strong> foliar y <strong>EPIK</strong> (en cualquiera de sus dos aplicaciones) tienen el mayor impacto sobre la mortalidad y se diferencian del control.</p>
+            <p>Los tratamientos de sulfoxaflor, tanto foliar como por inyección, no se diferencian estadísticamente del control en esta campaña.</p>
+            <div class="variance" aria-label="Partición de la varianza en 2018">
+              <p class="variance__title">Partición de la varianza · 2018</p>
+              <div class="variance__bar" role="img" aria-label="El tratamiento explica el 54,4 % de la varianza, la parcela el 15,4 % y el 30,3 % queda sin explicar.">
+                <span class="variance__seg variance__seg--trt" style="--w:54.36%"></span>
+                <span class="variance__seg variance__seg--plot" style="--w:15.38%"></span>
+                <span class="variance__seg variance__seg--res" style="--w:30.26%"></span>
+              </div>
+              <ul class="variance__legend">
+                <li><span class="swatch swatch--trt"></span>Tratamiento <span class="mono">54,4 %</span></li>
+                <li><span class="swatch swatch--plot"></span>Parcela <span class="mono">15,4 %</span></li>
+                <li><span class="swatch swatch--res"></span>No explicada <span class="mono">30,3 %</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <h3 class="subhead"><span class="subhead__tag">Q2</span> Foliar frente a inyección en tronco</h3>
+    <div class="figure-pair">
+      <figure class="figure">
+        <a class="zoom" href="assets/img/a3_method_2017.png"><img src="assets/img/a3_method_2017.png" alt="Boxplot de mortalidad en 2017 ordenado por producto y método: CONFIDOR foliar letra c, CONFIDOR inyección letra a como el control, y los tres GF-2626 letra b." loading="lazy" width="960" height="593"></a>
+        <figcaption><strong>2017.</strong> Para CONFIDOR la aplicación foliar es claramente mejor; para sulfoxaflor el método no cambia nada.</figcaption>
+      </figure>
+      <figure class="figure">
+        <a class="zoom" href="assets/img/a3_method_2018.png"><img src="assets/img/a3_method_2018.png" alt="Boxplot de mortalidad en 2018 ordenado por producto y método: EPIK inyección y foliar comparten letra b; GF-2626 foliar e inyección comparten letra a con el control." loading="lazy" width="960" height="593"></a>
+        <figcaption><strong>2018.</strong> Ni para EPIK ni para sulfoxaflor hay diferencia estadística entre foliar e inyección.</figcaption>
+      </figure>
+    </div>
+    <div class="prose">
+      <p>Salvo que se aplique CONFIDOR 200 OD, el método de aplicación no tiene un efecto estadísticamente significativo sobre la mortalidad. Sí hay una tendencia general, no significativa, a que la aplicación foliar sea algo más eficaz y menos variable (menor desviación típica).</p>
+    </div>
+
+    <!-- Q3 -->
+    <h3 class="subhead"><span class="subhead__tag">Q3</span> Persistencia en el tiempo</h3>
+    <div class="two-col two-col--wide-left">
+      <figure class="figure">
+        <a class="zoom" href="assets/img/a3_curves_pooled.png"><img src="assets/img/a3_curves_pooled.png" alt="Curvas de mortalidad media por periodo para los nueve tratamientos agrupando los dos años. CONFIDOR foliar y EPIK foliar suben rápido por encima del 75 % y se mantienen; el control queda por debajo del 25 %." loading="lazy" width="1386" height="787"></a>
+        <figcaption>Mortalidad media por periodo, agrupando 2017 y 2018. Las líneas verticales marcan los puntos de codo de algunos tratamientos.</figcaption>
+      </figure>
+      <div class="prose">
+        <p>Para medir la persistencia se calcularon cuatro variables por tratamiento y se compararon con cuatro LMM:</p>
+        <dl class="defs">
+          <div><dt>AUC</dt><dd>Área bajo la curva de mortalidad a lo largo de los periodos.</dd></div>
+          <div><dt>m<sub>elbow</sub></dt><dd>Mortalidad media en el punto de codo, donde la curva cambia de ritmo.</dd></div>
+          <div><dt>m<sub>final</sub></dt><dd>Mortalidad media en el último periodo.</dd></div>
+          <div><dt>Δ<sub>elbow</sub></dt><dd>m<sub>elbow</sub> − m<sub>final</sub>: cuánto cae (o sube) la mortalidad tras el codo.</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <figure class="figure">
+        <a class="zoom" href="assets/img/a3_pca_clusters.png"><img src="assets/img/a3_pca_clusters.png" alt="Gráfico de clústeres sobre las dos primeras componentes principales. Clúster rojo a la izquierda: EPIK foliar, EPIK inyección, CONFIDOR foliar y KARATE foliar. Clúster azul a la derecha: CONFIDOR inyección, los tres tratamientos de sulfoxaflor y el control." loading="lazy" width="1411" height="849"></a>
+        <figcaption>Dos clústeres sobre las dos primeras componentes (Dim1 84,5 %, Dim2 15,3 %). Dim1 representa sobre todo la eficacia; Dim2, la persistencia.</figcaption>
+      </figure>
+      <figure class="figure">
+        <a class="zoom" href="assets/img/a3_hierarchical.png"><img src="assets/img/a3_hierarchical.png" alt="Dendrograma jerárquico de los tratamientos basado en distancias de Wasserstein entre sus curvas de mortalidad." loading="lazy" width="1479" height="804"></a>
+        <figcaption>Agrupamiento jerárquico de los tratamientos a partir de la distancia de Wasserstein entre curvas de mortalidad.</figcaption>
+      </figure>
+    </div>
+
+    <figure class="figure figure--wide figure--diagram">
+      <a class="zoom" href="assets/img/a3_summary_diagram.png"><img src="assets/img/a3_summary_diagram.png" alt="Diagrama resumen: clúster 1 de alta eficacia con CONFIDOR foliar y KARATE foliar como mejores y EPIK como buenos; clúster 2 de menor eficacia con CONFIDOR inyección como peor y los sulfoxaflor." loading="lazy" width="3840" height="410"></a>
+      <figcaption>Diagrama resumen entregado con el informe: dos clústeres de tratamientos y las conclusiones transversales.</figcaption>
+    </figure>
+
+    <div class="conclusions conclusions--featured">
+      <h3>Conclusiones finales</h3>
+      <div class="conclusions__grid">
+        <div>
+          <h4>Dos grupos de tratamientos</h4>
+          <p>Un grupo de alta eficacia y persistencia moderada o baja (CONFIDOR foliar, KARATE ZEON foliar, EPIK foliar e inyección) y otro de baja eficacia y persistencia algo mejor pero muy variable (sulfoxaflor en todas sus formas y CONFIDOR inyectado). La eficacia separa los grupos con más claridad que la persistencia.</p>
+        </div>
+        <div>
+          <h4>Mejores y peores</h4>
+          <p>CONFIDOR 200 OD y KARATE ZEON 10 CS aplicados por vía foliar son los más eficaces en conjunto, con buenas puntuaciones en eficacia y persistencia. EPIK también rinde bien, aunque su mortalidad decae antes. CONFIDOR por inyección en tronco es el peor tratamiento.</p>
+        </div>
+        <div>
+          <h4>Método de aplicación</h4>
+          <p>Efecto menor y no significativo salvo para CONFIDOR. La aplicación foliar tiende a ser algo más eficaz y menos variable.</p>
+        </div>
+        <div>
+          <h4>Variabilidad entre parcelas</h4>
+          <p>Muy baja en 2017 y baja en 2018. Supone menos de una quinta parte de la varianza explicada por los modelos; el tratamiento explica una proporción mucho mayor.</p>
+        </div>
+      </div>
+    </div>
+
+    <details class="appendix">
+      <summary>Apéndice: tratamientos y códigos de cada campaña</summary>
+      <div class="appendix__grid">
+        <div class="table-wrap">
+          <table class="table">
+            <caption>Campaña 2017</caption>
+            <thead><tr><th scope="col">Trt</th><th scope="col">Producto</th><th scope="col">Material</th><th scope="col">Conc.</th><th scope="col">Dosis</th><th scope="col">Aplicación</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Sulfoxaflor</td><td>GF-2626</td><td>120 g i.a./l</td><td>200 ml/ha</td><td>Foliar</td></tr>
+              <tr><td>2</td><td>Sulfoxaflor</td><td>GF-2626</td><td>120 g i.a./l</td><td>400 ml/ha</td><td>Foliar</td></tr>
+              <tr><td>3</td><td>Sulfoxaflor</td><td>GF-2626</td><td>120 g i.a./l</td><td>400 ml/ha</td><td>Inyección</td></tr>
+              <tr><td>4</td><td>Confidor 200 OD</td><td>Confidor 200 OD</td><td>200 g i.a./l</td><td>750 ml/ha</td><td>Foliar</td></tr>
+              <tr><td>5</td><td>Confidor 200 OD</td><td>Confidor 200 OD</td><td>200 g i.a./l</td><td>750 ml/ha</td><td>Inyección</td></tr>
+              <tr><td>6</td><td>Lambda-cihalotrina</td><td>Karate Zeon 10 CS</td><td>100 g i.a./l</td><td>250 ml/ha</td><td>Foliar</td></tr>
+              <tr><td>7</td><td>Sin tratar</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrap">
+          <table class="table">
+            <caption>Campaña 2018</caption>
+            <thead><tr><th scope="col">Trt</th><th scope="col">Producto</th><th scope="col">Material</th><th scope="col">Conc.</th><th scope="col">Dosis</th><th scope="col">Aplicación</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Confidor 200 OD</td><td>Confidor 200 OD</td><td>200 g i.a./l</td><td>750 ml/ha</td><td>Foliar</td></tr>
+              <tr><td>2</td><td>Sulfoxaflor</td><td>GF-2626</td><td>120 g i.a./l</td><td>400 ml/ha</td><td>Foliar</td></tr>
+              <tr><td>3</td><td>EPIK</td><td>EPIK</td><td>50 g i.a./kg</td><td>1500 g/ha</td><td>Foliar</td></tr>
+              <tr><td>4</td><td>Sulfoxaflor</td><td>GF-2626</td><td>120 g i.a./l</td><td>400 ml/ha</td><td>Inyección</td></tr>
+              <tr><td>5</td><td>EPIK</td><td>EPIK</td><td>50 g i.a./kg</td><td>1500 g/ha</td><td>Inyección</td></tr>
+              <tr><td>6</td><td>Sin tratar</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ============ CONCEPTOS ============ -->
+<section class="section" id="conceptos" aria-labelledby="conceptos-title">
+  <div class="section__inner">
+    <p class="eyebrow">Glosario</p>
+    <h2 id="conceptos-title">Conceptos que se aprendieron por el camino</h2>
+    <div class="concepts">
+      <article class="concept"><h3>Poder estadístico</h3><p>Probabilidad de detectar un efecto real cuando existe (1−β). Depende del tamaño del efecto, del tamaño de muestra y de α. Se suele exigir 0,80; aquí se aceptó 0,75 por ser un ensayo sencillo.</p></article>
+      <article class="concept"><h3>Transformación Box–Cox</h3><p>Familia de transformaciones de potencia con un parámetro λ que se estima para acercar los datos a la normalidad y homogeneizar las varianzas antes de un ANOVA.</p></article>
+      <article class="concept"><h3>Letras de significación</h3><p>Tras un post-hoc (Tukey, Dunn), los tratamientos que comparten una letra no difieren significativamente. Es la síntesis visual que aparece en todos los boxplots.</p></article>
+      <article class="concept"><h3>Factor anidado y cruzado</h3><p>Un factor es anidado cuando sus niveles solo existen dentro de los de otro (la clase 2 del colegio B no es la del colegio C). Es cruzado cuando los mismos niveles aparecen en todos los del otro, como tiempo dentro de tratamiento en la Actividad 1.</p></article>
+      <article class="concept"><h3>LMM y GLMM</h3><p>Modelos con efectos fijos (el tratamiento) y aleatorios (la parcela), que introducen variabilidad no controlada en el modelo. Los GLMM extienden la idea a respuestas no normales.</p></article>
+      <article class="concept"><h3>LMM ponderado</h3><p>Modelo mixto que estima pesos por grupo para absorber la heterocedasticidad. Se usó para que el diagnóstico de residuos validara mejor los modelos de la Actividad 3.</p></article>
+      <article class="concept"><h3>DHARMa</h3><p>Paquete de R que genera residuos cuantílicos escalados por simulación para diagnosticar LM, GLM, LMM, GLMM y GAM con gráficos y tests uniformes.</p></article>
+      <article class="concept"><h3>BLUP</h3><p>Mejor predictor lineal insesgado de un efecto aleatorio. Permite ver cuánto se desvía cada parcela de la media y si su intervalo cruza el cero.</p></article>
+      <article class="concept"><h3>Punto de codo</h3><p>Punto de una curva donde el ritmo de cambio se frena de golpe. Sirvió para fijar el número de clústeres y para definir la mortalidad "de codo" en las curvas de persistencia.</p></article>
+      <article class="concept"><h3>PCA y clústeres</h3><p>El análisis de componentes principales reduce las variables de eficacia y persistencia a dos dimensiones; k-medias y el agrupamiento jerárquico separan después los tratamientos en grupos.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRESENTACIÓN ============ -->
+<section class="section section--alt" id="presentacion" aria-labelledby="pres-title">
+  <div class="section__inner">
+    <p class="eyebrow">Presentación</p>
+    <h2 id="pres-title">Las diapositivas entregadas a la Universidad de Bari</h2>
+    <p class="section__intro">Resumen en inglés de la Actividad 3 tal y como se envió a los investigadores italianos. Veinticuatro diapositivas con objetivos, resultados por año, método de aplicación, persistencia y conclusiones.</p>
+    <div class="carousel" data-carousel aria-roledescription="carrusel" aria-label="Diapositivas de la presentación">
+      <div class="carousel__viewport">
+        <img class="carousel__img" id="carousel-img" src="assets/slides/slide-01.png" alt="Diapositiva 1 de 24: portada de la presentación Efficacy evaluation of ISOCLAST against Philaenus spumarius on weeds in semi-field, Italy." width="1280" height="720">
+      </div>
+      <div class="carousel__controls">
+        <button class="carousel__btn" type="button" data-prev aria-label="Diapositiva anterior">&#8592;</button>
+        <span class="carousel__counter mono" id="carousel-counter" aria-live="polite">1 / 24</span>
+        <button class="carousel__btn" type="button" data-next aria-label="Diapositiva siguiente">&#8594;</button>
+      </div>
+      <div class="carousel__thumbs" id="carousel-thumbs" role="list"></div>
+    </div>
+    <p class="muted">Las diapositivas también se pueden descargar como <a href="assets/docs/presentation-efficacy-treatment.pdf">PDF</a>.</p>
+  </div>
+</section>
+
+<!-- ============ VALORACIÓN Y DESCARGAS ============ -->
+<section class="section" id="descargas" aria-labelledby="descargas-title">
+  <div class="section__inner">
+    <div class="two-col">
+      <div class="prose">
+        <p class="eyebrow">Valoración personal</p>
+        <h2 id="valoracion-title">Lo que dejaron las prácticas</h2>
+        <p>Sirvieron para entender cómo trabaja un analista de datos en un laboratorio de biología: qué preguntas llegan, cómo se traducen a un modelo y cómo se devuelven conclusiones útiles a quien no es estadístico. Lo visto en las asignaturas de análisis de datos fue la base, y sobre ella se añadieron modelos mixtos, GLM para conteos y técnicas no supervisadas que no se habían visto en el grado.</p>
+        <p>Quarto resultó una herramienta más cómoda que otros cuadernos para informes reproducibles. La carga de trabajo fue alta para los conceptos de partida y exigió autonomía en los días de reuniones del laboratorio, pero el trato diario con el supervisor y el ambiente del laboratorio compensaron. El error más instructivo fue un etiquetado de colores cruzado entre años en la Actividad 3, que obligó a revisar las gráficas al final.</p>
+      </div>
+      <div>
+        <p class="eyebrow">Descargas y código</p>
+        <h2 id="descargas-title">Documentos del proyecto</h2>
+        <ul class="downloads" role="list">
+          <li><a class="download" href="assets/docs/memoria-practicas.pdf"><span class="download__type">PDF</span><span><strong>Memoria de prácticas externas</strong><small>Informe completo con las tres actividades y la valoración</small></span></a></li>
+          <li><a class="download" href="assets/docs/presentation-efficacy-treatment.pdf"><span class="download__type">PDF</span><span><strong>Presentation: Efficacy treatment</strong><small>Diapositivas de la Actividad 3 en inglés</small></span></a></li>
+          <li><a class="download" href="https://github.com/dvalher00/PracticasLabBio/blob/main/Actividad%201/ACTIVIDAD1.qmd"><span class="download__type">QMD</span><span><strong>Actividad 1 · cuaderno Quarto</strong><small>Poder estadístico, ANOVA, Kruskal–Wallis y Dunn</small></span></a></li>
+          <li><a class="download" href="https://github.com/dvalher00/PracticasLabBio/blob/main/Actividad%202/ACTIVIDAD2.qmd"><span class="download__type">QMD</span><span><strong>Actividad 2 · cuaderno Quarto</strong><small>GLM para conteos y diagnóstico con DHARMa</small></span></a></li>
+          <li><a class="download" href="https://github.com/dvalher00/PracticasLabBio/tree/main/Actividad%203%20(INSECTICIDAS%20EN%20%C3%81RBOLES)"><span class="download__type">HTML</span><span><strong>Actividad 3 · informe Quarto</strong><small>Código, procedimientos y figuras (sin tablas de datos)</small></span></a></li>
+          <li><a class="download" href="https://github.com/dvalher00/PracticasLabBio"><span class="download__type">GIT</span><span><strong>Repositorio completo</strong><small>github.com/dvalher00/PracticasLabBio</small></span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <p><strong>David Valcárcel Herrera</strong> · Prácticas externas en el Laboratorio de Fitopatología, Departamento de Ciencias del Mar y Biología Aplicada, Universidad de Alicante · Julio de 2025.</p>
+    <p class="muted">Tutor de empresa: Federico López Moya. Supervisión: Miguel Rodrigo Valverde Urrea. Datos de la Actividad 3 cedidos por la Universidad de Bari; se publican solo figuras y conclusiones.</p>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lightbox__close" type="button" aria-label="Cerrar">×</button>
+  <img class="lightbox__img" id="lightbox-img" src="" alt="">
+  <p class="lightbox__caption" id="lightbox-caption"></p>
+</div>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>
