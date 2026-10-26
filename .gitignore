@@ -1,0 +1,15 @@
+# Datos brutos: no se publican (pertenecen al laboratorio y a la Universidad de Bari)
+*.xlsx
+*.xls
+*.csv
+Actividad 1/estudiofarmaco.txt
+Datos actividad 3/
+DATOS*
+
+# Sesiones y ficheros temporales de R y RStudio
+.RData
+.Rhistory
+.Rproj.user/
+
+# Ficheros de bloqueo de Office
+~$*

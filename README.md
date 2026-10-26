@@ -9,6 +9,13 @@ tres actividades en R y Quarto con datos reales de bioensayos.
 - **Actividad 2**: capturas de insectos (GLM con distintas distribuciones y diagnóstico con DHARMa).
 - **Actividad 3**: eficacia de insecticidas contra *Philaenus spumarius* (LMM, persistencia, PCA y clústeres).
 
+## Datos
+
+Los datos brutos de los ensayos no se publican en este repositorio: pertenecen al Laboratorio de
+Fitopatología y, en el caso de la Actividad 3, a la Universidad de Bari, y son confidenciales.
+El código, los informes, las figuras y los resultados sí están disponibles. Para volver a ejecutar
+un análisis hace falta una copia propia de los datos en la carpeta de la actividad.
+
 ## Página web
 
 La [web](https://dvalher00.github.io/PracticasLabBio/) resume todo el trabajo de forma interactiva:
