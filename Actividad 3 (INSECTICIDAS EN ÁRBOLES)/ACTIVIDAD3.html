@@ -2309,35 +2309,11 @@ New names:
 <span id="cb142-11"><a href="#cb142-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar resultados</span></span>
 <span id="cb142-12"><a href="#cb142-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pre2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  Trt Plot Rete Mortalidad_1 Mortalidad_2 Mortalidad_3 Mortalidad_4
-1   2  101  A/1   0.00000000   0.04000000   0.04000000   0.12820513
-2   2  101  A/2   0.03703704   0.03703704   0.03703704   0.01666667
-3   2  101  B/1   0.09375000   0.18750000   0.18750000   0.21153846
-4   2  101  B/2   0.08000000   0.20000000   0.20000000   0.26190476
-6   4  102  A/1   0.00000000   0.03125000   0.12500000   0.06779661
-7   4  102  A/2   0.00000000   0.04761905   0.28571429   0.36363636
-  Mortalidad_5 Mortalidad_6 Mortalidad_7 Mortalidad_8
-1    0.1475410   0.13888889   0.17204301   0.19130435
-2    0.1084337   0.08910891   0.08474576   0.11278195
-3    0.2794118   0.23750000   0.23958333   0.21311475
-4    0.1896552   0.24637681   0.21839080   0.21000000
-6    0.0800000   0.06976744   0.09708738   0.08849558
-7    0.2881356   0.30000000   0.26436782   0.23853211</code></pre>
+<pre><code>[Salida omitida: mostraba filas de los datos brutos del ensayo, que son confidenciales (Universidad de Bari).]</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb144"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb144-1"><a href="#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(pre2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>'data.frame':   96 obs. of  11 variables:
- $ Trt         : num  2 2 2 2 4 4 4 4 6 6 ...
- $ Plot        : num  101 101 101 101 102 102 102 102 103 103 ...
- $ Rete        : chr  "A/1" "A/2" "B/1" "B/2" ...
- $ Mortalidad_1: num  0 0.037 0.0938 0.08 0 ...
- $ Mortalidad_2: num  0.04 0.037 0.1875 0.2 0.0312 ...
- $ Mortalidad_3: num  0.04 0.037 0.188 0.2 0.125 ...
- $ Mortalidad_4: num  0.1282 0.0167 0.2115 0.2619 0.0678 ...
- $ Mortalidad_5: num  0.148 0.108 0.279 0.19 0.08 ...
- $ Mortalidad_6: num  0.1389 0.0891 0.2375 0.2464 0.0698 ...
- $ Mortalidad_7: num  0.172 0.0847 0.2396 0.2184 0.0971 ...
- $ Mortalidad_8: num  0.1913 0.1128 0.2131 0.21 0.0885 ...</code></pre>
+<pre><code>[Salida omitida: mostraba filas de los datos brutos del ensayo, que son confidenciales (Universidad de Bari).]</code></pre>
 </div>
 </div>
 <p>Ahora convierto este dataframe de formato longitudinal a wide creando una variable periodo para cada <span class="math inline">\(\text{mortalidad}_i\)</span> y obtenemos nuestro dataframe arbol2. Lo guardaremos también por si acaso:</p>
@@ -4130,16 +4106,7 @@ x_i - x_1 &amp; y_i - y_1
 <span id="cb248-46"><a href="#cb248-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Ahora df_anova1 está listo para modelos y comparaciones</span></span>
 <span id="cb248-47"><a href="#cb248-47" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_anova1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 8
-  Trtf  PLOTf curve_id periodo_codo mortalidad_codo mortalidad_final   AUC
-  &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;           &lt;dbl&gt;           &lt;dbl&gt;            &lt;dbl&gt; &lt;dbl&gt;
-1 7     103   7_103_1             2            8.70             27.0  75.1
-2 7     103   7_103_2             4           28.6              24.4 105. 
-3 7     207   7_207_1             4           28.3              26.6 109. 
-4 7     207   7_207_2             4           36.4              29.3 125. 
-5 7     306   7_306_1             4           28.9              26.7 102. 
-6 7     306   7_306_2             4           29.5              26.4 101. 
-# ℹ 1 more variable: delta_postcodo1 &lt;dbl&gt;</code></pre>
+<pre><code>[Salida omitida: mostraba filas de los datos brutos del ensayo, que son confidenciales (Universidad de Bari).]</code></pre>
 </div>
 </div>
 <p>Ahora vemos los lm’s:</p>
